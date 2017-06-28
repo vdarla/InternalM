@@ -1,0 +1,704 @@
+﻿@model Medical.Models.ApplicationModel
+@{
+    Layout = null;
+}
+
+<script src="~/Content/plugins/Print/jquery.printElement.js"></script>
+<div id="divPrint">
+    @if (Model.APMCEModel != null)
+    {
+        //Html.RenderPartial("_APMCEView", Model.APMCEModel);
+    }
+
+    @if (Model.PCPNDTModel != null)
+    {
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Applicant</legend>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.ApplicantModel.Name, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.ApplicantModel.Name)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.ApplicantModel.ApplicantRole, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.ApplicantModel.ApplicantRole)
+                </div>
+                <div class="col-md-1 applicantroleother" hidden>
+                    @Html.LabelFor(model => model.PCPNDTModel.ApplicantModel.ApplicantRoleOther, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3 applicantroleother" hidden>
+                    @Html.DisplayFor(model => model.PCPNDTModel.ApplicantModel.ApplicantRoleOther)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.ApplicantModel.DistrictId, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.ApplicantModel.DistrictName)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.ApplicantModel.MandalId, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.ApplicantModel.MandalName)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.ApplicantModel.VillageId, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.ApplicantModel.VillageName)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.ApplicantModel.Aadhar, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.ApplicantModel.Aadhar)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.ApplicantModel.PAN, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.ApplicantModel.PAN)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.ApplicantModel.HouseNumber, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.ApplicantModel.HouseNumber)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.ApplicantModel.StreetName, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.ApplicantModel.StreetName)
+                </div>
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.PCPNDTModel.ApplicantModel.PINCode, new { @class = "control-label" })
+                </div>
+                <div class="col-md-2">
+                    @Html.DisplayFor(model => model.PCPNDTModel.ApplicantModel.PINCode)
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Facility</legend>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-3">
+                    @Html.CheckBox("facilitytypepreview", new { @value = "1", @disabled = "disabled" }) Generic Counselling Center
+                </div>
+                <div class="col-md-3">
+                    @Html.CheckBox("facilitytypepreview", new { @value = "2", @disabled = "disabled" }) Ultra Sound Clinic
+                </div>
+                <div class="col-md-4">
+                    @Html.CheckBox("facilitytypepreview", new { @value = "3", @disabled = "disabled" }) Imaging Center
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-3">
+                    @Html.CheckBox("facilitytypepreview", new { @value = "4", @disabled = "disabled" }) Genetic Clinic
+                </div>
+                <div class="col-md-3">
+                    @Html.CheckBox("facilitytypepreview", new { @value = "5", @disabled = "disabled" }) Generic Laboratory
+                </div>
+                <div class="col-md-4">
+                    @Html.CheckBox("facilitytypepreview", new { @value = "6", @disabled = "disabled" }) Assisted Reproductive Technology (ART)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.Name, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.Name)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.DistrictId, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.DistrictName)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.MandalId, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.MandalName)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.VillageId, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.VillageName)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.HouseNumber, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.HouseNumber)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.StreetName, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.StreetName)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.Phone, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.Phone)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.Email, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.Email)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.Fax, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.Fax)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.Telegraph, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.Telegraph)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.Telex, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.Telex)
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.PCPNDTModel.FacilityModel.PINCode, new { @class = "control-label" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.PCPNDTModel.FacilityModel.PINCode)
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Tests</legend>
+            @{
+                if (Model.PCPNDTModel.FacilityModel.Faclities.Contains("4")
+                    || Model.PCPNDTModel.FacilityModel.Faclities.Contains("5"))
+                {
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Invasive</legend>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.HiddenFor(model => model.PCPNDTModel.TestsModel.Id)
+                                @Html.CheckBox("testinvasivepreview", new { @value = "1", @disabled = "disabled" }) Amniocentesis
+                            </div>
+                            <div class="col-md-3">
+                                @Html.CheckBox("testinvasivepreview", new { @value = "2", @disabled = "disabled" }) Biochemical
+                            </div>
+                            <div class="col-md-4">
+                                @Html.CheckBox("testinvasivepreview", new { @value = "3", @disabled = "disabled" }) Chorionic Villi Aspiration
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.CheckBox("testinvasivepreview", new { @value = "4", @disabled = "disabled" }) Molecular Studies
+                            </div>
+                            <div class="col-md-3">
+                                @Html.CheckBox("testinvasivepreview", new { @value = "5", @disabled = "disabled" }) Chromosomal
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+                if (Model.PCPNDTModel.FacilityModel.Faclities.Contains("2") || Model.PCPNDTModel.FacilityModel.Faclities.Contains("3")
+                                || Model.PCPNDTModel.FacilityModel.Faclities.Contains("4") || Model.PCPNDTModel.FacilityModel.Faclities.Contains("5"))
+                {
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Non-Invasive</legend>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.CheckBox("testnoninvasivepreview", new { @value = "1", @disabled = "disabled" }) Ultra Sonography
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+                if (Model.PCPNDTModel.FacilityModel.Faclities.Contains("1") || Model.PCPNDTModel.FacilityModel.Faclities.Contains("6"))
+                {
+                    <fieldset class="scheduler-border" id="fsTestsRemarks">
+                        <legend class="scheduler-border">Remarks</legend>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-1">
+                                @Html.LabelFor(model => model.PCPNDTModel.TestsModel.Remarks, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.PCPNDTModel.TestsModel.Remarks)
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+            }
+
+        </fieldset>
+
+
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Equipment</legend>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-body table-responsive no-padding">
+                            <table id="tblEquiments" class="table table-hover">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Name</th>
+                                    <th>Serial No.</th>
+                                    <th>Model</th>
+                                    <th>Make</th>
+                                    <th>Type</th>
+                                    <th>Uploaded File</th>
+                                </tr>
+                                @for (int i = 0; i < Model.PCPNDTModel.EquipmentList.Count; i++)
+                                        {
+                                <tr>
+                                    <td>@Convert.ToInt32(i + 1)</td>
+                                    <td>@Model.PCPNDTModel.EquipmentList[i].Name</td>
+                                    <td>@Model.PCPNDTModel.EquipmentList[i].SerialNumber</td>
+                                    <td>@Model.PCPNDTModel.EquipmentList[i].MachineModel</td>
+                                    <td>@Model.PCPNDTModel.EquipmentList[i].Make</td>
+                                    <td>@Model.PCPNDTModel.EquipmentList[i].Type</td>
+                                    <td>
+                                        @if (Model.PCPNDTModel.EquipmentList[i].UploadedFilePath != null)
+                                                    {
+                                                        var layoutindex = Model.PCPNDTModel.EquipmentList[i].UploadedFilePath.LastIndexOf("/");
+                                                        var layoutfileName = Model.PCPNDTModel.EquipmentList[i].UploadedFilePath.Substring(layoutindex + 1);
+                                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+ new { Area = "", path = Model.PCPNDTModel.EquipmentList[i].UploadedFilePath, downloadName = layoutfileName }, null);
+                                                    }
+                                    </td>
+                                </tr>
+                                        }
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+        </fieldset>
+
+
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Facilities</legend>
+            @{
+                if (Model.PCPNDTModel.FacilityModel.Faclities.Contains("4") || Model.PCPNDTModel.FacilityModel.Faclities.Contains("5"))
+                {
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Tests</legend>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.CheckBox("facilitytestpreview", new { @value = "1", @disabled = "disabled" }) Amniocentesis
+                            </div>
+                            <div class="col-md-3">
+                                @Html.CheckBox("facilitytestpreview", new { @value = "2", @disabled = "disabled" }) Ultra Sound
+                            </div>
+                            <div class="col-md-4">
+                                @Html.CheckBox("facilitytestpreview", new { @value = "3", @disabled = "disabled" }) Chorionic Villi Aspiration
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.CheckBox("facilitytestpreview", new { @value = "4", @disabled = "disabled" }) Foetal Biopsy
+                            </div>
+                            <div class="col-md-3">
+                                @Html.CheckBox("facilitytestpreview", new { @value = "5", @disabled = "disabled" }) Foetoscopy
+                            </div>
+                            <div class="col-md-4">
+                                @Html.CheckBox("facilitytestpreview", new { @value = "6", @disabled = "disabled" }) Cordocentesis
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Studies</legend>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.CheckBox("facilitystudiespreview", new { @value = "1", @disabled = "disabled" }) Chromosomal Studies
+                            </div>
+                            <div class="col-md-3">
+                                @Html.CheckBox("facilitystudiespreview", new { @value = "2", @disabled = "disabled" }) Biochemical Studies
+                            </div>
+                            <div class="col-md-4">
+                                @Html.CheckBox("facilitystudiespreview", new { @value = "3", @disabled = "disabled" }) Molecular Studies
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-3">
+                                @Html.CheckBox("facilitystudiespreview", new { @value = "4", @disabled = "disabled" }) Preemplantatioin Genetic
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+                if (Model.PCPNDTModel.FacilityModel.Faclities.Contains("1") || Model.PCPNDTModel.FacilityModel.Faclities.Contains("2")
+                                || Model.PCPNDTModel.FacilityModel.Faclities.Contains("3") || Model.PCPNDTModel.FacilityModel.Faclities.Contains("6"))
+                {
+                    <fieldset class="scheduler-border" id="fsFacilityRemarks">
+                        <legend class="scheduler-border">Remarks</legend>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-1">
+                                @Html.LabelFor(model => model.PCPNDTModel.FacilitiesModel.Remarks, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.PCPNDTModel.FacilitiesModel.Remarks)
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+            }
+
+        </fieldset>
+
+
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Employees</legend>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-body table-responsive no-padding">
+                                <table id="tblEmployees" class="table table-hover">
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Name</th>
+                                        <th>Designation</th>
+                                        <th>Experience</th>
+                                        <th>Registration Number</th>
+                                        <th>Uploaded File</th>
+                                        <th></th>
+                                    </tr>
+                                    @for (int i = 0; i < Model.PCPNDTModel.EmployeeList.Count; i++)
+                                            {
+                                        <tr>
+                                            <td> @Convert.ToInt32(@i + 1)</td>
+                                            <td>@Model.PCPNDTModel.EmployeeList[i].Name</td>
+                                            <td>@Model.PCPNDTModel.EmployeeList[i].DesignationName</td>
+                                            <td>@Model.PCPNDTModel.EmployeeList[i].Experience</td>
+                                            <td>@Model.PCPNDTModel.EmployeeList[i].RegistrationNumber</td>
+                                            <td>
+                                                @if (Model.PCPNDTModel.EmployeeList[i].UploadedFilePath != null)
+                                                        {
+                                                            var addressindex = Model.PCPNDTModel.EmployeeList[i].UploadedFilePath.LastIndexOf("/");
+                                                            var addressfileName = Model.PCPNDTModel.EmployeeList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.PCPNDTModel.EmployeeList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                        }
+                                            </td>
+                                        </tr>
+                                            }
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+            </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Ownership & Institution</legend>
+                    <div class="row">
+                        <div class="col-md-1">
+                            @Html.LabelFor(model => model.PCPNDTModel.InstitutionModel.OwnershipTypeId, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(model => model.PCPNDTModel.InstitutionModel.OwnershipTypeName)
+                        </div>
+                        <div class="col-md-1">
+                            @Html.LabelFor(model => model.PCPNDTModel.InstitutionModel.InstitutionTypeId, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DisplayFor(model => model.PCPNDTModel.InstitutionModel.InstitutionTypeName)
+                        </div>
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.PCPNDTModel.InstitutionModel.TotalWorkArea, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.DisplayFor(model => model.PCPNDTModel.InstitutionModel.TotalWorkArea)
+                        </div>
+                    </div>
+                </fieldset>
+
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Declaration</legend>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                <p style="text-indent: 50px; text-align:justify;line-height: 30px;">
+                                    I, Sh./Smt./Kum./Dr. <b>@Model.PCPNDTModel.DeclarationModel.Name</b> Son/Daughter/Wife of
+                                    <b>@Model.PCPNDTModel.DeclarationModel.SonOf</b> aged <b>@Model.PCPNDTModel.DeclarationModel.Age years</b>
+                                    resident of <b>@Model.PCPNDTModel.DeclarationModel.ResidentOf</b> working as (indicate designation)
+                                    <b>@Model.PCPNDTModel.DeclarationModel.Designation</b> in (indicate name of the organization to be registered)
+                                    <b>@Model.PCPNDTModel.DeclarationModel.Organization</b> hereby declare that I have read and understood the
+                                    prenatal Diagnostic techniques (Regulation and Prevention of Miuse) Act, 1994 (57 of 1994) and
+                                    Pre Natal Diagnostic Techniques (Regulation and Prevention of Miuse) Rules, 1996.
+                                </p>
+                                <p style="text-indent: 50px; text-align:justify;line-height: 30px;">
+                                    I also undertake to explain the said Act and Rules to all employees of the Genetic Counselling Center / Genetic
+                                    Laboratory / Generic Clinic / Ultrasound Clinic / Imaging Center in respect of which registration
+                                    is sought and to ensure that act and Rules are fully compiled with.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                Date
+                            </div>
+                            <div class="col-md-2">
+                                <b>@Model.PCPNDTModel.DeclarationModel.Date.ToString("dd-MM-yyyy")</b>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                Place
+                            </div>
+                            <div class="col-md-2">
+                                <b>@Model.PCPNDTModel.DeclarationModel.Place</b>
+                            </div>
+                            <div class="col-md-offset-5 col-md-4" style="text-align:center">
+                                <b>@Model.PCPNDTModel.DeclarationModel.Signature</b>
+                                <br />
+                                Name, Designation and Signature of the<br />
+                                person who conduct the scanning
+                            </div>
+                        </div>
+                    </fieldset>
+    }
+</div>
+
+<div class="row" style="text-align:center;">
+    <input type="button" value="Cancel" id="btnCancel" data-dismiss="modal" class="btn btn-default"/>
+    <input type="button" value="Print" id="btnPrint" class="btn btn-primary"/>
+    <input type="button" value="Make Payment" id="btnMakePayment" class="btn btn-success" />
+</div>
+
+<script>
+    $(function () {
+        //Following 3 methods are defined in ApplicationForm View
+        BindFacility();
+        BindTests();
+        BindFacilities();
+    });
+
+    function BindFacility() {
+        // Bind Facilities in Facility tab        
+
+        var facilities = '@Model.PCPNDTModel.FacilityModel.Faclities';
+        if (facilities.length > 0) {
+            var arrFacilities = facilities.split(',');
+            for (var i = 0; i < arrFacilities.length; i++) {
+                $('input:checkbox[name="facilitytypepreview"][value="' + arrFacilities[i] + '"]').iCheck('check');
+            }
+        }
+    }
+
+    function BindTests() {
+        // Bind Invasive in Tests tab
+       
+
+        var invasives = '@Model.PCPNDTModel.TestsModel.InvasiveTests';
+        if (invasives.length > 0) {
+            var arrInvasives = invasives.split(',');
+            for (var i = 0; i < arrInvasives.length; i++) {
+                $('input:checkbox[name="testinvasivepreview"][value="' + arrInvasives[i] + '"]').iCheck('check');
+            }
+        }
+        
+
+        var noninvasives = '@Model.PCPNDTModel.TestsModel.NonInvasiveTests';
+        if (noninvasives.length > 0) {
+            var arrNonInvasives = noninvasives.split(',');
+            for (var i = 0; i < arrNonInvasives.length; i++) {
+                $('input:checkbox[name="testnoninvasivepreview"][value="' + arrNonInvasives[i] + '"]').iCheck('check');
+            }
+        }
+    }
+
+    function BindFacilities() {
+        // Bind Tests in Facilities tab
+       
+
+        var tests = '@Model.PCPNDTModel.FacilitiesModel.Tests';
+        if (tests.length > 0) {
+            var arrTests = tests.split(',');
+            for (var i = 0; i < arrTests.length; i++) {
+                $('input:checkbox[name="facilitytestpreview"][value="' + arrTests[i] + '"]').iCheck('check');
+            }
+        }
+
+        // Bind Studies in Facilities tab
+        
+
+        var studies = '@Model.PCPNDTModel.FacilitiesModel.Studies';
+        if (studies.length > 0) {
+            var arrStudies = studies.split(',');
+            for (var i = 0; i < arrStudies.length; i++) {
+                $('input:checkbox[name="facilitystudiespreview"][value="' + arrStudies[i] + '"]').iCheck('check');
+            }
+        }
+    }
+
+</script>
+
+<script>
+    $(function () {
+        $('input').iCheck({ checkboxClass: 'icheckbox_minimal-blue', radioClass: 'iradio_minimal-blue' });
+        $(".select2").select2();
+        $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
+            checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue'
+        });
+    });
+
+        $('#btnPrint').on('click', function (e) {
+           // console.log($('#divPrint').innerHTML);
+            //printDiv();
+            //PrintElem($('#divPrint'));
+            //Print3();
+            //printDiv('divModal');
+            //alert('this will some soon');
+            printDiv($('#divPrint').html());
+        });
+        function printDiv(data) {          
+            var mywindow = window.open('', 'new div', 'height=400,width=600');
+            mywindow.document.write('<html><head><title></title>');            
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(data);
+            mywindow.document.write('</body></html>');
+
+            mywindow.print();
+            mywindow.close();
+
+            return true;
+        }
+
+
+
+        $('#btnMakePayment').on('click', function (e) {
+            var url = '@Url.Action("SubmitApplication", "License", new { Area = "User" })';
+            var jqxhr = $.post(url, function () { })
+        .done(function (response) {
+            debugger;
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+            ShowModal(response);
+            $('#btnPreview').attr('disabled', 'disabled');
+            $('#btnPreview').val('Submitted');
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("SubmitApplication Request Failed: " + err);
+    });
+            //window.location.href = '@Url.Action("Application", "License", new { Area = "User" })';
+        });        
+
+        function printDiv4() {
+
+            var divToPrint = $('#divPrint');
+
+            var newWin = window.open('', 'Print-Window');
+
+            newWin.document.open();
+
+            newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+            newWin.document.close();
+
+            setTimeout(function () { newWin.close(); }, 10);
+
+        }
+
+        function PrintElem(elem) {
+            var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+            mywindow.document.write('<html><head><title>' + document.title + '</title>');
+            mywindow.document.write('</head><body >');
+            mywindow.document.write('<h1>' + document.title + '</h1>');
+            mywindow.document.write(document.getElementById(elem).innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+            mywindow.close();
+
+            return true;
+        }
+
+        function Print1() {
+            var contents = $("#divModal").html();
+            var frame1 = $('<iframe />');
+            frame1[0].name = "frame1";
+            frame1.css({ "position": "absolute", "top": "-1000000px" });
+            $("body").append(frame1);
+            var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+            frameDoc.document.open();
+            //Create a new HTML document.
+            frameDoc.document.write('<html><head><title>DIV Contents</title>');
+            frameDoc.document.write('</head><body>');
+            //Append the external CSS file.
+            frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
+            //Append the DIV contents.
+            frameDoc.document.write(contents);
+            frameDoc.document.write('</body></html>');
+            frameDoc.document.close();
+            setTimeout(function () {
+                window.frames["frame1"].focus();
+                window.frames["frame1"].print();
+                frame1.remove();
+            }, 500);
+        }
+
+        function Print2() {
+            var printTaken = document.getElementById("divModal");
+            printTaken.style.visibility = 'hidden';
+            window.print()
+            printTaken.style.visibility = 'visible';
+        }
+
+        function Print3() {
+            var options = { mode: "popup", popHt: 500, popWd: 400, popX: 500, popY: 600, popTitle: "This is PrintArea Demo", popClose: false };
+            $("#divModal").printArea(options);
+        }
+
+        //function printDiv(divName) {
+
+        //    var printContents = document.getElementById(divName).innerHTML;
+        //    w = window.open();
+
+        //    w.document.write(printContents);
+        //    w.document.write('<scr' + 'ipt type="text/javascript">' + 'window.onload = function() { window.print(); window.close(); };' + '</sc' + 'ript>');
+
+        //    w.document.close(); // necessary for IE >= 10
+        //    w.focus(); // necessary for IE >= 10
+
+        //    return true;
+        //}
+</script>
+

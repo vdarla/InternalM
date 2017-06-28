@@ -1,0 +1,55 @@
+﻿@model List<Medical.Models.TransactionViewModel>
+@{
+    ViewBag.Title = "ListofAmendment";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+    <!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Applications
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="@Url.Action("Dashboard","Dashboard","Department")">Back to Dashbord</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Applications</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblListofApplications" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>Service Name</th>
+                                <th>ApplicantName</th>
+                            </tr>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <td>@Convert.ToInt32(i + 1)</td>
+                                    <td>@Model[i].ServiceName</td>
+                                    <td>@Model[i].ApplicantName</td>
+                                    <td>@Html.ActionLink("Action", "AmendmentApproval", new { TId = Model[i].Id, SId = Model[i].ServiceId,AId=Model[i].AmendmentId,TSId=Model[i].TranServiceId })</td>
+                                </tr>
+                            }
+                        </thead>
+                        <tbody></tbody>
+
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+

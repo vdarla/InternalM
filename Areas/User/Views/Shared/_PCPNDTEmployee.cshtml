@@ -1,0 +1,430 @@
+﻿
+
+@model Medical.Models.PCPNDTViewModel
+@using (Html.BeginForm("_PCPNDTEmployee", "Amendment", FormMethod.Post))
+{
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Employee Details </h3>
+                </div>
+
+                <div id="tabEmployee" class="tab-pane">
+                    <form id="formEmploye">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Employee Details</legend>
+                            <div class="row">
+                               
+                                <div class="col-md-1">
+
+                                    @Html.TextBoxFor(model => model.EmployeeModel.CreatedUserId, new { @Value = "1", @type = "hidden" })
+
+                                    @Html.TextBoxFor(model => model.EmployeeModel.Id, new { @Value = "1", @type = "hidden" })
+                                    
+                                    @Html.LabelFor(model => model.EmployeeModel.Name, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                   
+                                    @Html.TextBoxFor(model => model.EmployeeModel.Name, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeModel.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    @Html.LabelFor(model => model.EmployeeModel.DesignationId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @*@Html.DropDownListFor(model => model.EmployeeModel.DesignationId,
+         new SelectList(TempData.Peek("DoctorSpecialityList") as List<Medical.Models.DoctorSpecialityModel>
+             , "Id", "Name"), "Select Designation",
+             new { @class = "form-control select2", @style = "width:100%;" })
+                                     @Html.ValidationMessageFor(model => model.EmployeeModel.DesignationId, "", new { @class = "text-danger" })*@
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.EmployeeModel.Experience, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.EmployeeModel.Experience, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeModel.Experience, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.EmployeeModel.RegistrationNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.EmployeeModel.RegistrationNumber, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeModel.RegistrationNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    @Html.LabelFor(model => model.EmployeeModel.UploadedFilePath, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.EmployeeModel.UploadedFilePath, new { @type = "file" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeModel.UploadedFilePath, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-offset-3 col-md-3 text-right">
+                                    <input type="button" value="Add" id="btnAddEmployee" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Employee List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                       @* <table id="tblEmployees" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Designation</th>
+                                                <th>Experience</th>
+                                                <th>Registration Number</th>
+                                                <th>Uploaded File</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.EmployeeList != null)
+        {
+            for (int i = 0; i < Model.EmployeeList.Count; i++)
+            {
+                <tr>
+                    <td> @Convert.ToInt32(@i + 1)</td>
+                    <td>@Model.EmployeeList[i].Name</td>
+                    <td>@Model.EmployeeList[i].DesignationName</td>
+                    <td>@Model.EmployeeList[i].Experience</td>
+                    <td>@Model.EmployeeList[i].RegistrationNumber</td>
+                    <td>
+                        @if (Model.EmployeeList[i].UploadedFilePath != null)
+                        {
+                            var addressindex = Model.EmployeeList[i].UploadedFilePath.LastIndexOf("/");
+                            var addressfileName = Model.EmployeeList[i].UploadedFilePath.Substring(addressindex + 1);
+                            @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                             new { Area = "", path = Model.EmployeeList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                        }
+                    </td>
+                    <td><input type='button' value='Delete' onclick='DeleteEmployee(@i);' /></td>
+                </tr>
+            }
+        }
+    </table>*@
+
+                                      
+
+                                        <table id="tblEmployeesTest" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Designation</th>
+                                                <th>Experience</th>
+                                                <th>Registration Number</th>
+                                                <th>Uploaded File</th>
+                                                <th></th>
+                                            </tr>   
+                                               @if (Model.EmployeeList != null)
+                                               {
+                                                   for (int i = 0; i < Model.EmployeeList.Count; i++)
+                                                   {
+                                                    <tr>
+                                                        <td> @Convert.ToInt32(@i + 1)</td>
+                                                        <td>@Model.EmployeeList[i].Name</td>
+                                                        <td>@Model.EmployeeList[i].DesignationName</td>
+                                                        <td>@Model.EmployeeList[i].Experience</td>
+                                                        <td>@Model.EmployeeList[i].RegistrationNumber</td>
+                                                        <td>
+                                                            @if (Model.EmployeeList[i].UploadedFilePath != null)
+                                                            {
+                                                                var addressindex = Model.EmployeeList[i].UploadedFilePath.LastIndexOf("/");
+                                                                var addressfileName = Model.EmployeeList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                                @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                                                 new { Area = "", path = Model.EmployeeList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                            }
+                                                        </td>
+                                                        <td><input type='button' value='Delete' onclick='DeleteEmployee(@i);' /></td>
+                                                    </tr>
+                                                   }
+                                               }                                      
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" value="Clear" id="btnEmployeeClear" class="btn btn-default" />
+                            <input type="button" value="Save" id="btnEmployeeSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>  
+}
+
+<script>
+    $('#FacilityModel_DistrictId').on('change', function () {
+        BindMandals('FacilityModel_', this.value);
+    });
+
+    $('#FacilityModel_MandalId').on('change', function () {
+        BindVillages('FacilityModel_', this.value);
+    });
+
+    $('#btnAddEmployee').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+    
+            var uri = '@Url.Action("AddEmployee", "Amendments", new { Area = "User" })';
+
+            if (window.FormData !== undefined) {
+                var uploadedFile = $("#EmployeeModel_UploadedFilePath").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('Id', $('#EmployeeModel_Id').val() == '' ? 0 : $('#EmployeeModel_Id').val());
+                fileData.append('Name', $('#EmployeeModel_Name').val());
+                fileData.append('DesignationId', $('#EmployeeModel_DesignationId').val());
+                fileData.append('DesignationName', $("#EmployeeModel_DesignationId option:selected").text());
+                fileData.append('Experience', $('#EmployeeModel_Experience').val());
+                fileData.append('RegistrationNumber', $('#EmployeeModel_RegistrationNumber').val());
+                fileData.append('UploadedFilePath', uploadedFile.name);
+                fileData.append('UploadedFile', uploadedFile);
+
+                $.ajax({
+                    type: "POST",
+                    url: uri,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        // Clear controls
+                        $('#EmployeeModel_Name').val('');
+                        $('#EmployeeModel_DesignationId').val('');
+                        $('#EmployeeModel_Experience').val('');
+                        $('#EmployeeModel_RegistrationNumber').val('');
+                        $('#EmployeeModel_UploadedFilePath').val('');
+
+                       // $('#tblEmployees tr').not(function () { return !!$(this).has('th').length; }).remove();
+
+                        var json = response;
+
+                        var tr;
+                        //Append each row to html table
+                        console.log('employee cnt :' + json.length);
+                        debugger;
+                        @*for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Name + "</td>");
+                            tr.append("<td>" + json[i].DesignationName + "</td>");
+                            tr.append("<td>" + json[i].Experience + "</td>");
+                            tr.append("<td>" + json[i].RegistrationNumber + "</td>");
+
+                            var path = json[i].UploadedFilePath;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                            //tr.append("<td>Test</td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteEmployee(" + i + ");'/></td>");
+
+                            $('#tblEmployees').append(tr);
+                        }*@
+
+
+                        // test
+                        var documentJson = response;
+                        $('#tblEmployeesTest tr').not(function () { return !!$(this).has('th').length; }).remove();
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < documentJson.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Name + "</td>");
+                            tr.append("<td>" + json[i].DesignationName + "</td>");
+                            tr.append("<td>" + json[i].Experience + "</td>");
+                            tr.append("<td>" + json[i].RegistrationNumber + "</td>");
+
+                            var path = documentJson[i].UploadedFilePath;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", documentJson[i].UploadedFilePath);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                           // tr.append("<td><input type='button' value='Delete' onclick='DeleteEmployee(" + documentJson[i].Id + ");'/></td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteEmployee(" + i + ");'/></td>");
+
+                            $('#tblEmployeesTest').append(tr);
+                        }
+                        // end test
+
+                       // CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        
+    });
+
+    function DeleteEmployee(index) {
+        if (confirm('Do you really want to delete this equipment?')) {
+            var url = '@Url.Action("DeleteEmployee", "Amendments", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblEmployees tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].DesignationName + "</td>");
+                tr.append("<td>" + json[i].Experience + "</td>");
+                tr.append("<td>" + json[i].RegistrationNumber + "</td>");
+
+                var path = json[i].UploadedFilePath;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteEmployee(" + i + ");'/></td>");
+
+                $('#tblEmployees').append(tr);
+            }
+        }
+        else if (json == undefined || json.length == 0) {
+            $('#btnEmployeeSave').val('Save');
+            $('#btnEmployeeSave').removeClass('btn-success');
+            $('#btnEmployeeSave').addClass('btn-primary');
+        }
+
+        CheckforEnableSubmit();
+    })
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("Delete Employee Request Failed: " + err);
+});
+        }
+    }
+    $('#btnEmployeeSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        var url = '@Url.Action("SaveEmployees", "Amendments", new { Area = "User" })';
+        var jqxhr = $.post(url, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        ShowModal(response);
+        var transactionId = response.ReturnData.split(',')[0];
+       // BindEmployeesOnSave(transactionId);
+
+        //if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+        //    $('#btnEmployeeSave').val('Update');
+        //    $('#btnEmployeeSave').removeClass('btn-success');
+        //    $('#btnEmployeeSave').addClass('btn-primary');
+        //}
+        //else if(response.ReturnData.split(',')[1] == 'Completed'){
+        //    $('#btnEmployeeSave').val('Update');
+        //    $('#btnEmployeeSave').removeClass('btn-primary');
+        //    $('#btnEmployeeSave').addClass('btn-success');
+        //}
+
+
+       // CheckforEnableSubmit();
+    })
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("SaveEmployees Request Failed: " + err);
+});
+    });
+    function BindEmployeesOnSave(transactionId) {
+        debugger;
+        var url = '@Url.Action("GetEmployees", "License", new { Area = "User" })';
+        var data = { transactionId: transactionId };
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblEmployees tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].Designation + "</td>");
+                tr.append("<td>" + json[i].Experience + "</td>");
+                tr.append("<td>" + json[i].RegistrationNumber + "</td>");
+
+                var path = json[i].UploadedFilePath;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteEmployee(" + i + ");'/></td>");
+
+                $('#tblEmployees').append(tr);
+            }
+
+            $('#btnEmployeeSave').val('Update');
+            $('#btnEmployeeSave').removeClass('btn-primary');
+            $('#btnEmployeeSave').addClass('btn-success');
+        }
+        else if (json == undefined || json.length == 0) {
+            $('#btnEmployeeSave').val('Save');
+            $('#btnEmployeeSave').removeClass('btn-success');
+            $('#btnEmployeeSave').addClass('btn-primary');
+        }
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetEmployee Request Failed: " + err);
+        });
+
+    }
+</script>

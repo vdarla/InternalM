@@ -1,0 +1,400 @@
+﻿@model Medical.Models.AmendmentModel
+@{
+    ViewBag.Title = "AmendmentQuestionnaire";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+@using (Html.BeginForm("Amendment", "Amendments", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            AmendmentQuestionnaire
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Forms</a></li>
+            <li class="active">General Elements</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content" style="display:none;" id="sectionAPMCE">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Amendments for APMCE</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforCorrespondent, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendment"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforCorrespondent, "Do you require a Correspondent Details (APMCE)?", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforAccomodation, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendment"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforAccomodation, "Do you require a Accomodation Details (APMCE)?", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforServices, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendment"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforServices, "Do you require a Types of Services (APMCE)?", htmlAttributes: new { @class = "control -label Amendment" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforEmployee, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendment"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforEmployee, "Do you require a  Employee Details  (APMCE)?", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforSpecialtiesAvailable, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendment"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforSpecialtiesAvailable, "Do you require  a Specialties available  (APMCE)?", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforEquipmentFurniture, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendment"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforEquipmentFurniture, "Do you require a Equipment and Furniture details (APMCE)? ", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforLabor, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendment"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforLabor, "Do you require Labor room Details (APMCE)?", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforOperationTheatre, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendment"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforOperationTheatre, "Do you require Operation Theatre details (APMCE)? ", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforDiagnosticCenter, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendment"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforDiagnosticCenter, "Do you require a Diagnostic Facilities including Clinical Laboratory and Imaging Facilities (APMCE)? ", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 pull-right">
+                                    <input type="submit" id="btnNext" value="Next" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content" style="display:none;" id="sectionPCPNDT">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Amendments for PCPNDT</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            
+
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforFacilities, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendment"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforFacilities, "Do you want to Add/Delete Facilities (PCPNDT)?", htmlAttributes: new { @class = "control-label" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforFacilityAddress, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforFacilityAddress, "Do you want change Facility Address (PCPNDT)?", htmlAttributes: new { @class = "control -label Amendment" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforOwnership, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforOwnership, "Do you want to change the  Type of Ownership (PCPNDT)?", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforInstitution, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforInstitution, "Do you want change the Type of Institution  (PCPNDT)?", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforProcedures, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforProcedures, "Do you want to Add or Delete specific Pre-Natal Diagnostic Procedures/Tests (PCPNDT)? ", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforEquipment, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforEquipment, "Do you want to Add or Delete Equipment details (PCPNDT)?", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforFacilitiesavailable, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforFacilitiesavailable, "Do you want to Add or Delete Available Facilities for Tests/Studies (PCPNDT)? ", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforEmployeeDetails, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforEmployeeDetails, "Do you want to Add or Delete Employee Details (PCPNDT)? ", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div> 
+                            <div class="row ">
+                                <div class="col-md-1" style="text-align:right;">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.HasAppliedforCancellation, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "chkAmendmentpcpndt"
+                                       }
+                                   })
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.LabelFor(model => model.HasAppliedforCancellation, "Do you want to Cancel your License (PCPNDT)? ", htmlAttributes: new { @class = "control -label" })
+                                </div>
+                            </div> 
+                            <div class="row"> 
+                                <div class="col-md-2 pull-right">
+                                    <input type="submit" id="btnNext" value="Next" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+<script>
+    $(function () {
+
+        var serviceID = "2";//@ViewBag.serviceID;
+
+        if (serviceID == "2")
+        {           
+            $("#sectionPCPNDT").show();
+        }
+        if (serviceID == "1") {
+            $("#sectionAPMCE").show();
+        }
+
+            $('#btnNext').on('click', function (e) {
+                debugger;
+                var type = [];
+                $.each($("input.chkAmendment:checkbox"), function () {
+                    if ($(this).parent('[class*="icheckbox"]').hasClass("checked"))
+                        type.push(this.value);
+                });
+
+                if (type.length == 0) {
+                    alert('Please select at least one Facility');
+                    return false;
+                }
+
+            });
+        });
+    </script>
+
+
+
+

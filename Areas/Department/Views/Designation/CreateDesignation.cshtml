@@ -1,0 +1,154 @@
+﻿@model Medical.Models.DesignationModel
+@{
+    ViewBag.Title = "CreateDesignation";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+@using (Ajax.BeginForm("CreateDesignation", "Designation", new { Area = "Department" },
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "onSuccess",
+        OnFailure = "ShowFailure"
+    }))
+{
+ <!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Designations
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="@Url.Action("Index","Dashboard",new { Area = "Admin" })">Back to Dashboard</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">                
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Designation Details</legend>
+                        <div class="row">
+                            <div class="col-md-1 text-right">
+                                @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                                @Html.HiddenFor(model=>model.Id,new { @id="hfId", @value = "0"})
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 text-right">
+                                @Html.CheckBoxFor(model => model.IsActive, new { @Class = "icheckbox_minimal-blue", @id = "chkIsActive" }) IsActive
+                            </div>                           
+                        </div>                       
+                    </fieldset>                    
+                    <div class="box-footer">
+                        <input type="button" id="btnClear" class="btn btn-default" value="Clear" onclick="ClearControls()" />
+                        <input type="submit"  id="btnSubmit" class="btn btn-success" value="Save" />
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">All Departments</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblDesignations" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>Designation Name</th>
+                                <th>IsActive</th>                               
+                                
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                      
+
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+}
+
+<script>
+    $(function () {
+        GetDesginations();
+    });
+    function GetDesginations() {
+        var url = '@Url.Action("GetDesignations", "Designation", new { Area = "Department" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindDetails(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetDesignations in Department Admin, Request Failed: " + err);
+            });
+    }
+
+    var jsonItems = [];
+    function BindDetails(json) {
+        jsonItems = json;
+        console.log(json);
+        //Remove all table rows except headers
+        $('#tblDesignations').find("tr:gt(0)").remove();
+        for (var i = 0; i < json.length; i++) {
+            var tr;
+            tr = $('<tr/>');
+            tr.append("<td>" + (i + 1) + "</td>")
+            tr.append("<td>" + json[i].Name + "</td>")
+            tr.append("<td>" + json[i].IsActive + "</td>")
+            tr.append("<td><a class='glyphicon glyphicon-pencil actionlink-button' href=javascript:Edit("+ i +")></a></td>")
+            //tr.append("<td><a class='glyphicon glyphicon-pencil actionlink-button' href=javascript:EditDesignation('" + json[i].Id+"','"+ json[i].Name+"','"+json[i].IsActive + "') ></a></td>")
+            //tr.append("<td> <button type='button' id='btnDelete' class='btn btn-default btn-sm'><i class='glyphicon glyphicon-remove'></i></button></td>")
+            $("[id$=tblDesignations]").append(tr)           
+        }
+        $('input[name="IsActive"]').iCheck('uncheck');
+        ClearControls();
+
+    }
+    function Edit(index) {
+        var selectedItem = jsonItems[index];
+        $('#hfId').val(selectedItem.Id);
+        $('#Name').val(selectedItem.Name);
+        if (selectedItem.IsActive == 'true')
+            $('#chkIsActive').iCheck('check');
+        else
+            $('#chkIsActive').iCheck('uncheck');
+        $('#btnSubmit').val('Update')
+    }   
+    function ClearControls() {
+        $('#Name').val('');
+        $('#hfId').val('');
+        $('#chkIsActive').iCheck('uncheck');
+        $('#btnSubmit').val('Save')
+    }
+    function onSuccess(json) {        
+        ShowModal(json.Notification);
+        BindDetails(json.DesignationList)
+    }
+
+</script>
+

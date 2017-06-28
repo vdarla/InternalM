@@ -1,0 +1,342 @@
+﻿
+
+
+
+@model Medical.Models.FacilityModel
+@using (Html.BeginForm("_pcpndtFavility", "Amendment", FormMethod.Post))
+{
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Facility Address Change  </h3>
+                    </div>
+                    <div class="tab-pane" id="tabFacility">
+                        <form id="formFacility">
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border">Facilities</legend>
+                                <div class="row">
+                                    <div class="col-md-offset-1 col-md-3">
+                                        @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[0].Id }) @ViewBag.FacilityMaster[0].Name
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[1].Id }) @ViewBag.FacilityMaster[1].Name
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[2].Id }) @ViewBag.FacilityMaster[2].Name
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-offset-1 col-md-3">
+                                        @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[3].Id }) @ViewBag.FacilityMaster[3].Name
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[4].Id }) @ViewBag.FacilityMaster[4].Name
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[5].Id }) @ViewBag.FacilityMaster[5].Name
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.DistrictId,
+new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.DistrictId, "", new { id= "DistrictId",@class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.MandalId,
+new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.MandalId, "", new { id="MandalId", @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.VillageId,
+new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+new { @class = "form-control select2", @style = "width:100%;" })
+                                    @Html.ValidationMessageFor(model => model.VillageId, "", new { id="VillageId" , @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.HouseNumber, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.HouseNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.StreetName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StreetName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.Phone, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.Fax, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.Fax, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.Telegraph, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.Telegraph, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Telegraph, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.Telex, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.Telex, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Telex, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.PINCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.PINCode, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.PINCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.AddressProofPath, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.AddressProofPath, new { @class = "", type = "file", @style = "margin-left:-58%;" })
+                                    @if (!string.IsNullOrEmpty(Model.AddressProofPath))
+                                    {
+                                        var addressindex = Model.AddressProofPath.LastIndexOf("/");
+                                        var addressfileName = Model.AddressProofPath.Substring(addressindex + 1);
+                                        @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                     new { Area = "", path = Model.AddressProofPath, downloadName = addressfileName },
+                                     null
+                                     );
+                                    }
+                                    @Html.ValidationMessageFor(model => model.AddressProofPath, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.BuildingLayoutPath, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.BuildingLayoutPath, new { @class = "", type = "file", @style = "margin-left:-56%;" })
+                                    @if (!string.IsNullOrEmpty(Model.BuildingLayoutPath))
+                                    {
+                                        var layoutindex = Model.BuildingLayoutPath.LastIndexOf("/");
+                                        var layoutfileName = Model.BuildingLayoutPath.Substring(layoutindex + 1);
+                                        @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                   new { Area = "", path = Model.BuildingLayoutPath, downloadName = layoutfileName }, null);
+                                    }
+                                    @Html.ValidationMessageFor(model => model.BuildingLayoutPath, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <input type="button" value="Clear" id="btnFacilityClear" class="btn btn-default" />
+                                    <input type="button" value="Save" id="btnFacilitySave" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+         </div>
+    </div>
+</section> 
+}
+<script>
+
+    $(function () {
+        debugger;
+        BindtData();
+    });
+    function BindtData() {
+        var districtid = $('#DistrictId').val();      
+        if (districtid > 0) {
+            BindMandals('', districtid);
+            setTimeout(
+            function () {
+                var mandalid = $('#MandalId').val();
+                console.log('mandal ID :' + $('#MandalId').val())
+                if (mandalid > 0) {
+                    $('#MandalId').val(mandalid).trigger('change');
+                    BindVillages('', mandalid);
+                    setTimeout(function () {
+                        var villageid = $('#VillageId').val();
+                        console.log('village ID :' + villageid)
+                        if (villageid > 0) {
+                            $('#VillageId').val(villageid).trigger('change');
+                        }
+                    }, 2000);
+                }
+            }
+            , 2000);
+        }
+    }  
+
+    $('#DistrictId').on('change', function () {
+        BindMandals('', this.value);
+    });
+
+    $('#MandalId').on('change', function () {
+        BindVillages('', this.value);
+    });
+
+</script>
+
+@*<script>
+     $('#btnFacilitySave').on('click', function (e) {
+        e.preventDefault();
+        var facilities = [];
+        $.each($("input[name='facilitytype']"), function () {
+            if ($(this).parent('[class*="icheckbox"]').hasClass("checked"))
+                facilities.push(this.value);
+        });
+
+        //if (facilities.length == 0) {
+        //    alert('Please select at least one Facility');
+        //    return false;
+        //}
+
+        if ($('#formFacility').valid()) {
+
+            var url = '@Url.Action("SaveFacilityDetails", "Amendment", new { Area = "User" })';
+
+
+            // New Code
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+                var addressProof = $("#FacilityModel_AddressProofPath").get(0).files[0];
+                var buildingLayout = $("#FacilityModel_BuildingLayoutPath").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('AddressProof', addressProof);
+                fileData.append('BuildingLayout', buildingLayout);
+                fileData.append('Id', $('#FacilityModel_Id').val() == '' ? 0 : $('#FacilityModel_Id').val());
+                fileData.append('Faclities', facilities.join());
+                fileData.append('Name', $('#FacilityModel_Name').val());
+                fileData.append('DistrictId', $('#FacilityModel_DistrictId').val());
+                fileData.append('MandalId', $('#FacilityModel_MandalId').val());
+                fileData.append('VillageId', $('#FacilityModel_VillageId').val());
+                fileData.append('HouseNumber', $('#FacilityModel_HouseNumber').val());
+                fileData.append('StreetName', $('#FacilityModel_StreetName').val());
+                fileData.append('PINCode', $('#FacilityModel_PINCode').val());
+                fileData.append('Phone', $('#FacilityModel_Phone').val());
+                fileData.append('Email', $('#FacilityModel_Email').val());
+                fileData.append('Fax', $('#FacilityModel_Fax').val());
+                fileData.append('Telegraph', $('#FacilityModel_Telegraph').val());
+                fileData.append('Telex', $('#FacilityModel_Telex').val());
+                fileData.append('PINCode', $('#FacilityModel_PINCode').val());
+
+                if(addressProof != undefined)
+                    fileData.append('AddressProofPath', addressProof.name);
+                if(buildingLayout != undefined)
+                    fileData.append('BuildingLayoutPath', buildingLayout.name);
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    cache: false,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#FacilityModel_Id').val(response.ReturnData.split(',')[0]);
+                        ShowModal(response);
+
+                        if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                            $('#btnFacilitySave').val('Update');
+                            $('#btnFacilitySave').removeClass('btn-success');
+                            $('#btnFacilitySave').addClass('btn-primary');
+                        }
+                        else if(response.ReturnData.split(',')[1] == 'Completed'){
+                            $('#btnFacilitySave').val('Update');
+                            $('#btnFacilitySave').removeClass('btn-primary');
+                            $('#btnFacilitySave').addClass('btn-success');
+                        }
+                        else if(response.ReturnData.split(',')[1] == 'Empty'){
+                            $('#btnFacilitySave').val('Save');
+                            $('#btnFacilitySave').removeClass('btn-success');
+                            $('#btnFacilitySave').addClass('btn-primary');
+                        }
+
+                        // Hide all the divisions
+                        $('#fsInvasive').hide();
+                        $('#fsNonInvasive').hide();
+                        $('#fsTestsRemarks').hide();
+                        $('#fsTests').hide();
+                        $('#fsStudies').hide();
+                        $('#fsFacilityRemarks').hide();
+
+                        for (var i = 0; i < facilities.length; i++) {
+                            ShowTestsFacilities(facilities[i]);
+                        }
+
+                        RemoveValuesfromHiddenControls();
+                        // Remove Form Completed class from Tests & Facilites forms
+                        $('#btnTestSave').removeClass('btn-success');
+                        $('#btnTestSave').addClass('btn-primary');
+                        $('#btnFacilicitesSave').removeClass('btn-success');
+                        $('#btnFacilicitesSave').addClass('btn-primary');
+
+                        CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+            }
+            else{
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+</script>*@

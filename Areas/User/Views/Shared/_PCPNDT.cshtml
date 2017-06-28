@@ -1,0 +1,2348 @@
+﻿@model Medical.Models.PCPNDTViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabApplicant" data-toggle="tab">Applicant</a></li>
+                @*<li><a href="#tabEstablishment" data-toggle="tab">Establishment</a></li>*@
+                <li><a href="#tabFacility" data-toggle="tab">Facility for Registration</a></li>
+                <li><a href="#tabTests" data-toggle="tab">Tests</a></li>
+                <li><a href="#tabEquipment" data-toggle="tab">Equipment</a></li>
+                <li><a href="#tabFacilities" data-toggle="tab">Facilities for Test</a></li>
+                <li><a href="#tabEmployee" data-toggle="tab">Employees</a></li>
+                <li><a href="#tabOwnership" data-toggle="tab">Ownership & Institution</a></li>
+                <li><a href="#tabDeclaration" data-toggle="tab">Declaration</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabApplicant">
+                    <form id="formApplicant">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.ApplicantModel.Id)
+                                @Html.EditorFor(model => model.ApplicantModel.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ApplicantModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.ApplicantRole, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ApplicantModel.ApplicantRole,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select Role", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Partner", Value = "Partner" },
+                                    new SelectListItem {Text = "MD", Value = "MD" },
+                                    new SelectListItem {Text = "Others", Value = "Others" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.ApplicantModel.ApplicantRole, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1 applicantroleother" hidden>
+                                @Html.LabelFor(model => model.ApplicantModel.ApplicantRoleOther, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3 applicantroleother" hidden>
+                                @Html.EditorFor(model => model.ApplicantModel.ApplicantRoleOther, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ApplicantModel.ApplicantRoleOther, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ApplicantModel.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.ApplicantModel.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ApplicantModel.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.ApplicantModel.MandalId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.ApplicantModel.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.ApplicantModel.VillageId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.Aadhar, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ApplicantModel.Aadhar, new { htmlAttributes = new { @class = "form-control numeric" } })
+                                @Html.ValidationMessageFor(model => model.ApplicantModel.Aadhar, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.PAN, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ApplicantModel.PAN, new { htmlAttributes = new { @class = "form-control", @Style = "text-transform: uppercase;" } })
+                                @Html.ValidationMessageFor(model => model.ApplicantModel.PAN, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ApplicantModel.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ApplicantModel.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ApplicantModel.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ApplicantModel.StreetName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ApplicantModel.PINCode, new { htmlAttributes = new { @class = "form-control numeric" } })
+                                @Html.ValidationMessageFor(model => model.ApplicantModel.PINCode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <input type="button" value="Clear" id="btnApplicantClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnApplicantSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="tabFacility">
+                    <form id="formFacility">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Facilities</legend>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[0].Id }) @ViewBag.FacilityMaster[0].Name
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[1].Id }) @ViewBag.FacilityMaster[1].Name
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[2].Id }) @ViewBag.FacilityMaster[2].Name
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[3].Id }) @ViewBag.FacilityMaster[3].Name
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[4].Id }) @ViewBag.FacilityMaster[4].Name
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.CheckBox("facilitytype", new { @value = ViewBag.FacilityMaster[5].Id }) @ViewBag.FacilityMaster[5].Name
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.FacilityModel.Id)
+                                @Html.TextBoxFor(model => model.FacilityModel.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.FacilityModel.DistrictId,
+    new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+     new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.FacilityModel.MandalId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+     new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.MandalId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.FacilityModel.VillageId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+     new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.VillageId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.FacilityModel.HouseNumber, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.FacilityModel.StreetName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.StreetName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Phone, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.FacilityModel.Phone, new { @class = "form-control numeric" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.Phone, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Email, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.FacilityModel.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Fax, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.FacilityModel.Fax, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.Fax, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Telegraph, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.FacilityModel.Telegraph, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.Telegraph, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Telex, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.FacilityModel.Telex, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.Telex, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.FacilityModel.PINCode, new { @class = "form-control numeric" })
+                                @Html.ValidationMessageFor(model => model.FacilityModel.PINCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.FacilityModel.AddressProofPath, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.FacilityModel.AddressProofPath, new { @class = "", type = "file", @style = "margin-left:-58%;" })
+                                @if (!string.IsNullOrEmpty(Model.FacilityModel.AddressProofPath))
+                                {
+                                    var addressindex = Model.FacilityModel.AddressProofPath.LastIndexOf("/");
+                                    var addressfileName = Model.FacilityModel.AddressProofPath.Substring(addressindex + 1);
+                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.FacilityModel.AddressProofPath, downloadName = addressfileName },
+                            null
+                            );
+                                }
+                                @Html.ValidationMessageFor(model => model.FacilityModel.AddressProofPath, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.FacilityModel.BuildingLayoutPath, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.FacilityModel.BuildingLayoutPath, new { @class = "", type = "file", @style = "margin-left:-56%;" })
+                                @if (!string.IsNullOrEmpty(Model.FacilityModel.BuildingLayoutPath))
+                                {
+                                    var layoutindex = Model.FacilityModel.BuildingLayoutPath.LastIndexOf("/");
+                                    var layoutfileName = Model.FacilityModel.BuildingLayoutPath.Substring(layoutindex + 1);
+                                    @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+ new { Area = "", path = Model.FacilityModel.BuildingLayoutPath, downloadName = layoutfileName }, null);
+                                }
+                                @Html.ValidationMessageFor(model => model.FacilityModel.BuildingLayoutPath, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnFacilityClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnFacilitySave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabTests" class="tab-pane">
+                    <form id="formTests">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                Specific pre-natal diagnostic procedures/tests for which approval is sought
+                            </div>
+                        </div>
+                        <fieldset class="scheduler-border" id="fsInvasive" hidden>
+                            <legend class="scheduler-border">Invasive</legend>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.HiddenFor(model => model.TestsModel.Id)
+                                    @Html.CheckBox("testinvasive", new { @value = "1" }) Amniocentesis
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("testinvasive", new { @value = "2" }) Biochemical
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.CheckBox("testinvasive", new { @value = "3" }) Chorionic Villi Aspiration
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("testinvasive", new { @value = "4" }) Molecular Studies
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("testinvasive", new { @value = "5" }) Chromosomal
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="scheduler-border" id="fsNonInvasive" hidden>
+                            <legend class="scheduler-border">Non-Invasive</legend>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("testnoninvasive", new { @value = "6" }) Ultra Sonography
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="scheduler-border" id="fsTestsRemarks" hidden>
+                            <legend class="scheduler-border">Remarks</legend>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-1">
+                                    @Html.LabelFor(model => model.TestsModel.Remarks, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.TestsModel.Remarks, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnTestClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnTestSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabEquipment">
+                    <form id="formEquipment">
+                        @Html.HiddenFor(model => model.EquipmentModel.Id)
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Equipment Details</legend>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.EquipmentModel.Name, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.HiddenFor(model => model.EquipmentModel.Id)
+                                    @Html.TextBoxFor(model => model.EquipmentModel.Name, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EquipmentModel.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.EquipmentModel.MachineModel, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.EquipmentModel.MachineModel, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EquipmentModel.MachineModel, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    @Html.LabelFor(model => model.EquipmentModel.SerialNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.EquipmentModel.SerialNumber, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EquipmentModel.SerialNumber, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.EquipmentModel.Make, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.EquipmentModel.Make, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EquipmentModel.Make, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.EquipmentModel.Type, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @*@Html.TextBoxFor(model => model.EquipmentModel.Type, new { @class = "form-control" })*@
+                                    @Html.RadioButtonFor(model => model.EquipmentModel.Type, "New") New
+                                    @Html.RadioButtonFor(model => model.EquipmentModel.Type, "Old") Old
+                                    @Html.ValidationMessageFor(model => model.EquipmentModel.Type, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    @Html.LabelFor(model => model.EquipmentModel.UploadedFilePath, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.EquipmentModel.UploadedFilePath, new { @type = "file" })
+                                    @Html.ValidationMessageFor(model => model.EquipmentModel.UploadedFilePath, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    <input type="button" value="Add" id="btnAddEquipment" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Equipment List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblEquiments" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Serial No.</th>
+                                                <th>Model</th>
+                                                <th>Make</th>
+                                                <th>Type</th>
+                                                <th>Uploaded File</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.EquipmentList != null)
+                                            {
+                                                for (int i = 0; i < Model.EquipmentList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.EquipmentList[i].Name</td>
+                                                        <td>@Model.EquipmentList[i].SerialNumber</td>
+                                                        <td>@Model.EquipmentList[i].MachineModel</td>
+                                                        <td>@Model.EquipmentList[i].Make</td>
+                                                        <td>@Model.EquipmentList[i].Type</td>
+                                                        <td>
+                                                            @if (Model.EquipmentList[i].UploadedFilePath != null)
+                                                            {
+                                                                var layoutindex = Model.EquipmentList[i].UploadedFilePath.LastIndexOf("/");
+                                                                var layoutfileName = Model.EquipmentList[i].UploadedFilePath.Substring(layoutindex + 1);
+                                                                @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+ new { Area = "", path = Model.EquipmentList[i].UploadedFilePath, downloadName = layoutfileName }, null);
+                                                            }
+                                                        </td>
+                                                        <td><input type='button' value='Delete' onclick='DeleteEquipment(@i);' /></td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" value="Clear" id="btnEquipmentClear" class="btn btn-default" />
+                            <input type="button" value="Save" id="btnEquipmentSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabFacilities" class="tab-pane">
+                    <form id="formFacilities">
+                        @Html.HiddenFor(model => model.FacilitiesModel.Id)
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                Facilities that are or would be available in the Laboratory/Clinic for the following tests:
+                            </div>
+                        </div>
+                        <fieldset class="scheduler-border" id="fsTests" hidden>
+                            <legend class="scheduler-border">Tests</legend>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("facilitytest", new { @value = "1" }) Amniocentesis
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("facilitytest", new { @value = "2" }) Ultra Sound
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.CheckBox("facilitytest", new { @value = "3" }) Chorionic Villi Aspiration
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("facilitytest", new { @value = "4" }) Foetal Biopsy
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("facilitytest", new { @value = "5" }) Foetoscopy
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.CheckBox("facilitytest", new { @value = "6" }) Cordocentesis
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="scheduler-border" id="fsStudies" hidden>
+                            <legend class="scheduler-border">Studies</legend>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("facilitystudies", new { @value = "7" }) Chromosomal Studies
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("facilitystudies", new { @value = "8" }) Biochemical Studies
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.CheckBox("facilitystudies", new { @value = "9" }) Molecular Studies
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("facilitystudies", new { @value = "10" }) Preemplantatioin Genetic
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="scheduler-border" id="fsFacilityRemarks" hidden>
+                            <legend class="scheduler-border">Remarks</legend>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-1">
+                                    @Html.LabelFor(model => model.FacilitiesModel.Remarks, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(model => model.FacilitiesModel.Remarks, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnFacilitiesClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnFacilicitesSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabEmployee" class="tab-pane">
+                    <form id="formEmployee">
+                        @Html.HiddenFor(model => model.EmployeeModel.Id)
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Employee Details</legend>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.EmployeeModel.Name, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.HiddenFor(model => model.EmployeeModel.Id)
+                                    @Html.TextBoxFor(model => model.EmployeeModel.Name, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeModel.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    @Html.LabelFor(model => model.EmployeeModel.DesignationId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.DropDownListFor(model => model.EmployeeModel.DesignationId,
+                                new SelectList(TempData.Peek("DoctorSpecialityList") as List<Medical.Models.DoctorSpecialityModel>, "Id", "Name"), "Select Designation",
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                    @*@Html.TextBoxFor(model => model.EmployeeModel.Designation, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.EmployeeModel.DesignationId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.EmployeeModel.Experience, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.EmployeeModel.Experience, new { @class = "form-control numeric" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeModel.Experience, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    @Html.LabelFor(model => model.EmployeeModel.RegistrationNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.EmployeeModel.RegistrationNumber, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeModel.RegistrationNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    @Html.LabelFor(model => model.EmployeeModel.UploadedFilePath, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.EmployeeModel.UploadedFilePath, new { @type = "file" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeModel.UploadedFilePath, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-offset-3 col-md-3 text-right">
+                                    <input type="button" value="Add" id="btnAddEmployee" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Employee List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblEmployees" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Designation</th>
+                                                <th>Experience</th>
+                                                <th>Registration Number</th>
+                                                <th>Uploaded File</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.EmployeeList != null)
+                                            {
+                                                for (int i = 0; i < Model.EmployeeList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td> @Convert.ToInt32(@i + 1)</td>
+                                                        <td>@Model.EmployeeList[i].Name</td>
+                                                        <td>@Model.EmployeeList[i].DesignationName</td>
+                                                        <td>@Model.EmployeeList[i].Experience</td>
+                                                        <td>@Model.EmployeeList[i].RegistrationNumber</td>
+                                                        <td>
+                                                            @if (Model.EmployeeList[i].UploadedFilePath != null)
+                                                            {
+                                                                var addressindex = Model.EmployeeList[i].UploadedFilePath.LastIndexOf("/");
+                                                                var addressfileName = Model.EmployeeList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                                @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.EmployeeList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                            }
+                                                        </td>
+                                                        <td><input type='button' value='Delete' onclick='DeleteEmployee(@i);' /></td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" value="Clear" id="btnEmployeeClear" class="btn btn-default" />
+                            <input type="button" value="Save" id="btnEmployeeSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tabOwnership" class="tab-pane">
+                    <form id="formOwnership">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.HiddenFor(model => model.InstitutionModel.Id)
+                                @Html.LabelFor(model => model.InstitutionModel.OwnershipTypeId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.InstitutionModel.OwnershipTypeId,
+    new SelectList(ViewBag.OwnershipTypeList, "Id", "Name"), "Select Ownership",
+     new { @class = "form-control select2", @style = "Width:100%;" })
+                                @Html.ValidationMessageFor(model => model.InstitutionModel.OwnershipTypeId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.InstitutionModel.InstitutionTypeId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.InstitutionModel.InstitutionTypeId,
+    new SelectList(ViewBag.InstitutionTypeList, "Id", "Name"), "Select Institution Type",
+     new { @class = "form-control select2", @style = "Width:100%;" })
+                                @Html.ValidationMessageFor(model => model.InstitutionModel.InstitutionTypeId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 text-right">
+                                @Html.LabelFor(model => model.InstitutionModel.TotalWorkArea, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.InstitutionModel.TotalWorkArea, new { @class = "form-control numeric", @Value = "" })
+                                @Html.ValidationMessageFor(model => model.InstitutionModel.TotalWorkArea, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row" id="divOwnershipUploads" hidden>
+                            <div class="col-md-12">
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">File Uploads</legend>
+                                    <div class="row" id="divAffidavitFile">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            Affidavit
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.TextBox("affidavitFile", null, new { @type = "file" })
+                                            @if (!string.IsNullOrEmpty(Model.InstitutionModel.AffidavitDocPath))
+                                            {
+                                                var index = Model.InstitutionModel.AffidavitDocPath.LastIndexOf("/");
+                                                var fileName = Model.InstitutionModel.AffidavitDocPath.Substring(index + 1);
+                                                @Html.ActionLink(fileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.InstitutionModel.AffidavitDocPath, downloadName = fileName },
+                            null
+                            );
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="row" id="divAssociationFile">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            <span id="spanArticlesofAssociation">Articles of Association</span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.TextBox("articlesofAssociationFile", null, new { @type = "file" })
+                                            @if (!string.IsNullOrEmpty(Model.InstitutionModel.ArticleDocPath))
+                                            {
+                                                var index = Model.InstitutionModel.ArticleDocPath.LastIndexOf("/");
+                                                var fileName = Model.InstitutionModel.ArticleDocPath.Substring(index + 1);
+                                                @Html.ActionLink(fileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.InstitutionModel.ArticleDocPath, downloadName = fileName },
+                            null
+                            );
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="row" id="divStudyCertificateFiles">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            Study Certificate
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.TextBox("StudyCertificateFile", null, new { @type = "file", @multiple = "multiple" })
+                                        </div>
+                                    </div>
+                                    <div class="row" id="divStudyCertificatesList">
+                                        <div class="col-md-offset-1 col-md-10">
+                                            <table id="tblStudyCertificates">
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Document</th>
+                                                    <th></th>
+                                                </tr>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnInstitutionClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnInstitutionSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabDeclaration" class="tab-pane">
+                    <form id="formDeclaration">
+                        <div class="row">
+                            <div class="col-md-2 text-right">
+                                I, Sh./Smt./Kum./Dr.
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.DeclarationModel.Name, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-2 text-right">
+                                Son/Daughter/Wife of
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.DeclarationModel.SonOf, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-1 text-right">
+                                aged
+                            </div>
+                            <div class="col-md-1">
+                                @Html.TextBoxFor(model => model.DeclarationModel.Age, new { @class = "form-control numeric", @Value = "" })
+                            </div>
+                            <div class="col-md-1">
+                                years
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 text-right">
+                                resident of
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.DeclarationModel.ResidentOf, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-3 text-right">
+                                working as (indicate designation)
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.DeclarationModel.Designation, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-3 text-right">
+                                in (indicate name of the organization
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 text-right">
+                                to be registered)
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.DeclarationModel.Organization, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-7">
+                                hereby declare that I have read and understood the prenatal Diagnostic techniques (Regulation
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                and Prevention of Miuse) Act, 1994 (57 of 1994) and Pre Natal Diagnostic Techniques (Regulation
+                                and Prevention of Miuse) Rules, 1996, I also undertake to explain the said Act and Rules to all
+                                employees of the Genetic Counselling Center / Genetic Laboratory / Generic Clinic / Ultrasound
+                                Clinic / Imaging Center in respect of which registration is sought and to ensure that act and
+                                Rules are fully compiled with.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                Date
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.DeclarationModel.Date, new { @class = "form-control datepicker", @Value = @System.DateTime.Today.ToString("dd/MM/yyyy") })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                Place
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.DeclarationModel.Place, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-offset-5 col-md-4" style="text-align:center">
+                                @Html.TextBoxFor(model => model.DeclarationModel.Signature, new { @class = "form-control" })
+                                Name, Designation and Signature of the<br />
+                                person who conduct the scanning
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12  text-right">
+                                <input type="button" value="Clear" id="btnDeclarationClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnDeclarationSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>
+<script>
+    $('#EstablishmentModel_DistrictId').on('change', function () {
+        BindMandals('EstablishmentModel_', this.value);
+    });
+
+    $('#EstablishmentModel_MandalId').on('change', function () {
+        BindVillages('EstablishmentModel_', this.value);
+    });
+
+    $('#FacilityModel_DistrictId').on('change', function () {
+        BindMandals('FacilityModel_', this.value);
+    });
+
+    $('#FacilityModel_MandalId').on('change', function () {
+        BindVillages('FacilityModel_', this.value);
+    });
+
+    $('#ApplicantModel_DistrictId').on('change', function () {
+        BindMandals('ApplicantModel_', this.value);
+    });
+
+    $('#ApplicantModel_MandalId').on('change', function () {
+        BindVillages('ApplicantModel_', this.value);
+    });
+
+    $('#ApplicantModel_ApplicantRole').on('change', function () {
+        if (this.value == 'Others')
+            $('.applicantroleother').show();
+        else {
+            $('.applicantroleother').hide();
+            $('#ApplicantModel_ApplicantRoleOther').val(null);
+        }
+
+    });
+
+    $('#btnApplicantSave').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formApplicant').valid()) {
+            //if ($('#ApplicantModel_ApplicantRole').val() == 'Others' &&
+            //    ($('#ApplicantModel_ApplicantRoleOther').val() == null || $('#ApplicantModel_ApplicantRoleOther').val() == '')) {
+            //    alert('Please enter Role (Other)');
+            //    return false;
+            //}
+
+            var url = '@Url.Action("SaveApplicantDetails","License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#ApplicantModel_Id').val() == '' ? 0 : $('#ApplicantModel_Id').val(),
+                    Name: $('#ApplicantModel_Name').val(),
+                    ApplicantRole: $('#ApplicantModel_ApplicantRole').val(),
+                    ApplicantRoleOther: $('#ApplicantModel_ApplicantRoleOther').val(),
+                    DistrictId: $('#ApplicantModel_DistrictId').val(),
+                    MandalId: $('#ApplicantModel_MandalId').val(),
+                    VillageId: $('#ApplicantModel_VillageId').val(),
+                    Aadhar: $('#ApplicantModel_Aadhar').val(),
+                    PAN: $('#ApplicantModel_PAN').val(),
+                    HouseNumber: $('#ApplicantModel_HouseNumber').val(),
+                    StreetName: $('#ApplicantModel_StreetName').val(),
+                    PINCode: $('#ApplicantModel_PINCode').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#ApplicantModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                $('#btnApplicantSave').val('Update');
+                $('#btnApplicantSave').removeClass('btn-success');
+                $('#btnApplicantSave').addClass('btn-primary');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Completed'){
+                $('#btnApplicantSave').val('Update');
+                $('#btnApplicantSave').removeClass('btn-primary');
+                $('#btnApplicantSave').addClass('btn-success');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Empty'){
+                $('#btnApplicantSave').val('Save');
+                $('#btnApplicantSave').removeClass('btn-success');
+                $('#btnApplicantSave').addClass('btn-primary');
+            }
+
+            CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Applicant Request Failed: " + err);
+    });
+        }
+    });
+
+    $('#btnEstablishmentSave').on('click', function (e) {
+        e.preventDefault();
+        var isFormValid = $('#formEstablishment').valid();
+        if (isFormValid) {
+            var uri = '@Url.Action("SaveEstablishmentDetails", "License", new { Area = "User" })';
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+                var addressProof = $("#EstablishmentModel_AddressProofPath").get(0).files[0];
+                var buildingLayout = $("#EstablishmentModel_BuildingLayoutPath").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('AddressProof', addressProof);
+                fileData.append('BuildingLayout', buildingLayout);
+                fileData.append('Id', $('#EstablishmentModel_Id').val() == '' ? 0 : $('#EstablishmentModel_Id').val());
+                fileData.append('Name', $('#EstablishmentModel_Name').val());
+                fileData.append('DistrictId', $('#EstablishmentModel_DistrictId').val());
+                fileData.append('MandalId', $('#EstablishmentModel_MandalId').val());
+                fileData.append('VillageId', $('#EstablishmentModel_VillageId').val());
+                fileData.append('HouseNumber', $('#EstablishmentModel_HouseNumber').val());
+                fileData.append('StreetName', $('#EstablishmentModel_StreetName').val());
+                fileData.append('PINCode', $('#EstablishmentModel_PINCode').val());
+                if(addressProof != undefined)
+                    fileData.append('AddressProofPath', addressProof.name);
+                if(buildingLayout != undefined)
+                    fileData.append('BuildingLayoutPath', buildingLayout.name);
+
+                $.ajax({
+                    type: "POST",
+                    url: uri,
+                    cache: false,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#EstablishmentModel_Id').val(response.ReturnData.split(',')[0]);
+                        ShowModal(response);
+
+                        if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                            $('#btnEstablishmentSave').val('Update');
+                            $('#btnEstablishmentSave').removeClass('btn-success');
+                            $('#btnEstablishmentSave').addClass('btn-primary');
+                        }
+                        else if(response.ReturnData.split(',')[1] == 'Completed'){
+                            $('#btnEstablishmentSave').val('Update');
+                            $('#btnEstablishmentSave').removeClass('btn-primary');
+                            $('#btnEstablishmentSave').addClass('btn-success');
+                        }
+                        else if(response.ReturnData.split(',')[1] == 'Empty'){
+                            $('#btnEstablishmentSave').val('Save');
+                            $('#btnEstablishmentSave').removeClass('btn-success');
+                            $('#btnEstablishmentSave').addClass('btn-primary');
+                        }
+
+                        CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+    $('#btnFacilitySave').on('click', function (e) {
+        e.preventDefault();
+        var facilities = [];
+        $.each($("input[name='facilitytype']"), function () {
+            if ($(this).parent('[class*="icheckbox"]').hasClass("checked"))
+                facilities.push(this.value);
+        });
+
+        //if (facilities.length == 0) {
+        //    alert('Please select at least one Facility');
+        //    return false;
+        //}
+
+        if ($('#formFacility').valid()) {
+
+            var url = '@Url.Action("SaveFacilityDetails","License", new { Area = "User" })';
+
+
+            // New Code
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+                var addressProof = $("#FacilityModel_AddressProofPath").get(0).files[0];
+                var buildingLayout = $("#FacilityModel_BuildingLayoutPath").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('AddressProof', addressProof);
+                fileData.append('BuildingLayout', buildingLayout);
+                fileData.append('Id', $('#FacilityModel_Id').val() == '' ? 0 : $('#FacilityModel_Id').val());
+                fileData.append('Faclities', facilities.join());
+                fileData.append('Name', $('#FacilityModel_Name').val());
+                fileData.append('DistrictId', $('#FacilityModel_DistrictId').val());
+                fileData.append('MandalId', $('#FacilityModel_MandalId').val());
+                fileData.append('VillageId', $('#FacilityModel_VillageId').val());
+                fileData.append('HouseNumber', $('#FacilityModel_HouseNumber').val());
+                fileData.append('StreetName', $('#FacilityModel_StreetName').val());
+                fileData.append('PINCode', $('#FacilityModel_PINCode').val());
+                fileData.append('Phone', $('#FacilityModel_Phone').val());
+                fileData.append('Email', $('#FacilityModel_Email').val());
+                fileData.append('Fax', $('#FacilityModel_Fax').val());
+                fileData.append('Telegraph', $('#FacilityModel_Telegraph').val());
+                fileData.append('Telex', $('#FacilityModel_Telex').val());
+                fileData.append('PINCode', $('#FacilityModel_PINCode').val());
+
+                if(addressProof != undefined)
+                    fileData.append('AddressProofPath', addressProof.name);
+                if(buildingLayout != undefined)
+                    fileData.append('BuildingLayoutPath', buildingLayout.name);
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    cache: false,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        $('#FacilityModel_Id').val(response.ReturnData.split(',')[0]);
+                        ShowModal(response);
+
+                        if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                            $('#btnFacilitySave').val('Update');
+                            $('#btnFacilitySave').removeClass('btn-success');
+                            $('#btnFacilitySave').addClass('btn-primary');
+                        }
+                        else if(response.ReturnData.split(',')[1] == 'Completed'){
+                            $('#btnFacilitySave').val('Update');
+                            $('#btnFacilitySave').removeClass('btn-primary');
+                            $('#btnFacilitySave').addClass('btn-success');
+                        }
+                        else if(response.ReturnData.split(',')[1] == 'Empty'){
+                            $('#btnFacilitySave').val('Save');
+                            $('#btnFacilitySave').removeClass('btn-success');
+                            $('#btnFacilitySave').addClass('btn-primary');
+                        }
+
+                        // Hide all the divisions
+                        $('#fsInvasive').hide();
+                        $('#fsNonInvasive').hide();
+                        $('#fsTestsRemarks').hide();
+                        $('#fsTests').hide();
+                        $('#fsStudies').hide();
+                        $('#fsFacilityRemarks').hide();
+
+                        for (var i = 0; i < facilities.length; i++) {
+                            ShowTestsFacilities(facilities[i]);
+                        }
+
+                        RemoveValuesfromHiddenControls();
+                        // Remove Form Completed class from Tests & Facilites forms
+                        $('#btnTestSave').removeClass('btn-success');
+                        $('#btnTestSave').addClass('btn-primary');
+                        $('#btnFacilicitesSave').removeClass('btn-success');
+                        $('#btnFacilicitesSave').addClass('btn-primary');
+
+                        CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+            }
+            else{
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+    function ShowTestsFacilities(facilityId){
+        switch (facilityId) {
+            case '1':   //Generic Counselling Center
+            case '6':   //Assisted Reproductive Technology (ART)
+                {
+                    if(facilityId){
+                        $('#fsTestsRemarks').show();
+                        $('#fsFacilityRemarks').show();
+                    }
+                    else{
+                        $('#fsTestsRemarks').hide();
+                        $('#fsFacilityRemarks').hide();
+                    }
+                }
+                break;
+            case '2':   //Ultra Sound Clinic
+            case '3':   //Imaging Center
+                {
+                    if(facilityId){
+                        $('#fsNonInvasive').show();
+                        $('#fsFacilityRemarks').show();
+                    }
+                    else{
+                        $('#fsNonInvasive').hide();
+                        $('#fsFacilityRemarks').hide();
+                    }
+                }
+                break;
+            case '4':   //Genetic Clinic
+            case '5':   //Generic Laboratory
+                {
+                    if(facilityId){
+                        $('#fsInvasive').show();
+                        $('#fsNonInvasive').show();
+                        $('#fsTests').show();
+                        $('#fsStudies').show();
+                    }
+                    else{
+                        $('#fsInvasive').hide();
+                        $('#fsNonInvasive').hide();
+                        $('#fsTests').hide();
+                        $('#fsStudies').hide();
+                    }
+                }
+                break;
+            default:
+
+        }
+    }
+    function RemoveValuesfromHiddenControls(){
+        if ($('#fsInvasive').css('display') == 'none') {
+            $.each($("input[name='testinvasive']"), function () {
+                $(this).iCheck('uncheck');
+            });
+        }
+
+        if ($('#fsNonInvasive').css('display') == 'none') {
+            $.each($("input[name='testnoninvasive']"), function () {
+                $(this).iCheck('uncheck');
+            });
+        }
+
+        if ($('#fsTestsRemarks').css('display') == 'none') {
+            $('#TestsModel_Remarks').val('');
+        }
+
+        if ($('#fsTests').css('display') == 'none') {
+            $.each($("input[name='facilitytest']"), function () {
+                $(this).iCheck('uncheck');
+            });
+        }
+
+        if ($('#fsStudies').css('display') == 'none') {
+            $.each($("input[name='facilitystudies']"), function () {
+                $(this).iCheck('uncheck');
+            });
+        }
+
+        if ($('#fsFacilityRemarks').css('display') == 'none') {
+            $('#FacilitiesModel_Remarks').val('');
+        }
+    }
+
+    $('#btnTestSave').on('click', function (e) {
+        e.preventDefault();
+        var invaive = [];
+        $.each($("input[name='testinvasive']"), function () {
+            if ($(this).parent('[class*="icheckbox"]').hasClass("checked"))
+                invaive.push(this.value);
+        });
+
+        //if (invaive.length == 0) {
+        //    alert('Please select at least one Invasive Test');
+        //    return false;
+        //}
+
+        var noninvaive = [];
+        $.each($("input[name='testnoninvasive']"), function () {
+            if ($(this).parent('[class*="icheckbox"]').hasClass("checked"))
+                noninvaive.push(this.value);
+        });
+
+        //if (noninvaive.length == 0) {
+        //    alert('Please select at least one Non-Invasive Test');
+        //    return false;
+        //}
+
+        if ($('#formTests').valid()) {
+
+            var url = '@Url.Action("SaveTests","License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#TestsModel_Id').val() == '' ? 0 : $('#TestsModel_Id').val(),
+                    InvasiveTests: invaive.join(),
+                    NonInvasiveTests: noninvaive.join(),
+                    Remarks: $('#TestsModel_Remarks').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+            debugger;
+            $('#TestsModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                $('#btnTestSave').val('Update');
+                $('#btnTestSave').removeClass('btn-success');
+                $('#btnTestSave').addClass('btn-primary');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Completed'){
+                $('#btnTestSave').val('Update');
+                $('#btnTestSave').removeClass('btn-primary');
+                $('#btnTestSave').addClass('btn-success');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Empty'){
+                $('#btnTestSave').val('Save');
+                $('#btnTestSave').removeClass('btn-success');
+                $('#btnTestSave').addClass('btn-primary');
+            }
+
+            CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Facility Request Failed: " + err);
+    });
+        }
+    });
+
+    $('#btnAddEquipment').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formEquipment').valid()) {
+            var uri = '@Url.Action("AddEquipment","License", new { Area = "User" })';
+
+            if (window.FormData !== undefined) {
+                var uploadedFile = $("#EquipmentModel_UploadedFilePath").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('Id', $('#EquipmentModel_Id').val() == '' ? 0 : $('#EquipmentModel_Id').val());
+                fileData.append('Name', $('#EquipmentModel_Name').val());
+                fileData.append('SerialNumber', $('#EquipmentModel_SerialNumber').val());
+                fileData.append('MachineModel', $('#EquipmentModel_MachineModel').val());
+                fileData.append('Make', $('#EquipmentModel_Make').val());
+                fileData.append('Type', $("input:radio[name='EquipmentModel.Type']:checked").val());
+                fileData.append('UploadedFilePath', uploadedFile.name);
+                fileData.append('UploadedFile', uploadedFile);
+
+                $.ajax({
+                    type: "POST",
+                    url: uri,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        // Clear controls
+                        $('#EquipmentModel_Name').val('');
+                        $('#EquipmentModel_SerialNumber').val('');
+                        $('#EquipmentModel_MachineModel').val('');
+                        $('#EquipmentModel_Make').val('');
+                        //$('#EquipmentModel_Type').val('');
+                        $('input:radio[name="EquipmentModel.Type"]:checked').iCheck('uncheck');
+                        $('#EquipmentModel_UploadedFilePath').val('');
+
+                        $('#tblEquiments tr').not(function () { return !!$(this).has('th').length; }).remove();
+
+                        var json = response;
+
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Name + "</td>");
+                            tr.append("<td>" + json[i].SerialNumber + "</td>");
+                            tr.append("<td>" + json[i].MachineModel + "</td>");
+                            tr.append("<td>" + json[i].Make + "</td>");
+                            tr.append("<td>" + json[i].Type + "</td>");
+
+                            var path = json[i].UploadedFilePath;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteEquipment(" + i + ");'/></td>");
+                            //tr.append("<td><a href='javascript:void(0);' onclick='DeleteEquipment(" + i + ");' text='Delete'></a></td>");
+
+                            $('#tblEquiments').append(tr);
+                        }
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+    function DeleteEquipment(index) {
+        debugger;
+        if (confirm('Do you really want to delete this equipment?')) {
+            var url = '@Url.Action("DeleteEquipment","License", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblEquiments tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].SerialNumber + "</td>");
+                tr.append("<td>" + json[i].MachineModel + "</td>");
+                tr.append("<td>" + json[i].Make + "</td>");
+                tr.append("<td>" + json[i].Type + "</td>");
+
+                var path = json[i].UploadedFilePath;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteEquipment(" + i + ");'/></td>");
+
+
+                $('#tblEquiments').append(tr);
+            }
+        }
+        else if(json == undefined || json.length == 0){
+            $('#btnTestSave').val('Save');
+            $('#btnTestSave').removeClass('btn-success');
+            $('#btnTestSave').addClass('btn-primary');
+        }
+        CheckforEnableSubmit();
+    }
+    )
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("Delete Equipment Request Failed: " + err);
+});
+        }
+    }
+
+    $('#btnEquipmentSave').on('click', function (e) {
+        e.preventDefault();
+        var url = '@Url.Action("SaveEquipments", "License", new { Area = "User" })';
+        var jqxhr = $.post(url, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        ShowModal(response);
+        var transactionId = response.ReturnData.split(',')[0];
+        BindEquipmentsOnSave(transactionId);
+
+        //if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+        //    $('#btnEquipmentSave').val('Update');
+        //    $('#btnEquipmentSave').removeClass('btn-success');
+        //    $('#btnEquipmentSave').addClass('btn-primary');
+        //}
+        //else if(response.ReturnData.split(',')[1] == 'Completed'){
+        //    $('#btnEquipmentSave').val('Update');
+        //    $('#btnEquipmentSave').removeClass('btn-primary');
+        //    $('#btnEquipmentSave').addClass('btn-success');
+        //}
+
+
+        CheckforEnableSubmit();
+    })
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("SaveEquipments Request Failed: " + err);
+});
+    });
+
+    function BindEquipmentsOnSave(transactionId){
+        var url = '@Url.Action("GetEquipments", "License", new { Area = "User" })';
+        var data = {transactionId : transactionId};
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblEquiments tr').not(function () { return !!$(this).has('th').length; }).remove();
+        debugger;
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].SerialNumber + "</td>");
+                tr.append("<td>" + json[i].MachineModel + "</td>");
+                tr.append("<td>" + json[i].Make + "</td>");
+                tr.append("<td>" + json[i].Type + "</td>");
+
+                var path = json[i].UploadedFilePath;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteEquipment(" + i + ");'/></td>");
+
+
+                $('#tblEquiments').append(tr);
+            }
+
+            $('#btnEquipmentSave').val('Update');
+            $('#btnEquipmentSave').removeClass('btn-primary');
+            $('#btnEquipmentSave').addClass('btn-success');
+        }
+        else if(json == undefined || json.length == 0){
+            $('#btnEquipmentSave').val('Save');
+            $('#btnEquipmentSave').removeClass('btn-success');
+            $('#btnEquipmentSave').addClass('btn-primary');
+        }
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetEquipments Request Failed: " + err);
+        });
+
+    }
+
+    $('#btnFacilicitesSave').on('click', function (e) {
+        e.preventDefault();
+        var tests = []; var studies = [];
+        $.each($("input[name='facilitytest']"), function () {
+            if ($(this).parent('[class*="icheckbox"]').hasClass("checked"))
+                tests.push(this.value);
+        });
+
+        //if (tests.length == 0) {
+        //    alert('Please select at least one Test');
+        //    return false;
+        //}
+
+        $.each($("input[name='facilitystudies']"), function () {
+            if ($(this).parent('[class*="icheckbox"]').hasClass("checked"))
+                studies.push(this.value);
+        });
+
+        //if (studies.length == 0) {
+        //    alert('Please select at least one Study');
+        //    return false;
+        //}
+
+        if ($('#formFacilities').valid()) {
+
+            var url = '@Url.Action("SaveFacilities", "License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#FacilitiesModel_Id').val() == '' ? 0 : $('#FacilitiesModel_Id').val(),
+                    Tests: tests.join(),
+                    Studies: studies.join(),
+                    Remarks: $('#FacilitiesModel_Remarks').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#FacilitiesModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                $('#btnFacilicitesSave').val('Update');
+                $('#btnFacilicitesSave').removeClass('btn-success');
+                $('#btnFacilicitesSave').addClass('btn-primary');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Completed'){
+                $('#btnFacilicitesSave').val('Update');
+                $('#btnFacilicitesSave').removeClass('btn-primary');
+                $('#btnFacilicitesSave').addClass('btn-success');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Empty'){
+                $('#btnFacilicitesSave').val('Save');
+                $('#btnFacilicitesSave').removeClass('btn-success');
+                $('#btnFacilicitesSave').addClass('btn-primary');
+            }
+
+            CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Facilities Request Failed: " + err);
+    });
+        }
+    });
+
+    $('#btnAddEmployee').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formEmployee').valid()) {
+            var uri = '@Url.Action("AddEmployee","License", new { Area = "User" })';
+
+            if (window.FormData !== undefined) {
+                var uploadedFile = $("#EmployeeModel_UploadedFilePath").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('Id', $('#EmployeeModel_Id').val() == '' ? 0 : $('#EmployeeModel_Id').val());
+                fileData.append('Name', $('#EmployeeModel_Name').val());
+                fileData.append('DesignationId', $('#EmployeeModel_DesignationId').val());
+                fileData.append('DesignationName', $("#EmployeeModel_DesignationId option:selected").text());
+                fileData.append('Experience', $('#EmployeeModel_Experience').val());
+                fileData.append('RegistrationNumber', $('#EmployeeModel_RegistrationNumber').val());
+                fileData.append('UploadedFilePath', uploadedFile.name);
+                fileData.append('UploadedFile', uploadedFile);
+
+                $.ajax({
+                    type: "POST",
+                    url: uri,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        // Clear controls
+                        $('#EmployeeModel_Name').val('');
+                        $('#EmployeeModel_DesignationId').val('');
+                        $('#EmployeeModel_Experience').val('');
+                        $('#EmployeeModel_RegistrationNumber').val('');
+                        $('#EmployeeModel_UploadedFilePath').val('');
+
+                        $('#tblEmployees tr').not(function () { return !!$(this).has('th').length; }).remove();
+
+                        var json = response;
+
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Name + "</td>");
+                            tr.append("<td>" + json[i].DesignationName + "</td>");
+                            tr.append("<td>" + json[i].Experience + "</td>");
+                            tr.append("<td>" + json[i].RegistrationNumber + "</td>");
+
+                            var path = json[i].UploadedFilePath;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteEmployee(" + i + ");'/></td>");
+
+                            $('#tblEmployees').append(tr);
+                        }
+
+                        CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+    function DeleteEmployee(index) {
+        if (confirm('Do you really want to delete this equipment?')) {
+            var url = '@Url.Action("DeleteEmployee","License", new { Area = "User" })';
+            var data = { index: index };
+            var jqxhr = $.post(url, data, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblEmployees tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].DesignationName + "</td>");
+                tr.append("<td>" + json[i].Experience + "</td>");
+                tr.append("<td>" + json[i].RegistrationNumber + "</td>");
+
+                var path = json[i].UploadedFilePath;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteEmployee(" + i + ");'/></td>");
+
+                $('#tblEmployees').append(tr);
+            }
+        }
+        else if(json == undefined || json.length == 0){
+            $('#btnEmployeeSave').val('Save');
+            $('#btnEmployeeSave').removeClass('btn-success');
+            $('#btnEmployeeSave').addClass('btn-primary');
+        }
+
+        CheckforEnableSubmit();
+    })
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("Delete Employee Request Failed: " + err);
+});
+        }
+    }
+
+
+    $('#btnEmployeeSave').on('click', function (e) {
+        e.preventDefault();
+        var url = '@Url.Action("SaveEmployees", "License", new { Area = "User" })';
+        var jqxhr = $.post(url, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        ShowModal(response);
+        var transactionId = response.ReturnData.split(',')[0];
+        BindEmployeesOnSave(transactionId);
+
+        CheckforEnableSubmit();
+    })
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("SaveEmployees Request Failed: " + err);
+});
+    });
+
+    function BindEmployeesOnSave(transactionId){
+        var url = '@Url.Action("GetEmployees", "License", new { Area = "User" })';
+        var data = {transactionId : transactionId};
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblEmployees tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].Designation + "</td>");
+                tr.append("<td>" + json[i].Experience + "</td>");
+                tr.append("<td>" + json[i].RegistrationNumber + "</td>");
+
+                var path = json[i].UploadedFilePath;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteEmployee(" + i + ");'/></td>");
+
+                $('#tblEmployees').append(tr);
+            }
+
+            $('#btnEmployeeSave').val('Update');
+            $('#btnEmployeeSave').removeClass('btn-primary');
+            $('#btnEmployeeSave').addClass('btn-success');
+        }
+        else if(json == undefined || json.length == 0){
+            $('#btnEmployeeSave').val('Save');
+            $('#btnEmployeeSave').removeClass('btn-success');
+            $('#btnEmployeeSave').addClass('btn-primary');
+        }
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetEquipments Request Failed: " + err);
+        });
+
+    }
+
+    $('#InstitutionModel_OwnershipTypeId').on('change', function(){
+
+        if(this.value != ''){
+            debugger;
+            $('#divOwnershipUploads').show();
+            switch (this.value) {
+                case '1':
+                    {
+                        $('#divAffidavitFile').show();
+                        $('#divStudyCertificateFiles').show();
+                        $('#divAssociationFile').hide();
+                    }
+                    break;
+                case '2':
+                case '3':
+                case '5':{
+                    $('#divAffidavitFile').show();
+                    $('#divStudyCertificateFiles').show();
+                    $('#divAssociationFile').show();
+                    $('#spanArticlesofAssociation').text('Articles of Association');
+                }
+                    break;
+                case '4':{
+                    $('#divAffidavitFile').show();
+                    $('#divStudyCertificateFiles').show();
+                    $('#divAssociationFile').show();
+                    $('#spanArticlesofAssociation').text('Articles of Association/Memorandum of Association');
+                }
+                default:
+
+            }
+        }
+        else{
+            $('#divOwnershipUploads').hide();
+        }
+    });
+
+    $('#btnInstitutionSave').on('click', function(e){
+        e.preventDefault();
+        if (window.FormData !== undefined) {
+
+            var url = '@Url.Action("SaveInstitution", "License", new { Area = "User" })';
+
+            // Create FormData object
+            var fileData = new FormData();
+            var ownershipId = $('#InstitutionModel_OwnershipTypeId').val();
+            fileData.append('Id', $('#InstitutionModel_Id').val() == '' ? 0 : $('#InstitutionModel_Id').val());
+            fileData.append('OwnershipTypeId', ownershipId);
+            fileData.append('InstitutionTypeId', $('#InstitutionModel_InstitutionTypeId').val());
+            fileData.append('TotalWorkArea', $('#InstitutionModel_TotalWorkArea').val());
+
+            debugger;
+            if(ownershipId != ''){
+
+                switch (ownershipId) {
+                    case '1':
+                        {
+                            var affidavitFile = $('#affidavitFile').get(0).files[0];
+                            var StudyCertificateFiles = $("#StudyCertificateFile").get(0).files;
+
+                            fileData.append("affidavitFile", affidavitFile);
+                            for (var i = 0; i < StudyCertificateFiles.length; i++) {
+                                fileData.append("studyCertificateFiles", StudyCertificateFiles[i]);
+                            }
+
+                            debugger;
+                            if(affidavitFile == undefined || StudyCertificateFiles.length == 0){
+                                var InstitutionModel = @Html.Raw(Json.Encode(Model.InstitutionModel));
+                                if(InstitutionModel.AffidavitDocPath == undefined){
+                                    alert('Please upload required files');
+                                    return false;
+                                }
+
+                            }
+                        }
+                        break;
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':{
+                        var affidavitFile = $('#affidavitFile').get(0).files[0];
+                        var articleFile = $('#articlesofAssociationFile').get(0).files[0];
+                        var StudyCertificateFiles = $("#StudyCertificateFile").get(0).files;
+
+                        fileData.append("affidavitFile", affidavitFile);
+                        fileData.append("articleFile", articleFile);
+                        for (var i = 0; i < StudyCertificateFiles.length; i++) {
+                            fileData.append("studyCertificateFiles", StudyCertificateFiles[i]);
+                        }
+
+                        debugger;
+                        if(affidavitFile == undefined || articleFile == undefined || StudyCertificateFiles.length == 0){
+                            var InstitutionModel = @Html.Raw(Json.Encode(Model.InstitutionModel));
+                            if(InstitutionModel.AffidavitDocPath == undefined || InstitutionModel.ArticleDocPath == undefined
+                                || InstitutionModel.StudyCertificateDocPaths.length == 0){
+                                alert('Please upload required files');
+                                return false;
+                            }
+                            
+                        }
+                    }
+                        break;
+                }
+
+            }
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: fileData,
+                contentType: false,
+                processData: false,
+                async: true,
+                success: function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+
+                    $('#InstitutionModel_Id').val(response.ReturnData.split(',')[0]);
+                    ShowModal(response);
+
+                    if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                        $('#btnInstitutionSave').val('Update');
+                        $('#btnInstitutionSave').removeClass('btn-success');
+                        $('#btnInstitutionSave').addClass('btn-primary');
+                    }
+                    else if(response.ReturnData.split(',')[1] == 'Completed'){
+                        $('#btnInstitutionSave').val('Update');
+                        $('#btnInstitutionSave').removeClass('btn-primary');
+                        $('#btnInstitutionSave').addClass('btn-success');
+                    }
+                    else if(response.ReturnData.split(',')[1] == 'Empty'){
+                        $('#btnInstitutionSave').val('Save');
+                        $('#btnInstitutionSave').removeClass('btn-success');
+                        $('#btnInstitutionSave').addClass('btn-primary');
+                    }
+
+                    CheckforEnableSubmit();
+                },
+                failure: function (response) {
+                    alert('failure: ' + response.d);
+                },
+                error: function (response) {
+                    alert('error: ' + response.d);
+                }
+            });
+
+        }
+        else{
+            alert("FormData is not supported.");
+        }
+
+    });
+
+    $('#btnInstitutionSaveOld').on('click', function (e) {
+        e.preventDefault();
+        if (true) {  // ($('#formOwnership').valid()) {
+            var url = '@Url.Action("SaveInstitution", "License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#InstitutionModel_Id').val() == '' ? 0 : $('#InstitutionModel_Id').val(),
+                    OwnershipTypeId: $('#InstitutionModel_OwnershipTypeId').val(),
+                    InstitutionTypeId: $('#InstitutionModel_InstitutionTypeId').val(),
+                    TotalWorkArea: $('#InstitutionModel_TotalWorkArea').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#InstitutionModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                $('#btnInstitutionSave').val('Update');
+                $('#btnInstitutionSave').removeClass('btn-success');
+                $('#btnInstitutionSave').addClass('btn-primary');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Completed'){
+                $('#btnInstitutionSave').val('Update');
+                $('#btnInstitutionSave').removeClass('btn-primary');
+                $('#btnInstitutionSave').addClass('btn-success');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Empty'){
+                $('#btnInstitutionSave').val('Save');
+                $('#btnInstitutionSave').removeClass('btn-success');
+                $('#btnInstitutionSave').addClass('btn-primary');
+            }
+
+            CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("SaveInstitution Request Failed: " + err);
+    });
+        }
+    });
+
+    $('#btnDeclarationSave').on('click', function (e) {
+        debugger;
+        e.preventDefault();
+        if (true) {  // ($('#formDeclaration').valid()) {
+            var url = '@Url.Action("SaveDeclarationDetails", "License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#DeclarationModel_Id').val() == '' ? 0 : $('#DeclarationModel_Id').val(),
+                    Name: $('#DeclarationModel_Name').val(),
+                    SonOf: $('#DeclarationModel_SonOf').val(),
+                    Age: $('#DeclarationModel_Age').val(),
+                    ResidentOf: $('#DeclarationModel_ResidentOf').val(),
+                    Designation: $('#DeclarationModel_Designation').val(),
+                    Organization: $('#DeclarationModel_Organization').val(),
+                    Date: $('#DeclarationModel_Date').val(),
+                    Place: $('#DeclarationModel_Place').val(),
+                    Signature: $('#DeclarationModel_Signature').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#DeclarationModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if(response.ReturnData.split(',')[1] == 'PartiallySaved'){
+                $('#btnDeclarationSave').val('Update');
+                $('#btnDeclarationSave').removeClass('btn-success');
+                $('#btnDeclarationSave').addClass('btn-primary');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Completed'){
+                $('#btnDeclarationSave').val('Update');
+                $('#btnDeclarationSave').removeClass('btn-primary');
+                $('#btnDeclarationSave').addClass('btn-success');
+            }
+            else if(response.ReturnData.split(',')[1] == 'Empty'){
+                $('#btnDeclarationSave').val('Save');
+                $('#btnDeclarationSave').removeClass('btn-success');
+                $('#btnDeclarationSave').addClass('btn-primary');
+            }
+
+            CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Declaration Request Failed: " + err);
+    });
+        }
+    });
+
+
+    // Script for Edit form Begin
+    $(function () {
+        BindApplicantData();
+        //BindEstablishmentData();
+        BindFacilityData();
+        BindTestsData();
+        BindEquipmentData();
+        BindFacilitiesData();
+        BindEmployeeData();
+        BindInstitutionData();
+        BindDeclarationData();
+        CheckforEnableSubmit();
+    });
+
+    function BindApplicantData(){
+        var applicantModel = @Html.Raw(Json.Encode(Model.ApplicantModel));
+        if(applicantModel.FormStatus != 0){
+            $('#btnApplicantSave').val('Update');
+            $('#btnApplicantSave').removeClass('btn-primary');
+            $('#btnApplicantSave').addClass('btn-success');
+
+            if(applicantModel.DistrictId > 0)
+            {
+                BindMandals('ApplicantModel_', applicantModel.DistrictId);
+                setTimeout(
+                   function(){
+                       if(applicantModel.MandalId > 0){
+                           $('#ApplicantModel_MandalId').val(applicantModel.MandalId).trigger('change');
+                           BindVillages('ApplicantModel_', applicantModel.MandalId);
+                           setTimeout(function(){
+                               if(applicantModel.VillageId > 0){
+                                   $('#ApplicantModel_VillageId').val(applicantModel.VillageId).trigger('change');
+                               }
+                           }, 2000);
+                       }
+                   }
+                    , 2000);
+            }
+        }
+    }
+
+
+
+    function BindFacilityData(){
+        var FacilityModel = @Html.Raw(Json.Encode(Model.FacilityModel));
+        if(FacilityModel.FormStatus != 0){
+            $('#btnFacilitySave').val('Update');
+            $('#btnFacilitySave').removeClass('btn-primary');
+            $('#btnFacilitySave').addClass('btn-success');
+
+            if(FacilityModel.DistrictId > 0)
+            {
+                BindMandals('FacilityModel_', FacilityModel.DistrictId);
+                setTimeout(
+                   function(){
+                       if(FacilityModel.MandalId > 0){
+                           $('#FacilityModel_MandalId').val(FacilityModel.MandalId).trigger('change');
+                           BindVillages('FacilityModel_', FacilityModel.MandalId);
+                           setTimeout(function(){
+                               if(FacilityModel.VillageId > 0){
+                                   $('#FacilityModel_VillageId').val(FacilityModel.VillageId).trigger('change');
+                               }
+                           }, 2000);
+                       }
+                   }
+                    , 2000);
+            }
+
+            // Bind checkboxes
+            var facilities = FacilityModel.Faclities;
+            if (facilities != undefined && facilities.length > 0) {
+                var arrFacilities = facilities.split(',');
+                for (var i = 0; i < arrFacilities.length; i++) {
+                    $('input:checkbox[name="facilitytype"][value="' + arrFacilities[i] + '"]').iCheck('check');
+                    ShowTestsFacilities(arrFacilities[i]);
+                }
+            }
+        }
+    }
+
+    function BindTestsData(){
+        var TestsModel = @Html.Raw(Json.Encode(Model.TestsModel));
+        if(TestsModel.FormStatus != 0){
+            $('#btnTestSave').val('Update');
+            $('#btnTestSave').removeClass('btn-primary');
+            $('#btnTestSave').addClass('btn-success');
+
+            // Bind Invasive in Tests tab
+            var invasives = TestsModel.InvasiveTests;
+            if (invasives != undefined && invasives.length > 0) {
+                var arrInvasives = invasives.split(',');
+                for (var i = 0; i < arrInvasives.length; i++) {
+                    $('input:checkbox[name="testinvasive"][value="' + arrInvasives[i] + '"]').iCheck('check');
+                }
+            }
+
+            // Bind Non-Invasive in Tests tab
+            var noninvasives = TestsModel.NonInvasiveTests;
+            if (noninvasives != undefined && noninvasives.length > 0) {
+                var arrNonInvasives = noninvasives.split(',');
+                for (var i = 0; i < arrNonInvasives.length; i++) {
+                    $('input:checkbox[name="testnoninvasive"][value="' + arrNonInvasives[i] + '"]').iCheck('check');
+                }
+            }
+        }
+    }
+
+    function BindEquipmentData(){
+        var EquipmentModel = @Html.Raw(Json.Encode(Model.EquipmentModel));
+        if(EquipmentModel.FormStatus != 0){
+            $('#btnEquipmentSave').val('Update');
+            $('#btnEquipmentSave').removeClass('btn-primary');
+            $('#btnEquipmentSave').addClass('btn-success');
+        }
+    }
+
+    function BindFacilitiesData(){
+        var FacilitiesModel = @Html.Raw(Json.Encode(Model.FacilitiesModel));
+        if(FacilitiesModel.FormStatus != 0){
+            $('#btnFacilicitesSave').val('Update');
+            $('#btnFacilicitesSave').removeClass('btn-primary');
+            $('#btnFacilicitesSave').addClass('btn-success');
+
+            // Bind Tests in Facilities tab
+            var tests = FacilitiesModel.Tests;
+            if (tests != undefined && tests.length > 0) {
+                var arrTests = tests.split(',');
+                for (var i = 0; i < arrTests.length; i++) {
+                    $('input:checkbox[name="facilitytest"][value="' + arrTests[i] + '"]').iCheck('check');
+                }
+            }
+
+            // Bind Studies in Facilities tab
+            var studies = FacilitiesModel.Studies;
+            if (studies != undefined && studies.length > 0) {
+                var arrStudies = studies.split(',');
+                for (var i = 0; i < arrStudies.length; i++) {
+                    $('input:checkbox[name="facilitystudies"][value="' + arrStudies[i] + '"]').iCheck('check');
+                }
+            }
+        }
+    }
+
+    function BindEmployeeData(){
+        var EmployeeModel = @Html.Raw(Json.Encode(Model.EmployeeModel));
+        if(EmployeeModel.FormStatus != 0){
+            $('#btnEmployeeSave').val('Update');
+            $('#btnEmployeeSave').removeClass('btn-primary');
+            $('#btnEmployeeSave').addClass('btn-success');
+        }
+    }
+
+    function BindInstitutionData(){
+        var InstitutionModel = @Html.Raw(Json.Encode(Model.InstitutionModel));
+        console.log(InstitutionModel);
+        var documentJson = InstitutionModel.StudyCertificateDocPaths;
+
+
+        if (documentJson != undefined) {
+            $('#tblStudyCertificates tr').not(function () { return !!$(this).has('th').length; }).remove();
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < documentJson.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+
+                var path = documentJson[i].DocumentPath;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", documentJson[i].UploadedFilePath);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteStudyCertificate(" + documentJson[i].Id + ");'/></td>");
+
+                $('#tblStudyCertificates').append(tr);
+            }
+
+
+            if(InstitutionModel.OwnershipTypeId > 0){
+                $('#divOwnershipUploads').show();
+                switch (InstitutionModel.OwnershipTypeId) {
+                    case '1':
+                        {
+                            $('#divAffidavitFile').show();
+                            $('#divStudyCertificateFiles').show();
+                            $('#divAssociationFile').hide();
+                        }
+                        break;
+                    case '2':
+                    case '3':
+                    case '5':{
+                        $('#divAffidavitFile').show();
+                        $('#divStudyCertificateFiles').show();
+                        $('#divAssociationFile').show();
+                        $('#spanArticlesofAssociation').text('Articles of Association');
+                    }
+                        break;
+                    case '4':{
+                        $('#divAffidavitFile').show();
+                        $('#divStudyCertificateFiles').show();
+                        $('#divAssociationFile').show();
+                        $('#spanArticlesofAssociation').text('Articles of Association/Memorandum of Association');
+                    }
+                    default:
+
+                }
+            }
+            else{
+                $('#divOwnershipUploads').hide();
+            }
+
+
+            if(InstitutionModel.FormStatus != 0){
+                $('#btnInstitutionSave').val('Update');
+                $('#btnInstitutionSave').removeClass('btn-primary');
+                $('#btnInstitutionSave').addClass('btn-success');
+            }
+        }
+    }
+        function DeleteStudyCertificate(documentId){
+            debugger;
+            if(confirm('Are you sure to delete this document?')){
+                var url = '@Url.Action("DeleteStudyCertificate", "Application", new { Area = "User" })';
+                var data = {
+                    id: documentId
+                };
+                var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var documentJson;
+                if (response instanceof Object)
+                    documentJson = response;
+                else
+                    documentJson = $.parseJSON(response);
+
+                console.log(documentJson);
+
+                $('#tblStudyCertificates tr').not(function () { return !!$(this).has('th').length; }).remove();
+                var tr;
+                //Append each row to html table
+                for (var i = 0; i < documentJson.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td>" + (i + 1) + "</td>");
+
+                    var path = documentJson[i].DocumentPath;
+                    var index = path.indexOf("/");
+                    var displayFileName = path.substring(index + 1, path.length);
+                    var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                    fileLink = fileLink.replace("displaytext", displayFileName);
+                    fileLink = fileLink.replace("filepath", documentJson[i].UploadedFilePath);
+                    fileLink = fileLink.replace("downloadfilename", displayFileName);
+                    tr.append("<td>" + fileLink + "</td>");
+                    tr.append("<td><input type='button' value='Delete' onclick='DeleteStudyCertificate(" + documentJson[i].Id + ");'/></td>");
+
+                    $('#tblStudyCertificates').append(tr);
+                }
+
+            })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("DeleteStudyCertificate Request Failed: " + err);
+        });
+            }
+        }
+
+    function BindDeclarationData(){
+        var DeclarationModel = @Html.Raw(Json.Encode(Model.DeclarationModel));
+        if(DeclarationModel.FormStatus != 0){
+            $('#btnDeclarationSave').val('Update');
+            $('#btnDeclarationSave').removeClass('btn-primary');
+            $('#btnDeclarationSave').addClass('btn-success');
+        }
+    }
+    // Script for Edit form End
+
+    function CheckforEnableSubmit(){
+        if($('#btnApplicantSave').hasClass('btn-success') //&& $('#btnEstablishmentSave').hasClass('btn-success')
+            && $('#btnFacilitySave').hasClass('btn-success') && $('#btnTestSave').hasClass('btn-success')
+            && $('#btnEquipmentSave').hasClass('btn-success') && $('#btnFacilicitesSave').hasClass('btn-success')
+        && $('#btnEmployeeSave').hasClass('btn-success') && $('#btnInstitutionSave').hasClass('btn-success')
+        && $('#btnDeclarationSave').hasClass('btn-success')
+            ){
+            $('#btnPreview').removeAttr("disabled");
+        }
+        else
+        {
+            $('#btnPreview').attr('disabled', 'disabled');
+        }
+    }
+
+</script>

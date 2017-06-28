@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Dashboard
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3><span id="spanTotalApplications"></span></h3>
+
+                    <p>Total Applications Received</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-building-o"></i>
+                </div>
+                <a href="#" id="aTotalApplications" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3><span id="spanWithinSLA"></span></h3>
+
+                    <p>To be Processed within SLA</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user"></i>
+                </div>
+                <a href="#" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3><span id="spanBeyondSLA"></span></h3>
+
+                    <p>To be processed beyond SLA</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="#" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3><span id="spanTotalAmendments">10</span></h3>
+
+                    <p>Ammendments</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-building-o"></i>
+                </div>
+                <a href="@Url.Action("ListofAmendment","DepartmentUser",new { Area = "Department"})" id="aTotalAmendments" class="small-box-footer">View Details <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="divWithinSLA" hidden>
+        <div class="box">
+            <a href="#">Query Raised <span id="spanQueryRaised"></span></a> <br/>
+            <a href="#">Responded <span id="spanResponded"></span></a><br/>
+            <a href="@Url.Action("ListofApplications","DepartmentUser",new { Area = "Department"})">Pending <span id="spanPending"></span></a><br/>
+            <a href="#">Return/Reject <span id="spanReturn"></span> </a><br />
+            <a href="#">Forwarded <span id="spanForwarded"></span> </a>
+        </div>
+    </div>
+</section>
+<script>
+    $(function () {
+               GetCounts();
+        //$('#spanQueryRaised').html(" - 10");
+        //$('#spanResponded').html("- 10");
+        //$('#spanPending').html("- 10");
+        
+
+        //$('#spanTotalApplications').html("10");
+        //$('#spanWithinSLA').html("10");
+        //$('#spanBeyondSLA').html("10");
+
+    })
+    $('#aTotalApplications').click(function(){
+        $('#divWithinSLA').show();
+    });
+    function GetCounts() {
+        var url ='@Url.Action("BindCounts", "Dashboard", new { Area = "Department" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                SetTotals(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get Applications, Request Failed: " + err);
+            });
+            
+    }
+    function SetTotals(json) {       
+        $('#spanQueryRaised').text("- " +json[0].QueryRaised);
+        $('#spanResponded').text("- " + json[0].Responded);
+        $('#spanPending').text("- " + json[0].Pending);
+        $('#spanTotalApplications').text(json[0].TotalApplications);
+        $('#spanWithinSLA').text(json[0].WithinSLA);
+        $('#spanBeyondSLA').text(json[0].BeyondSLA);
+        $('#spanReturn').text("- " + json[0].ReturnRejected);
+        $('#spanForwarded').text("- " + json[0].Forwarded);
+        $('#spanTotalAmendments').text( json[0].Amendment);
+
+    }
+    function preparejson() {
+        debugger;
+        var Inspection = [];
+       
+            Inspection.push({
+                QuestionId: 1,
+                Answer: "some text"
+            })
+       
+            Inspection.push({
+                QuestionId: 2,
+                Answer: "some answer"
+            })
+            Inspection.push({
+                QuestionId: 3,
+                Answer: "some answer"
+            })
+       
+     
+
+        var data = {
+            Inspection: Inspection
+        }
+
+        //console.log(Inspection);
+        console.log(data);
+        var url = '@Url.Action("test", "Dashboard", new { Area = "Department" })';
+        var jqxhr = $.post(url,data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                console.log(json);
+                //BindCounts(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get Applications, Request Failed: " + err);
+            });
+
+    }
+</script>
+

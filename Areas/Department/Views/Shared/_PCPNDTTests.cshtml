@@ -1,0 +1,87 @@
+﻿@model Medical.Models.PCPNDTViewModel 
+@{
+    if (Model.FacilityModel.Faclities != null)
+    {
+        if (Model.FacilityModel.Faclities.Contains("4") || Model.FacilityModel.Faclities.Contains("5"))
+        {
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Invasive</legend>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-3">
+                        @Html.HiddenFor(model => model.TestsModel.Id)
+                        @Html.CheckBox("testinvasivelog", new { @value = "1" }) Amniocentesis
+                    </div>
+                    <div class="col-md-3">
+                        @Html.CheckBox("testinvasivelog", new { @value = "2" }) Biochemical
+                    </div>
+                    <div class="col-md-4">
+                        @Html.CheckBox("testinvasivelog", new { @value = "3" }) Chorionic Villi Aspiration
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-3">
+                        @Html.CheckBox("testinvasivelog", new { @value = "4" }) Molecular Studies
+                    </div>
+                    <div class="col-md-3">
+                        @Html.CheckBox("testinvasivelog", new { @value = "5" }) Chromosomal
+                    </div>
+                </div>
+            </fieldset>
+        }
+        if (Model.FacilityModel.Faclities.Contains("2") || Model.FacilityModel.Faclities.Contains("3")
+            || Model.FacilityModel.Faclities.Contains("4") || Model.FacilityModel.Faclities.Contains("5"))
+        {
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Non-Invasive</legend>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-3">
+                        @Html.CheckBox("testnoninvasivelog", new { @value = "1" }) Ultra Sonography
+                    </div>
+                </div>
+            </fieldset>
+        }
+        if (Model.FacilityModel.Faclities.Contains("1") || Model.FacilityModel.Faclities.Contains("6"))
+        {
+            <fieldset class="scheduler-border" id="fsTestsRemarks">
+                <legend class="scheduler-border">Remarks</legend>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-1">
+                        @Html.LabelFor(model => model.TestsModel.Remarks, new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-8">
+                        @Html.DisplayFor(model => model.TestsModel.Remarks)
+                    </div>
+                </div>
+            </fieldset>
+        }
+    }
+}
+<script>
+    function BindTests() {
+        // Bind Invasive in Tests tab
+        $.each($("input[name='testinvasivelog']"), function () {
+            $(this).parent('[class*="icheckbox"]').iCheck('disable');
+        });
+
+        var invasives = '@Model.TestsModel.InvasiveTests';
+        if (invasives.length > 0) {
+            var arrInvasives = invasives.split(',');
+            for (var i = 0; i < arrInvasives.length; i++) {
+                $('input:checkbox[name="testinvasivelog"][value="' + arrInvasives[i] + '"]').iCheck('check');
+            }
+        }
+
+        // Bind Non-Invasive in Tests tab
+        $.each($("input[name='testnoninvasivelog']"), function () {
+            $(this).parent('[class*="icheckbox"]').iCheck('disable');
+        });
+
+        var noninvasives = '@Model.TestsModel.NonInvasiveTests';
+        if (noninvasives.length > 0) {
+            var arrNonInvasives = noninvasives.split(',');
+            for (var i = 0; i < arrNonInvasives.length; i++) {
+                $('input:checkbox[name="testnoninvasivelog"][value="' + arrNonInvasives[i] + '"]').iCheck('check');
+            }
+        }
+    }
+</script>

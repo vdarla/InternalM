@@ -1,0 +1,166 @@
+﻿@model Medical.Models.APMCEViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabRegistration" data-toggle="tab">Registration</a></li>
+                <li><a href="#tabCorreespondingAddress" data-toggle="tab">Address</a></li>
+                <li><a href="#tabTrust" data-toggle="tab">Trust Details</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabRegistration">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10">
+                            Whether Registration is sought for Main Facility or branches also, if so details (separate application shall be submitted for each branch)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.RegistrationModel.FacilityType, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.RadioButtonFor(model => model.RegistrationModel.FacilityType, "Main") Main
+                            @Html.RadioButtonFor(model => model.RegistrationModel.FacilityType, "Branch") Branch
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            @Html.LabelFor(model => model.RegistrationModel.Name, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.RegistrationModel.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RegistrationModel.Name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 branchfields">
+                            @Html.LabelFor(model => model.RegistrationModel.LicenseNumber, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-2 branchfields">
+                            @Html.EditorFor(model => model.RegistrationModel.LicenseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RegistrationModel.LicenseNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabCorreespondingAddress">
+                    <form id="formCorrespondingAddress">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.Name)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                               @Html.DisplayFor(model => model.CorrespondingAddress.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.MandalName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.VillageName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.StreetName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.CorrespondingAddress.PINCode)
+                            </div>                            
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabTrust">
+                    <form id="formTrust">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.Name)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.MandalName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.VillageName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.StreetName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.PINCode)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.EstablishedDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.TrustModel.EstablishedDate)
+                            </div>                            
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>

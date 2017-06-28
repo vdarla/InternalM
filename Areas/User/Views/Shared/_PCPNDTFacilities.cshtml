@@ -1,0 +1,92 @@
+﻿
+
+@model Medical.Models.FacilitesModel
+@using (Html.BeginForm("_PCPNDTFacilities", "Amendments", FormMethod.Post))
+{
+
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Facilities Details </h3>
+                    </div>
+                    <div id="tabFacilities" class="tab-pane">
+                        <form id="formFacilities">
+                            @*@Html.HiddenFor(model => model.FacilitiesModel.Id)*@
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-10">
+                                    Facilities that are or would be available in the Laboratory/Clinic for the following tests:
+                                </div>
+                            </div>
+                            <fieldset class="scheduler-border" id="fsTests" hidden>
+                                <legend class="scheduler-border">Tests</legend>
+                                <div class="row">
+                                    <div class="col-md-offset-1 col-md-3">
+                                        @Html.CheckBox("facilitytest", new { @value = "1" }) Amniocentesis
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.CheckBox("facilitytest", new { @value = "2" }) Ultra Sound
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.CheckBox("facilitytest", new { @value = "3" }) Chorionic Villi Aspiration
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-offset-1 col-md-3">
+                                        @Html.CheckBox("facilitytest", new { @value = "4" }) Foetal Biopsy
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.CheckBox("facilitytest", new { @value = "5" }) Foetoscopy
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.CheckBox("facilitytest", new { @value = "6" }) Cordocentesis
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="scheduler-border" id="fsStudies" hidden>
+                                <legend class="scheduler-border">Studies</legend>
+                                <div class="row">
+                                    <div class="col-md-offset-1 col-md-3">
+                                        @Html.CheckBox("facilitystudies", new { @value = "7" }) Chromosomal Studies
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.CheckBox("facilitystudies", new { @value = "8" }) Biochemical Studies
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.CheckBox("facilitystudies", new { @value = "9" }) Molecular Studies
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-offset-1 col-md-3">
+                                        @Html.CheckBox("facilitystudies", new { @value = "10" }) Preemplantatioin Genetic
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="scheduler-border" id="fsFacilityRemarks" hidden>
+                                <legend class="scheduler-border">Remarks</legend>
+                                <div class="row">
+                                    <div class="col-md-offset-1 col-md-1">
+                                        @Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <input type="button" value="Clear" id="btnFacilitiesClear" class="btn btn-default" />
+                                    <input type="button" value="Save" id="btnFacilicitesSave" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+}

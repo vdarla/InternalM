@@ -1,0 +1,201 @@
+﻿@model Medical.Models.EstablishmntModel
+
+<script src="~/Content/plugins/custom/js/jquery.formupload.js"></script>
+
+
+{
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            Whether Registration is sought for Main Facility or branches also, if so details (separate application shall be submitted for each branch)
+        </div>
+    </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.DistrictId,
+    new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+     new { @class = "form-control select2" })
+                                @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.MandalId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+     new { @class = "form-control select2" })
+                                @Html.ValidationMessageFor(model => model.MandalId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.VillageId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+     new { @class = "form-control select2" })
+                                @Html.ValidationMessageFor(model => model.VillageId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.StreetName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.PINCode, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PINCode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.AddressProof, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.AddressProof, new { @class = "", type = "file", @style = "margin-left:-58%;" })
+                                @Html.ValidationMessageFor(model => model.AddressProof, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.BuildingLayout, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.BuildingLayout, new { @class = "", type = "file", @style = "margin-left:-56%;" })
+                                @Html.ValidationMessageFor(model => model.BuildingLayout, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 pull-right">
+                                <input type="button" value="Clear" id="btnEstablishmentClear" class="btn btn-default" />
+                                <input type="submit" value="Save" id="btnEstablishmentSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+}
+
+
+
+<script>
+    $('#btnEstablishmentSave').on('click', function () {
+        
+        
+
+        var uri = '@Url.Action("Test2", "License", new { Area = "User" })';
+
+        // Checking whether FormData is available in browser
+        if (window.FormData !== undefined) {
+            var addressProof = $("#AddressProof").get(0).files[0];
+            var buildingLayout = $("#BuildingLayout").get(0).files[0];
+
+            // Create FormData object
+            var fileData = new FormData();
+
+
+            fileData.append('AddressProof', addressProof);
+            fileData.append('BuildingLayout', addressProof);
+            //// Looping over all files and add it to FormData object
+            //for (var i = 0; i < files.length; i++) {
+            //    fileData.append(files[i].name, files[i]);
+            //}
+
+            // Adding one more key to FormData object
+            fileData.append('ApplicationId', '1');
+
+            $.ajax({
+                url: uri,
+                type: "POST",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: fileData,
+                success: function (result) {
+                    alert(result);
+                },
+                error: function (err) {
+                    // alert(err.statusText);
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }        
+    });
+
+    $('#DistrictId').on('change', function () {
+        // Clear existing Mandal values
+        $('#MandalId').empty();
+        $('#MandalId').append('<option value="">Select Mandal</option>');
+        // Clear existing Village values
+        $('#VillageId').empty();
+        $('#VillageId').append('<option value="">Select Village</option>');
+
+        if (this.value != '') {
+            var url = '../../api/masterapi/GetMandals';
+
+            var data = {
+                districtId: this.value
+            };
+
+            var jqxhr = $.getJSON(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#MandalId').append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetMandals api Request Failed: " + err);
+            });
+        }
+    });
+
+    $('#MandalId').on('change', function () {
+        // Clear existing Village values
+        $('#VillageId').empty();
+        $('#VillageId').append('<option value="">Select Village</option>');
+
+        if (this.value != '') {
+            var url = '../../api/masterapi/GetVillages';
+            var data = {
+                mandalId: this.value
+            };
+            var jqxhr = $.getJSON(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#VillageId').append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetVillages api Request Failed: " + err);
+            });
+        }
+    });
+</script>

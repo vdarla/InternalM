@@ -1,0 +1,1089 @@
+﻿
+
+<!-- Content Header (Page header) -->
+@*<section class="content-header">
+    <h4>
+        <b>Check list for verification of GENETIC LABORATORY Fresh/Renewal </b>
+    </h4>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>*@
+<!-- Main content -->
+<section class="content">
+    <div id="divLaboratory">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">GENETIC LABORATORY</legend>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label id="Q47">1. Name,Address,Contact Number and Email-ID of the Hospital/Nursing Home/Clinic/Diagnostic Centre </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="47" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="47" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D47"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label id="Q48">2. Name,Qualification,Address,Contact Number and Email-ID of the Owner </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="48" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="48" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D48"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label> Whether a Medical Geneticist and a Laboratory technician having a B.SC. degree in Boological Science or a degree or a Diploma in Medical Laboratory course with at least one year experience in conducting appropriate pre-natal diagnostic test </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="49" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="49" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D49"></span>
+                </div>
+            </div>
+            @*<div class="row">
+                    <div class="col-md-9">
+                        <label><u style="font-style: oblique;"> Xerox certificates copies </u></label>
+                    </div>
+                    <div class="col-md-3"></div>
+
+                    <input type="file" id="fileUpload" />
+                </div>*@
+            <h4>A. Place: </h4>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label> A Room with adequate space for carrying out test </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="50" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="50" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D50"></span>
+                </div>
+                @*@Html.LabelFor(model => model.ImagingCentre.Place, "A Room with an Area Of 7sq. meter ?", new { @class = "col-md-9" })
+                    @Html.RadioButtonFor(model => model.ImagingCentre.Place, 1, new { id = "Place", @class = "radio" }) Yes  &nbsp;&nbsp;&nbsp;
+                    @Html.RadioButtonFor(model => model.ImagingCentre.Place, 2, new { id = "Place", @class = "radio" }) No*@
+            </div>
+            <h4>B. Equipment:</h4>
+            <h5><b>Chromosomal Studies:</b></h5>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>1) Laminar flow-hood with ultraviolet and fluorescent light or orther suitable cluture hood </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="51" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="51" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D51"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>2) Photo Microscope with fluorescent source of flight </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="52" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="52" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D52"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>3) Inverted microscope </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="53" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="53" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D53"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>4) Incubator and Oven </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="54" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="54" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D54"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>5) Carbon-di-oxide incubator or closed system with 5% CO2 atmosphere </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="55" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="55" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D55"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>6) Autoclave </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="56" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="56" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D56"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>7) Refrigerator </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="57" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="57" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D57"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>8) Water-bath </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="58" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="58" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D58"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>9) Centrifuge </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="59" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="59" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D59"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>10) Vortex Mixer </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="60" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="60" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D60"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>11) Magnetic Stirrer </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="61" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="61" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D61"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>12) pH Meter </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="62" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="62" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D62"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>13) A sensitive blance with sensitivity of 0.1 mgs </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="63" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="63" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D63"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>14) Double distillation apparatus </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="64" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="64" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D64"></span>
+                </div>
+            </div>
+            <h5><b>Bio-chemicals Studies:</b></h5>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>1) Laminar flow-hood with ultraviolet and fluorescent light or orther suitable cluture hood </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="65" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="65" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D65"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>2) Inverted microscope </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="66" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="66" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D66"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>3) Incubator and Oven </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="67" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="67" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D67"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>4) Carbon-di-oxide incubator or closed system with 5% CO2 atmosphere </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="68" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="68" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D68"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>5) Autoclave </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="69" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="69" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D69"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>6) Refrigerator </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="70" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="70" value="No" />No
+                    <div class="col-md-2 displayInput" hidden>
+                        <span id="D70"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>7) Water-bath </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="71" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="71" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D71"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>8) Centrifuge </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="72" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="72" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D72"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>9) Electrophorosis Apparatus and Power supply </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="73" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="73" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D73"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>10) Chromatography chamber </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="74" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="74" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D74"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>11) Spectro photometer and Elisa reader </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="75" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="75" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D75"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>12) Vortex Mixer </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="76" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="76" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D76"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>13) Magnetic StirrerA sensitive blance with sensitivity of 0.1 mgs </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="77" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="77" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D77"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>14) pH MeterDouble distillation apparatus </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="78" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="78" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D78"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>15) A sensitive blance with sensitivity of 0.1 mgs </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="79" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="79" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D79"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>16) Double distillation apparatus </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="80" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="80" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D80"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>17) Liquid nitrogen tank </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="81" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="81" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D81"></span>
+                </div>
+            </div>
+            <h5><b>Molecular Studies:</b></h5>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>1) Inverted microscope </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="82" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="82" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D82"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>2) Incubator </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="83" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="83" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D83"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>3) Oven </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="84" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="84" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D84"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>4)  Autoclave </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="85" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="85" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D85"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>5) Refrigerators(4 degree and minus 20 degree Centigrade) </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="86" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="86" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D86"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>6) Water-bath </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="87" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="87" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D87"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>7) Refrigerator </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="88" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="88" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D88"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>8) Electrophorosis Apparatus and Power supply </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="89" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="89" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D89"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>9) Vortex Mixer </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="90" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="90" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D90"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>10) Magnetic Stirrer </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="91" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="91" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D91"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>11) pH Meter </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="92" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="92" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D92"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>12) A sensitive blance with sensitivity of 0.1 miliigrams </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="93" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="93" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D93"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>13) Double distillation apparatus </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="94" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="94" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D94"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>14) PCR machine </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="95" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="95" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D95"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>15) Refrigerated Centrifuge </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="96" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="96" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D96"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>16) U.V Illuminator with photographic attachment or orther documentation system</label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="97" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="97" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D97"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>17) Precision micropipettes </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="98" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="98" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D98"></span>
+                </div>
+            </div>
+            <h4>C. Employees: </h4>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>1) A Medical Geneticist </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="99" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="99" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D99"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>2) A Laboratory technician having a B.SC. degree in Boological Science or a degree or a Diploma in Medical Laboratory course with at least one year experience in conducting appropriate pre-natal diagnostic test </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="100" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="100" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D100"></span>
+                </div>
+            </div>
+            <h4>D</h4>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>a) Maintenance of form F </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="101" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="101" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D101"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>b) PC&PNDT Record maintenance Register </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="102" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="102" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D102"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>c) Filing of IT Returns  </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="103" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="103" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D103"></span>
+                </div>
+            </div>
+            <h4>E</h4>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label> In View of Inspection obtained in the check-list it is recommended/not recommended that the registration/Renewal to the facility of the applicant be granted </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="104" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="104" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D104"></span>
+                </div>
+            </div>
+            <div id="divRecomended" hidden>
+                <h4>F</h4>
+                <div class="form-group col-md-12">
+                    <div class="col-md-9">
+                        <label> If not recommended,state the reasons for same </label>
+                    </div>
+                    <div class="col-md-3 Input" hidden>
+                        <textarea id="105" style="width: 200px;"></textarea>
+                    </div>
+                    <div class="col-md-2 displayInput" hidden>
+                        <span id="D105"></span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+                    @*<div class="box-footer pull-right">
+                        <button type="button" id="btnSave" class="btn btn-info">View</button>
+                    </div>*@
+
+</section>
+
+<script>
+    $(document).ready(function () {
+
+        $("input[name='104']").on('ifChecked', function (e) {
+            if (this.value == "No") {
+                $('#divRecomended').show();
+            }
+            else {
+                $('#divRecomended').hide();
+            }
+
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+       
+       
+        //var fileData = new FormData();
+        //fileData.append('TransactionId', $('#hfTransactionId').val());
+        var data = {
+            TransactionId: + $('#hfTransactionId').val(),
+            //TransactionId: 211,
+            DepartmentUserId: 1,
+            FacilityId:5
+        }
+
+        var url = '@Url.Action("GetDeptUserInspectionQuestions", "Inspection", new { Area = "Department" })';
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindInspectionData(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get inspectionlist, Request Failed: " + err);
+            });
+
+
+
+    })
+    function BindInspectionData(json) {
+              $('#Q47').text('1. ' + json.Table[0].FacilityDetails);
+        $('#Q48').text('2. ' + json.Table[0].ApplicantDetails);
+    }
+
+
+</script>
+
+<script>
+    $('#btnSave').click(function () {
+
+        preparejson();
+        function preparejson() {
+
+            var Inspection = [];
+
+            Inspection.push({
+                QuestionId: 47,
+                Answer: $('input[name="47"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 48,
+                Answer: $('input[name="48"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 49,
+                Answer: $('input[name="49"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 50,
+                Answer: $('input[name="50"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 51,
+                Answer: $('input[name="51"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 52,
+                Answer: $('input[name="52"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 53,
+                Answer: $('input[name="53"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 54,
+                Answer: $('input[name="54"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 55,
+                Answer: $('input[name="55"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 56,
+                Answer: $('input[name="56"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 57,
+                Answer: $('input[name="57"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 58,
+                Answer: $('input[name="58"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 59,
+                Answer: $('input[name="59"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 60,
+                Answer: $('input[name="60"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 61,
+                Answer: $('input[name="61"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 62,
+                Answer: $('input[name="62"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 63,
+                Answer: $('input[name="63"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 64,
+                Answer: $('input[name="64"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 65,
+                Answer: $('input[name="65"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 66,
+                Answer: $('input[name="66"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 67,
+                Answer: $('input[name="67"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 68,
+                Answer: $('input[name="68"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 69,
+                Answer: $('input[name="69"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 70,
+                Answer: $('input[name="70"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 71,
+                Answer: $('input[name="71"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 72,
+                Answer: $('input[name="72"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 73,
+                Answer: $('input[name="73"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 74,
+                Answer: $('input[name="74"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 75,
+                Answer: $('input[name="75"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 76,
+                Answer: $('input[name="76"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 77,
+                Answer: $('input[name="77"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 78,
+                Answer: $('input[name="78"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 79,
+                Answer: $('input[name="79"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 80,
+                Answer: $('input[name="80"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 81,
+                Answer: $('input[name="81"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 82,
+                Answer: $('input[name="82"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 83,
+                Answer: $('input[name="83"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 84,
+                Answer: $('input[name="84"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 85,
+                Answer: $('input[name="85"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 86,
+                Answer: $('input[name="86"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 87,
+                Answer: $('input[name="87"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 88,
+                Answer: $('input[name="88"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 89,
+                Answer: $('input[name="89"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 90,
+                Answer: $('input[name="90"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 91,
+                Answer: $('input[name="91"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 92,
+                Answer: $('input[name="92"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 93,
+                Answer: $('input[name="93"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 94,
+                Answer: $('input[name="94"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 95,
+                Answer: $('input[name="95"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 96,
+                Answer: $('input[name="96"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 97,
+                Answer: $('input[name="97"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 98,
+                Answer: $('input[name="98"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 99,
+                Answer: $('input[name="99"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 100,
+                Answer: $('input[name="100"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 101,
+                Answer: $('input[name="101"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 102,
+                Answer: $('input[name="102"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 103,
+                Answer: $('input[name="103"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 104,
+                Answer: $('input[name="104"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 105,
+                Answer: $('#105').val()
+            })
+
+
+            var data = {
+                TransactionId: $('#hfTransactionId').val(),
+                Inspection: Inspection
+            }
+            console.log(Inspection);
+            //console.log(data);
+            var url = '@Url.Action("InspectionList", "Inspection", new { Area = "Department" })';
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    console.log(json);
+                    //BindCounts(json);
+                    onSuccess(json)
+
+                })
+                .fail(function (jqxhr, status, error) {
+                    var err = status + ", " + error;
+                    console.log("Get Applications, Request Failed: " + err);
+                });
+        }
+        function onSuccess(json) {
+
+            ShowModal(json);
+
+        }
+    });
+
+</script>

@@ -1,0 +1,121 @@
+﻿@model List <Medical.Models.TransactionViewModel>
+@{
+    ViewBag.Title = "ListofApplications";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+    <!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+      Applications
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="@Url.Action("Dashboard","Dashboard","Department")">Back to Dashbord</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">  
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Applications</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblListofApplications" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>Service Name</th>
+                                <th>ApplicantName</th>                               
+                            </tr>
+                            @for (int i = 0; i < Model.Count ; i++)
+                            {
+                                    <tr>
+                                        <td>@Convert.ToInt32(i+1)</td>
+                                        <td>@Model[i].ServiceName</td>
+                                        <td>@Model[i].ApplicantName</td>
+                                        <td>@Html.ActionLink("Action", "Approval",new { TransactionId = Model[i].Id, ServiceId = Model[i].ServiceId })</td>
+                                    </tr>
+                            }
+                        </thead>
+                        <tbody></tbody>                      
+
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    @*$(function () {        
+        $("#tblListofApplications").DataTable();
+        GetApplications();
+    });
+    function GetApplications() {
+        var url = '@Url.Action("GetApplications", "DepartmentUser", new { Area = "Department" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindDetails(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get Applications, Request Failed: " + err);
+            });
+    }
+    function BindDetails(json) {
+        var table = $('#tblListofApplications').DataTable();
+
+        // Clear all existing rows
+        table.clear().draw();
+
+        for (var i = 0; i < json.length; i++) {
+            console.log(json);
+            var link = 'asdfasfsd[1]';
+            table.row.add([(i + 1), json[i].ServiceName,
+
+                link.replace('[1]', json[i].Id)
+                '@Html.ActionLink("action", "controller", new { p1 = }, null)',
+           '<a class=glyphicon glyphicon-pencil actionlink-button href=javascript:Approval('+json[i].Id+','+json[i].ServiceId+') >View</a>']);
+
+            table.draw();
+
+            //var tr;
+            //tr = $('<tr/>');
+            //tr.append("<td>" + (i + 1) + "</td>")
+            //tr.append("<td>" + json[i].ServiceName + "</td>")            
+            //tr.append("<td><a class='glyphicon glyphicon-pencil actionlink-button' href=javascript:EditDesignation('" + json[i].Id + "','" + json[i].Name + "','" + json[i].IsActive + "') ></a></td>")
+            ////tr.append("<td> <button type='button' id='btnDelete' class='btn btn-default btn-sm'><i class='glyphicon glyphicon-remove'></i></button></td>")
+            //$("[id$=tblListofApplications]").append(tr)
+        }       
+    }
+    function Approval(TID,SID) {
+        var url = '@Url.Action("Approval", "DepartmentUser", new { Area = "Department" })';
+        var data = { TransactionId: TID, ServiceId :SID}
+        var jqxhr = $.get(url,data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindDetails(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get Applications, Request Failed: " + err);
+            });
+    }*@
+</script>

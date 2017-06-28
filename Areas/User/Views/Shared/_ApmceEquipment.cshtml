@@ -1,0 +1,70 @@
+﻿
+@model Medical.Models.InfraStructureModel
+@using (Html.BeginForm("_ApmceEquipment", "Amendment", FormMethod.Post))
+{
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Equipment and Furniture Details </h3>
+                    </div>
+
+                    <form id="formCorrespondingAddress">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-1">
+                                @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.Quantity, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                               
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ItemModel, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ItemModel, new { htmlAttributes = new { @class = "form-control" } })
+                               
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-1">
+                                @Html.LabelFor(model => model.Remarks, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                               
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.UploadedFilePath, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.UploadedFilePath, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                          
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 text-right">
+                                <input type="button" value="Clear" id="btnCorrespondingClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnCorrespondingSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+}

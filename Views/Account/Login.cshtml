@@ -1,0 +1,264 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+@{
+    Layout = null;
+}
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- coustom stylesheet -->
+    <link href="~/Content/plugins/custom/css/style.css" rel="stylesheet" />
+    <script src="~/Content/plugins/custom/js/jquery-3.2.0.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+
+
+    <link href="~/Content/plugins/custom/css/styles.css" rel="stylesheet" />
+    <script src="~/Content/plugins/custom/js/jquery.js"></script>
+
+    <!-- End WOWSlider.com HEAD section -->
+    <script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+    </script>
+
+    <!-- loader -->
+    <script>
+$(window).load(function() {
+	$(".loader").fadeOut("slow");
+});
+    </script>
+    <style>
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('../../Content/HomeScreen/images/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+        }
+    </style>
+
+
+</head>
+<header>
+    <div class="container-fluid" style="background-color: white;">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 text-left">
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+            <div class="col-xs-10 col-sm-10 col-md-12 col-lg-12">
+                <img src="~/Content/images/govlogo1.png" style="margin-top:; ">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2"></div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <img src="~/Content/images/hg1.png" style="">
+            </div>
+
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+        </div>
+    </div>
+</header>
+<body style="overflow-x: hidden;">
+    <div class="loader"></div>
+    <div class="topnav" id="myTopnav">
+        <button type="button" class="btn btn-success btn-md" id="btnShowLoginPopup" style="margin-top: 10px" data-toggle="modal" data-target="#mymodal">
+            <span class="glyphicon glyphicon-log-in"></span> Login
+        </button>
+        <a href="#about">Contact Us</a>
+        <a href='@Url.Action("EODB", "Home")'>EODB</a>
+        <a href='@Url.Action("About", "Home")'>About Us</a>
+        <a href='@Url.Action("Home", "Home")'>Home</a>
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    @model  Medical.Models.LoginModel
+   
+        <div class="modal fade" id="mymodal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center">welcome to licence management system</h4>
+                    </div>
+                    <div class="modal-body">
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { Area = "" })) { 
+                        <div class="form-horizontal">
+                            <div class="form-group">
+
+                                <div class="col-sm-12">
+                                    @*<input type="text" class="form-control" id="email" placeholder="Enter UserName">*@
+                                    @Html.TextBoxFor(a => a.Username, new { @class = "form-control", @placeholder = "UserName" })
+                                    @Html.ValidationMessageFor(a => a.Username, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-sm-12">
+                                    @*<input type="password" class="form-control" id="pwd" placeholder="Enter Password">*@
+                                    @Html.PasswordFor(a => a.Password, new { @class = "form-control", @placeholder = "Password" })
+                                    @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+                                    <span id="spnErrorMessage" style="align-content:center;  text-align:center;color:red;">
+
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox"> remember me</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+
+                                    <a href="#">forgot password?<a>
+
+                                </div>
+                            </div>
+                            <div>
+                                @*<label id="lblErrorMessage" value="Invalid UserName/Password" hidden></label>*@
+                              
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3"></div>
+                                <div class="col-sm-6 col-md-6">
+                                    <button type="submit" class="btn btn-success col-sm-12 col-md-12" id="btnLogin">login</button>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6 col-md-6">
+                                    @*<button type="button" class="btn btn-success col-sm-12 col-md-12">new user registration</button>*@
+                                    <a href='@Url.Action("Register", "Account")' class="btn btn-success col-sm-12 col-md-12">New User Registration</a>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    @*<button type="button" class="btn btn-success col-sm-12 col-md-12">exsisting user registration</button>*@
+                                    <a href='@Url.Action("ExistingUserRegistration", "DashBoard")' class="btn btn-success col-sm-12 col-md-12">Existing User Registration</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+}
+                    </div>
+                    <div class="modal-footer">
+                        @*<button type="submit" class="btn btn-success col-sm-12 col-md-12" id="btnTestView">TestView</button>*@
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+   
+
+    <!-- BODY STATRS HERE -->
+    <!-- Slider -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" style="margin-top: 1%;">
+
+            
+            <div id="wowslider-container1">
+                <div class="ws_images">
+                    <ul>
+                        <li><img src="~/Content/images/slide123.gif" alt="slider123" title="slider123" id="wows1_0" /></li>
+                    </ul>
+                </div>
+                <div class="ws_shadow"></div>
+            </div>
+            <script src="~/Content/plugins/custom/js/wowslider.js"></script>
+            <script src="~/Content/plugins/custom/js/script.js"></script>
+
+        </div>
+        <!-- panel whats new	 -->
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="panelavi" style="padding-left: 0px;">
+                <div class="panel-heading" style="font-weight: bold;background-color: #24b95c;color: white;">Whats New...</div>
+                <div class="panel-body" style="">
+                    <ul>
+                        <h4 style="color: #24b95c ">
+                            Offline Data Entry for existing applications and Apply online for New/Renewal of Licenses for
+                        </h4>
+                        <li>Allopathic Private Medical Care Establishments</li>
+                        <li>Diagnostic Centers under Pre-Conception and Pre-Natal Diagnostic Techniques Act, 1994</li>
+                        <li>Blood Bank (NOC by SBTC)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panelavi" style="padding-left: 0px; margin-top:5%">
+                <div class="panel-heading" style="font-weight: bold;background-color: #24b95c;color: white;">Media</div>
+                <div class="panel-body" style="">
+                    <p>
+                        The Government of Telangana is launching a web portal to apply, track and issue licenses online for PCPNDT Act, APMCE Act and Blood Bank (NOC by SBTC) under Department of Health, Medical and Family Welfare as per Ease of Doing Business Guidelines so as to create an investor friendly environment.
+                    </p>
+                    <p>
+                        In the second phase the Department of Health, Medical and Family Welfare intends to integrate other departments like Drugs Control Administration, Department of AYUSH etc. into this web portal making it a single window to apply for all licenses in the Medical Domain.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row" style="margin-bottom:2%">
+        <div class="outerbox col-md-3">
+            <div class="head"><h4>CHFW</h4></div>
+            <div class="init-image"><a href="" target="_blank"><img src="~/Content/images/chfw.gif" height="210px" width="100%"></a></div>
+
+        </div>
+
+        <div class="outerbox col-md-3">
+            <div class="head"><h4>ALL ACTS</h4></div>
+            <div class="init-image"><a href="" target="_blank"><img src="~/Content/images/acts.jpg" height="210px" width="100%"></a></div>
+
+        </div>
+
+        <div class="outerbox col-md-3">
+            <div class="head"><h4>OTHER LINKS</h4></div>
+            <div class="init-image"><a href="" target="_blank"><img src="~/Content/images/ol.gif" height="210px" width="100%"></a></div>
+
+        </div>
+        <div class="outerbox col-md-3">
+            <div class="head"><h4>GENERAL INFO</h4></div>
+            <div class="init-image"><a href="" target="_blank"><img src="~/Content/images/gi.jpg" height="210px" width="100%"></a></div>
+
+        </div>
+    </div>
+   
+    <!-- Footer starts here -->
+
+    <div class="navbar-default navbar-fixed-bottom" style="margin-top: 2%">
+        <a class="acs" href="#"><p style="font-weight: light; text-align: center;">Powered By |  Aegis Consulting Services<h4></a>
+    </div>
+
+</body>
+<script>
+    function method(response) {
+        debugger;
+        alert(response);
+    }
+</script>
+
+

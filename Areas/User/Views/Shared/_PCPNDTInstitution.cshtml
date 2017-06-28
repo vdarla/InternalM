@@ -1,0 +1,117 @@
+﻿
+
+@model Medical.Models.InstitutionViewModel
+@using (Html.BeginForm("_PCPNDTInstitution", "Amendment", FormMethod.Post))
+{
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Institution Details </h3>
+                </div>
+                <div id="tabOwnership" class="tab-pane">
+                    <form id="formOwnership">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.HiddenFor(model => model.Id)
+                                @Html.LabelFor(model => model.OwnershipTypeId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.OwnershipTypeId,
+    new SelectList(ViewBag.OwnershipTypeList, "Id", "Name"), "Select Ownership",
+     new { @class = "form-control select2", @style = "Width:100%;" })
+                                @Html.ValidationMessageFor(model => model.OwnershipTypeId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.InstitutionTypeId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.InstitutionTypeId,
+    new SelectList(ViewBag.InstitutionTypeList, "Id", "Name"), "Select Institution Type",
+     new { @class = "form-control select2", @style = "Width:100%;" })
+                                @Html.ValidationMessageFor(model => model.InstitutionTypeId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2 text-right">
+                                @Html.LabelFor(model => model.TotalWorkArea, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.TotalWorkArea, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TotalWorkArea, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row" id="divOwnershipUploads" hidden>
+                            <div class="col-md-12">
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">File Uploads</legend>
+                                    <div class="row" id="divAffidavitFile">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            Affidavit
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.TextBox("affidavitFile", null, new { @type = "file" })
+                                            @if (!string.IsNullOrEmpty(Model.AffidavitDocPath))
+                                            {
+                                                var index = Model.AffidavitDocPath.LastIndexOf("/");
+                                                var fileName = Model.AffidavitDocPath.Substring(index + 1);
+                                                @Html.ActionLink(fileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.AffidavitDocPath, downloadName = fileName },
+                            null
+                            );
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="row" id="divAssociationFile">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            <span id="spanArticlesofAssociation">Articles of Association</span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.TextBox("articlesofAssociationFile", null, new { @type = "file" })
+                                            @if (!string.IsNullOrEmpty(Model.ArticleDocPath))
+                                            {
+                                                var index = Model.ArticleDocPath.LastIndexOf("/");
+                                                var fileName = Model.ArticleDocPath.Substring(index + 1);
+                                                @Html.ActionLink(fileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.ArticleDocPath, downloadName = fileName },
+                            null
+                            );
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="row" id="divStudyCertificateFiles">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            Study Certificate
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.TextBox("StudyCertificateFile", null, new { @type = "file", @multiple = "multiple" })
+                                        </div>
+                                    </div>
+                                    <div class="row" id="divStudyCertificatesList">
+                                        <div class="col-md-offset-1 col-md-10">
+                                            <table id="tblStudyCertificates">
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Document</th>
+                                                    <th></th>
+                                                </tr>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" value="Clear" id="btnInstitutionClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnInstitutionSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}

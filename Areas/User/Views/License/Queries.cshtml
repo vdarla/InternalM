@@ -1,0 +1,339 @@
+﻿@model Medical.Models.QueryResponseViewModel
+
+@{
+    ViewBag.Title = "Queries";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Queries
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Raised Queries</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblRaisedQueries" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Department</th>
+                                <th>Query</th>
+                                <th>Uploaded File</th>
+                                <th>Raised Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Query Log History</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tblQueryLog" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Type</th>
+                                <th>Department Name</th>
+                                <th>Description</th>
+                                <th>Uploaded File</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>
+
+<!-- Modal Popup -->
+<div class="modal fade" id="divRespondQueryPopup">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Respond to Query</h4>
+            </div>
+            <div class="modal-body">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Query</legend>
+                    <div class="row">
+                        <div class="col-md-2">
+                            Department
+                        </div>
+                        <div class="col-md-10">
+                            <span id="spanDepartment"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            Query
+                        </div>
+                        <div class="col-md-10">
+                            <input type="hidden" id="hfQueryId" />
+                            <span id="spanQuery"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            Uploaded File
+                        </div>
+                        <div class="col-md-10">
+                            <div id="divUploadedFile"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            Raised Date
+                        </div>
+                        <div class="col-md-10">
+                            <span id="spanQueryRaisedDate"></span>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Response</legend>
+                    <div class="row">
+                        <div class="col-md-2">
+                            Response
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text" id="txtResponse" class="form-control" multiple />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            Upload File
+                        </div>
+                        <div class="col-md-10">
+                            <input type="file" id="txtUploadFile" name="uploadedFile" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" value="Close" data-dismiss="modal" class="btn btn-default" />
+                            <input type="button" value="Submit" id="btnSubmit" class="btn btn-success" />
+                        </div>
+                    </div>
+
+
+                </fieldset>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.Modal Popup -->
+<script>
+    $(function () {
+        $('#tblRaisedQueries').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false
+        });
+        $('#tblQueryLog').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false
+        });
+        BindData();
+    });
+
+    function BindData() {
+        var url = '@Url.Action("GetQueryData", "License", new { Area = "User" })';
+        var jqxhr = $.getJSON(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+
+                var raisedQueries = json.RaisedQueryList;
+                var queryLog = json.QueryLogList;
+
+                var tblRaisedQueries = $('#tblRaisedQueries').DataTable();
+                // Clear all existing rows
+                tblRaisedQueries.clear().draw();
+
+                if (raisedQueries != undefined) {
+                    for (var i = 0; i < raisedQueries.length; i++) {
+                        var path = raisedQueries[i].UploadedFilePath;
+                        var index = path.indexOf("/");
+                        var displayFileName = path.substring(index + 1, path.length);
+                        var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                        fileLink = fileLink.replace("displaytext", displayFileName);
+                        fileLink = fileLink.replace("filepath", raisedQueries[i].UploadedFilePath);
+                        fileLink = fileLink.replace("downloadfilename", displayFileName);
+
+                        tblRaisedQueries.row.add([
+                    (i + 1),
+                    raisedQueries[i].DepartmentName,
+                    raisedQueries[i].Description,
+                    fileLink,
+                    ToJavaScriptDate(raisedQueries[i].CreatedOn),
+                    '<input type="button" value="Respond" class="btn btn-primary" onclick="ShowResponsePopup(' + raisedQueries[i].Id + ')" />'
+                        ]);
+                    }
+                    tblRaisedQueries.draw();
+                }
+
+                var tblQueryLog = $('#tblQueryLog').DataTable();
+                // Clear all existing rows
+                tblQueryLog.clear().draw();
+
+                if (queryLog != undefined) {
+                    debugger;
+                    for (var i = 0; i < queryLog.length; i++) {
+                        var path = queryLog[i].UploadedFilePath;
+                        var index = path.indexOf("/");
+                        var displayFileName = path.substring(index + 1, path.length);
+                        var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                        fileLink = fileLink.replace("displaytext", displayFileName);
+                        fileLink = fileLink.replace("filepath", queryLog[i].UploadedFilePath);
+                        fileLink = fileLink.replace("downloadfilename", displayFileName);
+
+                        tblQueryLog.row.add([
+                                     (i + 1),
+                                     queryLog[i].Type,
+                                     queryLog[i].DepartmentName,
+                                     queryLog[i].Description,
+                                     fileLink,
+                                     ToJavaScriptDate(queryLog[i].CreatedOn)
+                        ]);
+                    }
+                    tblQueryLog.draw();
+                }
+
+
+
+            })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetQueryData Request Failed: " + err);
+        });
+    }
+
+    $('#btnSubmit').click(function (e) {
+        e.preventDefault();
+        if ($('#txtResponse').val() != '') {
+            var url = '@Url.Action("SubmitResponse", "License", new { Area = "User" })';
+
+            debugger;
+            var fileData = new FormData();
+            fileData.append('response', $('#txtResponse').val());
+            fileData.append('queryId', $('#hfQueryId').val());
+            if (window.FormData !== undefined) {
+                var uploadedfile = $("#txtUploadFile").get(0).files[0];
+                fileData.append('uploadedFile', uploadedfile);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                cache: false,
+                data: fileData,
+                contentType: false,
+                processData: false,
+                async: true,
+                success: function (response) {
+                    $('#divRespondQueryPopup').modal('hide');
+                    ShowModal(response);
+                    BindData();
+                },
+                failure: function (response) {
+                    alert('failure: ' + response.d);
+                },
+                error: function (response) {
+                    alert('error: ' + response.d);
+                }
+            });
+
+        }
+        else {
+            alert('Please enter any Response');
+        }
+
+    });
+
+
+    function ShowResponsePopup(id) {
+        $('#hfQueryId').val(id);
+        var url = '@Url.Action("GetRaisedQueryData", "License", new { Area = "User" })';
+        var data = { id: id };
+        var jqxhr = $.getJSON(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+
+                $('#spanDepartment').text(json.DepartmentName);
+                $('#spanQuery').text(json.Description);
+                $('#spanQueryRaisedDate').text(ToJavaScriptDate(json.CreatedOn));
+
+                var path = json.UploadedFilePath;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json.UploadedFilePath);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                $('#divUploadedFile').html(fileLink);
+            })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetRaisedQueryData Request Failed: " + err);
+        });
+        $('#divRespondQueryPopup').modal('show');
+    }
+
+    $('#btntest').click(function () {
+        $('#divRespondQueryPopup').modal('show');
+    });
+</script>

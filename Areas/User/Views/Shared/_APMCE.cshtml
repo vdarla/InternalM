@@ -1,0 +1,1165 @@
+﻿@model Medical.Models.APMCEViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabRegistration" data-toggle="tab">Registration</a></li>
+                <li><a href="#tabCorreespondingAddress" data-toggle="tab">Address</a></li>
+                <li><a href="#tabTrust" data-toggle="tab">Trust Details</a></li>
+                <li><a href="#tabAccommodation" data-toggle="tab">Accommodation Details</a></li>
+                <li><a href="#tabEstablishment" data-toggle="tab">Establishment Details</a></li>
+                <li><a href="#tabServices" data-toggle="tab">Services Offered</a></li>
+                <li><a href="#tabStaffDetails" data-toggle="tab">Staff Details</a></li>
+                <li><a href="#tabInfraStructure" data-toggle="tab">Equipment &nbsp; Furniture Details</a></li>
+                <li><a href="#tabFacilitiesAvailable" data-toggle="tab">Facilities Available</a></li>
+
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabRegistration">
+                    <form id="formRegistration">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                Whether Registration is sought for Main Facility or branches also, if so details (separate application shall be submitted for each branch)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.HiddenFor(model => model.RegistrationModel.Id)
+                                @Html.LabelFor(model => model.RegistrationModel.FacilityType, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.RadioButtonFor(model => model.RegistrationModel.FacilityType, "Main") Main
+                                @Html.RadioButtonFor(model => model.RegistrationModel.FacilityType, "Branch") Branch
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.RegistrationModel.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.RegistrationModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1 branchfields" hidden>
+                                @Html.LabelFor(model => model.RegistrationModel.LicenseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3 branchfields" hidden>
+                                @Html.EditorFor(model => model.RegistrationModel.LicenseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.RegistrationModel.LicenseNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.RegistrationModel.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.RegistrationModel.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.RegistrationModel.MandalId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.RegistrationModel.MandalId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.RegistrationModel.VillageId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.RegistrationModel.VillageId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.RegistrationModel.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.RegistrationModel.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.RegistrationModel.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.RegistrationModel.StreetName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.RegistrationModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.RegistrationModel.PINCode, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.RegistrationModel.PINCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" id="btnRegistrationClear" value="Clear" class="btn btn-default" />
+                                <input type="button" id="btnRegistrationSave" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabCorreespondingAddress">
+                    <form id="formCorrespondingAddress">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.CorrespondingAddress.Id)
+                                @Html.EditorFor(model => model.CorrespondingAddress.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CorrespondingAddress.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.CorrespondingAddress.DistrictId,
+    new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+     new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.CorrespondingAddress.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.CorrespondingAddress.MandalId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+     new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.CorrespondingAddress.MandalId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.CorrespondingAddress.VillageId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+     new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.CorrespondingAddress.VillageId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.CorrespondingAddress.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CorrespondingAddress.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.CorrespondingAddress.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CorrespondingAddress.StreetName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.CorrespondingAddress.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.CorrespondingAddress.PINCode, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CorrespondingAddress.PINCode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-8 text-right">
+                                <input type="button" value="Clear" id="btnCorrespondingClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnCorrespondingSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabTrust">
+                    <form id="formTrust">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.TrustModel.Id)
+                                @Html.EditorFor(model => model.TrustModel.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TrustModel.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.TrustModel.DistrictId,
+    new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+     new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.TrustModel.DistrictId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.TrustModel.MandalId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+     new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.TrustModel.MandalId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.TrustModel.VillageId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+     new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.TrustModel.VillageId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.TrustModel.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TrustModel.HouseNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.TrustModel.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TrustModel.StreetName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.TrustModel.PINCode, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TrustModel.PINCode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.TrustModel.EstablishedDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.TrustModel.EstablishedDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                @Html.ValidationMessageFor(model => model.TrustModel.EstablishedDate, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <input type="button" value="Clear" id="btnTrustClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnTrustSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabInfraStructure">
+                    <form id="formInfraStructure">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.InfraStructure.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.InfraStructure.Id)
+                                @Html.EditorFor(model => model.InfraStructure.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.InfraStructure.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.InfraStructure.Quantity, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.InfraStructure.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.InfraStructure.Quantity, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.InfraStructure.ItemModel, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.InfraStructure.ItemModel, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.InfraStructure.ItemModel, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.InfraStructure.Remarks, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.InfraStructure.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.InfraStructure.Remarks, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.InfraStructure.UploadedFilePath, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.InfraStructure.UploadedFilePath, new { @type = "file" })
+                                @Html.ValidationMessageFor(model => model.InfraStructure.UploadedFilePath, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1 text-right">
+                                <input type="button" value="Add" id="btnAddInfraStructure" class="btn btn-default" />
+                            </div>
+
+                        </div>
+
+                    </form>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Items List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblInfraStructure" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Quantity</th>
+                                                <th>Model</th>
+                                                <th>Remarks</th>
+                                                <th>Uploaded File</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.InfraStructureList != null)
+                                            {
+                                                for (int i = 0; i < Model.InfraStructureList.Count; i++)
+                                                {
+                                            <tr>
+                                                <td> @Convert.ToInt32(@i + 1)</td>
+                                                <td>@Model.InfraStructureList[i].Name</td>
+                                                <td>@Model.InfraStructureList[i].Quantity</td>
+                                                <td>@Model.InfraStructureList[i].ItemModel</td>
+                                                <td>@Model.InfraStructureList[i].Remarks</td>
+                                                <td>
+                                                    @if (Model.InfraStructureList[i].UploadedFilePath != null)
+                                                            {
+                                                                var addressindex = Model.InfraStructureList[i].UploadedFilePath.LastIndexOf("/");
+                                                                var addressfileName = Model.InfraStructureList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                            @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                            new { Area = "", path = Model.InfraStructureList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                            }
+                                                </td>
+                                                <td><input type='button' value='Delete' onclick='DeleteInfraStructure(@i);' /></td>
+                                            </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="button" value="Clear" id="btnInfraStructureClear" class="btn btn-default" />
+                            <input type="button" value="Save" id="btnInfraStructureSave" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tabAccommodation" class="tab-pane">
+                    <form id="formAccommodation">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Accommadation.EstablishementType, "Establishment Owned by", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.HiddenFor(model => model.Accommadation.Id)
+                                @Html.DropDownListFor(model => model.Accommadation.EstablishementType,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Own", Value = "Own" },
+                                    new SelectListItem {Text = "Rent", Value = "Rent" },
+                                    new SelectListItem {Text = "Lease", Value = "Lease" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.Accommadation.EstablishementType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.Accommadation.FromDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Accommadation.FromDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                @Html.ValidationMessageFor(model => model.Accommadation.FromDate, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.Accommadation.ToDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Accommadation.ToDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                @Html.ValidationMessageFor(model => model.Accommadation.ToDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row" id="divAccommodationUpload" hidden>
+                            <div class="col-md-5">
+                                @Html.LabelFor(model => model.Accommadation.UploadedFilePath, new { @class = "control-label", @id = "lblAccommodationLabel"})
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.Accommadation.UploadedFilePath, new { @class = "", type = "file" })
+                                @Html.ValidationMessageFor(model => model.Accommadation.UploadedFilePath, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" id="btnAccommodationClear" value="Clear" class="btn btn-default" />
+                                <input type="button" id="btnAccommodationSave" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabEstablishment" class="tab-pane">
+                    <form id="formEstablishment">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-2">
+                                @Html.LabelFor(model => model.EstablishmentModel.EstablishmentDate, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.HiddenFor(model => model.EstablishmentModel.Id)
+                                @Html.EditorFor(model => model.EstablishmentModel.EstablishmentDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                @Html.ValidationMessageFor(model => model.EstablishmentModel.EstablishmentDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Total Area of Establishment</legend>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.EstablishmentModel.OpenArea, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.EditorFor(model => model.EstablishmentModel.OpenArea, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EstablishmentModel.OpenArea, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.EstablishmentModel.OpenAreaFilePath, new { @class = "", type = "file" })
+                                    @Html.ValidationMessageFor(model => model.EstablishmentModel.OpenAreaFilePath, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.EstablishmentModel.ConstructionArea, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.EditorFor(model => model.EstablishmentModel.ConstructionArea, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EstablishmentModel.ConstructionArea, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(model => model.EstablishmentModel.ConstructionAreaFilePath, new { @class = "", type = "file" })
+                                    @Html.ValidationMessageFor(model => model.EstablishmentModel.ConstructionAreaFilePath, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" id="btnEstablishmentClear" value="Clear" class="btn btn-default" />
+                                <input type="button" id="btnEstablishmentSave" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabServices" class="tab-pane">
+                    <form id="formServices">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.OfferedServices.BedStrength, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.HiddenFor(model => model.OfferedServices.Id)
+                                @Html.EditorFor(model => model.OfferedServices.BedStrength, new { htmlAttributes = new { @class = "form-control numeric" } })
+                                @Html.ValidationMessageFor(model => model.OfferedServices.BedStrength, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.OfferedServices.OfferedServices, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.OfferedServices.OfferedServices,
+                                new SelectList(ViewBag.OfferedServices, "Id", "Name"),
+                                new { @class = "form-control select2", @multiple="multiple", @style = "width:100%;", data_placeholder = "Select a Service" })
+                                @Html.ValidationMessageFor(model => model.OfferedServices.OfferedServices, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" id="btnOfferedServicesClear" value="Clear" class="btn btn-default" />
+                                <input type="button" id="btnOfferedServicesSave" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabStaffDetails" class="tab-pane">
+                    <form id="formStaffDetails">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-3">
+                                @Html.LabelFor(model => model.StaffDetails.StaffDesignation, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.StaffDetails.StaffDesignation,
+                                new List<SelectListItem> {
+                                    new SelectListItem {Text = "Select", Value = "", Selected = true },
+                                    new SelectListItem {Text = "Doctors", Value = "Doctors" },
+                                    new SelectListItem {Text = "Nursing Staff", Value = "Nursing Staff" },
+                                    new SelectListItem {Text = "Para Medical Staff", Value = "Para Medical Staff" },
+                                    new SelectListItem {Text = "Supporting Staff", Value = "Supporting Staff" },
+                                    new SelectListItem {Text = "Specialists", Value = "Specialists" }
+                                },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.StaffDetails.StaffDesignation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row nonsupportingstaff supportingstaff specialists">
+                            <div class="col-md-offset-2 col-md-3">
+                                @Html.LabelFor(model => model.StaffDetails.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.StaffDetails.Name, new { htmlAttributes = new { @class = "form-control numeric" } })
+                                @Html.ValidationMessageFor(model => model.StaffDetails.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row nonsupportingstaff specialists">
+                            <div class="col-md-offset-2 col-md-3">
+                                @Html.LabelFor(model => model.StaffDetails.RegistrationNumber, new { @class = "control-label", @id = "lblStaffRegiNumber" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.StaffDetails.RegistrationNumber, new { htmlAttributes = new { @class = "form-control numeric" } })
+                                @Html.ValidationMessageFor(model => model.StaffDetails.RegistrationNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row supportingstaff">
+                            <div class="col-md-offset-2 col-md-3">
+                                @Html.LabelFor(model => model.StaffDetails.PhoneNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.StaffDetails.PhoneNumber, new { htmlAttributes = new { @class = "form-control numeric" } })
+                                @Html.ValidationMessageFor(model => model.StaffDetails.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row supportingstaff">
+                            <div class="col-md-offset-2 col-md-3">
+                                @Html.LabelFor(model => model.StaffDetails.Email, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.StaffDetails.Email, new { htmlAttributes = new { @class = "form-control numeric" } })
+                                @Html.ValidationMessageFor(model => model.StaffDetails.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row specialists">
+                            <div class="col-md-offset-2 col-md-3">
+                                @Html.LabelFor(model => model.StaffDetails.SpecialtyId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.StaffDetails.SpecialtyId,
+                                new List<SelectListItem>() { new SelectListItem() { Text = "Select Speciality", Value = "", Selected = true } },
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.StaffDetails.SpecialtyId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row nonsupportingstaff specialists">
+                            <div class="col-md-offset-2 col-md-3">
+                                @Html.LabelFor(model => model.StaffDetails.UploadedFilePath, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(model => model.StaffDetails.UploadedFilePath, new { @type = "file" })
+                                @Html.ValidationMessageFor(model => model.StaffDetails.UploadedFilePath, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row supportingstaff nonsupportingstaff specialists">
+                            <div class="col-md-12 text-right">
+                                <input type="button" id="btnStaffDetailsClear" value="Clear" class="btn btn-default" />
+                                <input type="button" id="btnStaffDetailsSave" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabFacilitiesAvailable" class="tab-pane">
+                    <form id="formFacilitiesAvailable">
+                        <div class="row">
+                            <div class="col-md-6 text-right">
+                                @Html.LabelFor(model => model.FacilitiesAvailableModel.HasLaborRoom, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.FacilitiesAvailableModel.HasLaborRoom, "1") Yes
+                                @Html.RadioButtonFor(model => model.FacilitiesAvailableModel.HasLaborRoom, "0") No
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 text-right" ">
+                                @Html.LabelFor(model => model.FacilitiesAvailableModel.HasOperationTheater, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.FacilitiesAvailableModel.HasOperationTheater, "1") Yes
+                                @Html.RadioButtonFor(model => model.FacilitiesAvailableModel.HasOperationTheater, "0") No
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 text-right" ">
+                                @Html.LabelFor(model => model.FacilitiesAvailableModel.HasDiagnosticFacility, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.RadioButtonFor(model => model.FacilitiesAvailableModel.HasDiagnosticFacility, "1") Yes
+                                @Html.RadioButtonFor(model => model.FacilitiesAvailableModel.HasDiagnosticFacility, "0") No
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1 text-right">
+                                @Html.CheckBoxFor(model => model.FacilitiesAvailableModel.HasDeclarationStamp)
+                            </div>
+                            <div class="col-md-8">
+                                @Html.LabelFor(model => model.FacilitiesAvailableModel.HasDeclarationStamp, new { @class = "control-label" })
+                            </div>
+                        </div>
+                        <div class="row" id="divDeclarationStampDetails" hidden>
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.FacilitiesAvailableModel.DeclarationStampFilePath, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.FacilitiesAvailableModel.DeclarationStampFilePath, new { @class = "", type = "file" })
+                                @Html.ValidationMessageFor(model => model.FacilitiesAvailableModel.DeclarationStampFilePath, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.FacilitiesAvailableModel.OtherInformationDescription, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.FacilitiesAvailableModel.OtherInformationDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FacilitiesAvailableModel.OtherInformationDescription, "", new { @class = "text-danger" })
+                            </div>                            
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.FacilitiesAvailableModel.OtherInformationDocumentPath, new { @class = "", type = "file" })
+                                @Html.ValidationMessageFor(model => model.FacilitiesAvailableModel.OtherInformationDocumentPath, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <input type="button" id="btnFacilitiesAvailableClear" value="Clear" class="btn btn-default" />
+                                <input type="button" id="btnFacilitiesAvailableSave" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>
+
+
+<script>
+    $(function () {
+        $('.nonsupportingstaff').hide();
+        $('.supportingstaff').hide();
+        $('.specialists').hide();
+    });
+
+    $('input[type="radio"][name="RegistrationModel.FacilityType"]').on('ifChecked', function (e) {
+        if (this.value == 'Branch') {
+            $('.branchfields').show();
+        }
+        else {
+            $('.branchfields').hide();
+        }
+    });
+
+    $('#Accommadation_EstablishementType').on('change', function (e) {
+        if (this.value != '') {
+            $('#divAccommodationUpload').show();
+            switch (this.value) {
+                case 'Own': {
+                    $('#lblAccommodationLabel').text('Own Premises - Tax Receipt/Telephone Bill');
+                }
+                    break;
+                case 'Rent': {
+                    $('#lblAccommodationLabel').text('Rent - Lease Agreement Document');
+                }
+                    break;
+                case 'Lease': {
+                    $('#lblAccommodationLabel').text('Lease - Lease Agreement Document');
+                }
+                    break;
+                default:
+
+            }
+
+        }
+        else {
+            $('#divAccommodationUpload').hide();
+        }
+    });
+
+    $('#FacilitiesAvailableModel_HasDeclarationStamp').on('ifToggled', function (e) {
+
+        if (this.checked) {
+            $('#divDeclarationStampDetails').show();
+        }
+        else {
+            $('#divDeclarationStampDetails').hide();
+        }
+    });
+
+    $('#StaffDetails_StaffDesignation').on('change', function () {
+        if (this.value != '') {
+            $('#divStaffDetails').show();
+            switch (this.value) {
+                case 'Doctors': {
+                    $('.supportingstaff').hide();
+                    $('.specialists').hide();
+                    $('.nonsupportingstaff').show();
+                    $('#lblStaffRegiNumber').text('Registration Number Allotted by MCI/APMC');
+                }
+                    break;
+                case 'Nursing Staff': {
+                    $('.supportingstaff').hide();
+                    $('.specialists').hide();
+                    $('.nonsupportingstaff').show();
+                    $('#lblStaffRegiNumber').text('Registration Number Allotted by NCI/Any Other Board');
+                }
+                    break;
+                case 'Para Medical Staff': {
+                    $('.supportingstaff').hide();
+                    $('.specialists').hide();
+                    $('.nonsupportingstaff').show();
+                    $('#lblStaffRegiNumber').text('Registration Number');
+                }
+                    break;
+                case 'Supporting Staff': {
+                    $('.nonsupportingstaff').hide();
+                    $('.specialists').hide();
+                    $('.supportingstaff').show();
+                }
+                    break;
+                case 'Specialists': {
+                    $('.nonsupportingstaff').hide();
+                    $('.supportingstaff').hide();
+                    $('.specialists').show();
+                    $('#lblStaffRegiNumber').text('Registration Number');
+                }
+                    break;
+                default:
+            }
+        }
+        else {
+            $('.nonsupportingstaff').hide();
+            $('.supportingstaff').hide();
+            $('.specialists').hide();
+        }
+    });
+
+    $('#RegistrationModel_DistrictId').on('change', function () {
+        BindMandals('RegistrationModel_', this.value);
+    });
+
+    $('#RegistrationModel_MandalId').on('change', function () {
+        BindVillages('RegistrationModel_', this.value);
+    });
+
+    $('#TrustModel_DistrictId').on('change', function () {
+        BindMandals('TrustModel_', this.value);
+    });
+
+    $('#TrustModel_MandalId').on('change', function () {
+        BindVillages('TrustModel_', this.value);
+    });
+
+    $('#CorrespondingAddress_DistrictId').on('change', function () {
+        BindMandals('CorrespondingAddress_', this.value);
+    });
+
+    $('#CorrespondingAddress_MandalId').on('change', function () {
+        BindVillages('CorrespondingAddress_', this.value);
+    });
+
+    $('#btnRegistrationSave').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formRegistration').valid()) {
+            var url = '@Url.Action("SaveRegistrationDetails", "License", new { Area = "User" })';
+            var facilityType = $("input:radio[name='RegistrationModel.FacilityType']:checked").val();
+            var licenseNumber = facilityType == 'Branch' ? $('#RegistrationModel_LicenseNumber').val() : null;
+
+            var data = {
+                model: {
+                    Id: $('#RegistrationModel_Id').val() == '' ? 0 : $('#RegistrationModel_Id').val(),
+                    FacilityType: facilityType,
+                    Name: $('#RegistrationModel_Name').val(),
+                    LicenseNumber: licenseNumber,
+                    DistrictId: $('#RegistrationModel_DistrictId').val(),
+                    MandalId: $('#RegistrationModel_MandalId').val(),
+                    VillageId: $('#RegistrationModel_VillageId').val(),
+                    HouseNumber: $('#RegistrationModel_HouseNumber').val(),
+                    StreetName: $('#RegistrationModel_StreetName').val(),
+                    PINCode: $('#RegistrationModel_PINCode').val()
+                }
+            };
+
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#RegistrationModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                $('#btnRegistrationSave').val('Update');
+                $('#btnRegistrationSave').removeClass('btn-success');
+                $('#btnRegistrationSave').addClass('btn-primary');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Completed') {
+                $('#btnRegistrationSave').val('Update');
+                $('#btnRegistrationSave').removeClass('btn-primary');
+                $('#btnRegistrationSave').addClass('btn-success');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Empty') {
+                $('#btnRegistrationSave').val('Save');
+                $('#btnRegistrationSave').removeClass('btn-success');
+                $('#btnRegistrationSave').addClass('btn-primary');
+            }
+
+            CheckforEnableSubmit();
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Registration Details Request Failed: " + err);
+    });
+        }
+    });
+
+    $('#btnTrustSave').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formTrust').valid()) {
+            var url = '@Url.Action("SaveTrustDetails","License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#TrustModel_Id').val() == '' ? 0 : $('#TrustModel_Id').val(),
+                    Name: $('#TrustModel_Name').val(),
+                    DistrictId: $('#TrustModel_DistrictId').val(),
+                    MandalId: $('#TrustModel_MandalId').val(),
+                    VillageId: $('#TrustModel_VillageId').val(),
+                    HouseNumber: $('#TrustModel_HouseNumber').val(),
+                    StreetName: $('#TrustModel_StreetName').val(),
+                    PINCode: $('#TrustModel_PINCode').val(),
+                    EstablishedDate: $('#TrustModel_EstablishedDate').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#TrustModel_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                $('#btnTrustSave').val('Update');
+                $('#btnTrustSave').removeClass('btn-success');
+                $('#btnTrustSave').addClass('btn-primary');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Completed') {
+                $('#btnTrustSave').val('Update');
+                $('#btnTrustSave').removeClass('btn-primary');
+                $('#btnTrustSave').addClass('btn-success');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Empty') {
+                $('#btnTrustSave').val('Save');
+                $('#btnTrustSave').removeClass('btn-success');
+                $('#btnTrustSave').addClass('btn-primary');
+            }
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Trust Request Failed: " + err);
+    });
+
+        }
+    });
+
+    $('#btnAccommodationSave').on('click', function (e) {
+        e.preventDefault();
+        //if ($('#formAccommodation').valid()) {
+            if (true) {
+            var url = '@Url.Action("SaveAccommodationDetails", "License", new { Area = "User" })';
+
+            if (window.FormData !== undefined) {
+                var uploadedFile = $("#Accommadation_UploadedFilePath").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('Id', $('#Accommadation_Id').val() == '' ? 0 : $('#Accommadation_Id').val());
+                fileData.append('EstablishementType', $('#Accommadation_EstablishementType').val());
+                fileData.append('FromDate', $('#Accommadation_FromDate').val());
+                fileData.append('ToDate', $('#Accommadation_ToDate').val());
+                fileData.append('uploadedFile', uploadedFile);
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        var json;
+                        if (response instanceof Object)
+                            json = response;
+                        else
+                            json = $.parseJSON(response);
+
+                        $('#Accommadation_Id').val(response.ReturnData.split(',')[0]);
+                        ShowModal(response);
+
+                        if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                            $('#btnAccommodationSave').val('Update');
+                            $('#btnAccommodationSave').removeClass('btn-success');
+                            $('#btnAccommodationSave').addClass('btn-primary');
+                        }
+                        else if (response.ReturnData.split(',')[1] == 'Completed') {
+                            $('#btnAccommodationSave').val('Update');
+                            $('#btnAccommodationSave').removeClass('btn-primary');
+                            $('#btnAccommodationSave').addClass('btn-success');
+                        }
+                        else if (response.ReturnData.split(',')[1] == 'Empty') {
+                            $('#btnAccommodationSave').val('Save');
+                            $('#btnAccommodationSave').removeClass('btn-success');
+                            $('#btnAccommodationSave').addClass('btn-primary');
+                        }
+
+                        CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+            }
+            else {
+                alert('Invalid FormData');
+            }
+        }
+    });
+
+    $('#btnCorrespondingSave').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formCorrespondingAddress').valid()) {
+            var url = '@Url.Action("SaveCorrespondingAddressDetails", "License", new { Area = "User" })';
+            var data = {
+                model: {
+                    Id: $('#CorrespondingAddress_Id').val() == '' ? 0 : $('#CorrespondingAddress_Id').val(),
+                    Name: $('#CorrespondingAddress_Name').val(),
+                    DistrictId: $('#CorrespondingAddress_DistrictId').val(),
+                    MandalId: $('#CorrespondingAddress_MandalId').val(),
+                    VillageId: $('#CorrespondingAddress_VillageId').val(),
+                    HouseNumber: $('#CorrespondingAddress_HouseNumber').val(),
+                    StreetName: $('#CorrespondingAddress_StreetName').val(),
+                    PINCode: $('#CorrespondingAddress_PINCode').val()
+                }
+            };
+            var jqxhr = $.post(url, data, function () { })
+        .done(function (response) {
+            var json;
+            if (response instanceof Object)
+                json = response;
+            else
+                json = $.parseJSON(response);
+
+            $('#CorrespondingAddress_Id').val(response.ReturnData.split(',')[0]);
+            ShowModal(response);
+
+            if (response.ReturnData.split(',')[1] == 'PartiallySaved') {
+                $('#btnCorrespondingSave').val('Update');
+                $('#btnCorrespondingSave').removeClass('btn-success');
+                $('#btnCorrespondingSave').addClass('btn-primary');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Completed') {
+                $('#btnCorrespondingSave').val('Update');
+                $('#btnCorrespondingSave').removeClass('btn-primary');
+                $('#btnCorrespondingSave').addClass('btn-success');
+            }
+            else if (response.ReturnData.split(',')[1] == 'Empty') {
+                $('#btnCorrespondingSave').val('Save');
+                $('#btnCorrespondingSave').removeClass('btn-success');
+                $('#btnCorrespondingSave').addClass('btn-primary');
+            }
+        })
+    .fail(function (jqxhr, status, error) {
+        var err = status + ", " + error;
+        console.log("Save Trust Request Failed: " + err);
+    });
+        }
+    });
+
+
+    $('#btnAddInfraStructure').on('click', function (e) {
+        e.preventDefault();
+        if ($('#formInfraStructure').valid()) {
+            var url = '@Url.Action("AddInfraStructure","License", new { Area = "User" })';
+
+            if (window.FormData !== undefined) {
+                var uploadedFile = $("#InfraStructure_UploadedFilePath").get(0).files[0];
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                fileData.append('Id', $('#InfraStructure_Id').val() == '' ? 0 : $('#InfraStructure_Id').val());
+                fileData.append('Name', $('#InfraStructure_Name').val());
+                fileData.append('Quantity', $('#InfraStructure_Quantity').val());
+                fileData.append('ItemModel', $('#InfraStructure_ItemModel').val());
+                fileData.append('Remarks', $('#InfraStructure_Remarks').val());
+                fileData.append('UploadedFilePath', uploadedFile.name);
+                fileData.append('UploadedFile', uploadedFile);
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: fileData,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (response) {
+                        // Clear controls
+                        $('#InfraStructure_Name').val('');
+                        $('#InfraStructure_Quantity').val('');
+                        $('#InfraStructure_ItemModel').val('');
+                        $('#InfraStructure_Remarks').val('');
+                        $('#InfraStructure_UploadedFilePath').val('');
+
+                        $('#tblInfraStructure tr').not(function () { return !!$(this).has('th').length; }).remove();
+
+                        var json = response;
+
+                        var tr;
+                        //Append each row to html table
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + (i + 1) + "</td>");
+                            tr.append("<td>" + json[i].Name + "</td>");
+                            tr.append("<td>" + json[i].Quantity + "</td>");
+                            tr.append("<td>" + json[i].ItemModel + "</td>");
+                            tr.append("<td>" + json[i].Remarks + "</td>");
+
+                            var path = json[i].UploadedFilePath;
+                            var index = path.indexOf("/");
+                            var displayFileName = path.substring(index + 1, path.length);
+                            var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                            fileLink = fileLink.replace("displaytext", displayFileName);
+                            fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                            fileLink = fileLink.replace("downloadfilename", displayFileName);
+                            tr.append("<td>" + fileLink + "</td>");
+                            tr.append("<td><input type='button' value='Delete' onclick='DeleteInfraStructure(" + i + ");'/></td>");
+
+                            $('#tblInfraStructure').append(tr);
+                        }
+
+                        CheckforEnableSubmit();
+                    },
+                    failure: function (response) {
+                        alert('failure: ' + response.d);
+                    },
+                    error: function (response) {
+                        alert('error: ' + response.d);
+                    }
+                });
+
+            } else {
+                alert("FormData is not supported.");
+            }
+        }
+    });
+
+    $('#btnInfraStructureSave').on('click', function (e) {
+        e.preventDefault();
+        var url = '@Url.Action("SaveInfraStructures", "License", new { Area = "User" })';
+        var jqxhr = $.post(url, function () { })
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        ShowModal(response);
+        var transactionId = response.ReturnData.split(',')[0];
+        BindInfraStructureOnSave(transactionId);
+
+        CheckforEnableSubmit();
+    })
+.fail(function (jqxhr, status, error) {
+    var err = status + ", " + error;
+    console.log("SaveInfraStructure Request Failed: " + err);
+});
+    });
+
+    function BindInfraStructureOnSave(transactionId) {
+        var url = '@Url.Action("GetInfraStructures", "License", new { Area = "User" })';
+        var data = { transactionId: transactionId };
+        var jqxhr = $.post(url, data, function () { }, "json")
+    .done(function (response) {
+        var json;
+        if (response instanceof Object)
+            json = response;
+        else
+            json = $.parseJSON(response);
+
+        $('#tblInfraStructure tr').not(function () { return !!$(this).has('th').length; }).remove();
+        if (json != undefined && json.length != 0) {
+            var tr;
+            //Append each row to html table
+            for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>");
+                tr.append("<td>" + json[i].Name + "</td>");
+                tr.append("<td>" + json[i].Quantity + "</td>");
+                tr.append("<td>" + json[i].ItemModel + "</td>");
+                tr.append("<td>" + json[i].Remarks + "</td>");
+
+                var path = json[i].UploadedFilePath;
+                var index = path.indexOf("/");
+                var displayFileName = path.substring(index + 1, path.length);
+                var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                fileLink = fileLink.replace("displaytext", displayFileName);
+                fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                fileLink = fileLink.replace("downloadfilename", displayFileName);
+                tr.append("<td>" + fileLink + "</td>");
+                tr.append("<td><input type='button' value='Delete' onclick='DeleteInfraStructure(" + i + ");'/></td>");
+
+                $('#tblInfraStructure').append(tr);
+            }
+
+            $('#btnInfraStructureSave').val('Update');
+            $('#btnInfraStructureSave').removeClass('btn-primary');
+            $('#btnInfraStructureSave').addClass('btn-success');
+        }
+        else if (json == undefined || json.length == 0) {
+            $('#btnInfraStructureSave').val('Save');
+            $('#btnInfraStructureSave').removeClass('btn-success');
+            $('#btnInfraStructureSave').addClass('btn-primary');
+        }
+    })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetEquipments Request Failed: " + err);
+        });
+
+    }
+
+
+</script>

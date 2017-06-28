@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "TestInspection";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+   //Layout=null;
+}
+
+<div>
+    <div>
+        @{Html.RenderPartial("_ImagingCentre");}
+    </div>
+    @*<div>
+        @{Html.RenderPartial("_GeneticClinic");}
+    </div>
+    <div>
+        @{Html.RenderPartial("_GeneticLaboratory");}
+    </div>*@
+</div>
+
+<div>
+    <div>
+        @{Html.RenderPartial("_GeneticClinic");}
+    </div>
+</div>
+
+<div>
+    <div>
+        @{Html.RenderPartial("_GeneticLaboratory");}
+    </div>
+</div>

@@ -1,0 +1,446 @@
+﻿
+
+<!-- Content Header (Page header) -->
+@*<section class="content-header">
+    <h4>
+        <b>Check list for verification of GENETIC CLINIC Fresh/Renewal </b>
+    </h4>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>*@
+<!-- Main content -->
+<section class="content">
+    <div id="divClinic">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">GENETIC CLINIC</legend>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label id="Q28">1. Name,Address,Contact Number and Email-ID of the Hospital/Nursing Home/Clinic/Diagnostic Centre </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="28" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="28" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D28"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label id="Q29">2. Name,Qualification,Address,Contact Number and Email-ID of the Owner </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="29" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="29" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D29"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>3. Qualification of Radiologist/Gynecologist </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="30" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="30" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D30"></span>
+                </div>
+            </div>
+            @*<div class="row">
+                    <div class="col-md-9">
+                        <label><u style="font-style: oblique;"> Verify and enclose the Xerox certificates copies</u></label>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <input type="file" id="fileUpload" />
+                </div>*@
+            <h4>A. Place: </h4>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label> A Room with an Area Of 20sq. meters with appropriate aseptic arrangements </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="31" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="31" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D31"></span>
+                </div>
+                @*@Html.LabelFor(model => model.ImagingCentre.Place, "A Room with an Area Of 7sq. meter ?", new { @class = "col-md-9" })
+                    @Html.RadioButtonFor(model => model.ImagingCentre.Place, 1, new { id = "Place", @class = "radio" }) Yes  &nbsp;&nbsp;&nbsp;
+                    @Html.RadioButtonFor(model => model.ImagingCentre.Place, 2, new { id = "Place", @class = "radio" }) No*@
+            </div>
+            <h4>B. Equipment:</h4>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>1) Equipment and accessories necessary for carrying out clinical examination by an obstetrician/Gynecologist </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="32" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="32" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D32"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>2) Equipment,accessories necessary for other facilities required for operations envisaged in the Act </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="33" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="33" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D33"></span>
+                </div>
+            </div>
+            <div style="padding-left:25px">
+                <div class="form-group col-md-12">
+                    <div class="col-md-9">
+                        <label>a) An Ultra Sonography machine </label>
+                    </div>
+                    <div class="col-md-2 Input" hidden>
+                        <input type="radio" name="34" value="Yes" />Yes &nbsp;&nbsp;
+                        <input type="radio" name="34" value="No" />No
+                    </div>
+                    <div class="col-md-2 displayInput" hidden>
+                        <span id="D34"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-md-9">
+                        <label>b) Appropriate cathethers and equipment for carrying out chrionic cilli aspirations per vagina or per abdomen </label>
+                    </div>
+                    <div class="col-md-2 Input" hidden>
+                        <input type="radio" name="35" value="Yes" />Yes &nbsp;&nbsp;
+                        <input type="radio" name="35" value="No" />No
+                    </div>
+                    <div class="col-md-2 displayInput" hidden>
+                        <span id="D35"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-md-9">
+                        <label>c) Appropriate sterile needles for amniocentesis or cordocentesis </label>
+                    </div>
+                    <div class="col-md-2 Input" hidden>
+                        <input type="radio" name="36" value="Yes" />Yes &nbsp;&nbsp;
+                        <input type="radio" name="36" value="No" />No
+                    </div>
+                    <div class="col-md-2 displayInput" hidden>
+                        <span id="D36"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="col-md-9">
+                        <label>d) A suitable foetoscope with an appropriate accessories for foetoscopy,foetal skin or organ biopsy or foetal blood sampling shall be optional </label>
+                    </div>
+                    <div class="col-md-2 Input" hidden>
+                        <input type="radio" name="37" value="Yes" />Yes &nbsp;&nbsp;
+                        <input type="radio" name="37" value="No" />No
+                    </div>
+                    <div class="col-md-2 displayInput" hidden>
+                        <span id="D37"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>3) Equipment for dry and wet Sterilization </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="38" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="38" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D38"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>4) Equipment for carrying out emergency procedures such as evacuation of uterus or resuscitation in case of need </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="39" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="39" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D39"></span>
+                </div>
+            </div>
+            <h4>C. Employees</h4>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>1) A Gynaecologist with adequate experience in prenatal diagnostic procedures </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="40" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="40" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D40"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>2) A Raiologist or Registered medical Practitioner for carrying out ultrasonography. The required experience shall be 100 cases under supervision of a qualifies person experienced in these techniques </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="41" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="41" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D41"></span>
+                </div>
+            </div>
+            <h4>D</h4>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>a) Maintenance of form F </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="42" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="42" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D42"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>b) PC&PNDT Record maintenance Register </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="43" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="43" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D43"></span>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label>c) Filing of IT Returns  </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="44" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="44" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D44"></span>
+                </div>
+            </div>
+            <h4>E</h4>
+            <div class="form-group col-md-12">
+                <div class="col-md-9">
+                    <label> In View of Inspection obtained in the check-list it is recommended/not recommended that the registration/Renewal to the facility of the applicant be granted </label>
+                </div>
+                <div class="col-md-2 Input" hidden>
+                    <input type="radio" name="45" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" name="45" value="No" />No
+                </div>
+                <div class="col-md-2 displayInput" hidden>
+                    <span id="D45"></span>
+                </div>
+            </div>
+            <div id="divIssuse" hidden>
+                <h4>F</h4>
+                <div class="form-group col-md-12">
+                    <div class="col-md-9">
+                        <label> If not recommended,state the reasons for same </label>
+                    </div>
+                    <div class="col-md-3" hidden>
+                        <textarea id="46" style="width: 200px;"></textarea>
+                    </div>
+                    <div class="col-md-2 displayInput" hidden>
+                        <span id="D46"></span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+                    @*<div class="box-footer pull-right">
+                        <input type="button" id="btnSave" value="Save" class="btn btn-info" />
+                    </div>*@
+
+</section>
+
+<script>
+    $(document).ready(function () {
+
+        $("input[name='45']").on('ifChecked', function (e) {
+            if (this.value == "No") {
+                $('#divIssuse').show();
+            }
+            else {
+                $('#divIssuse').hide();
+            }
+
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+
+        var data = {
+            TransactionId: +$('#hfTransactionId').val(),
+            //TransactionId: 211,
+            DepartmentUserId: 1,
+            FacilityId:4
+        }
+
+        var url = '@Url.Action("GetDeptUserInspectionQuestions", "Inspection", new { Area = "Department" })';
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindGetData(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("Get inspectionlist, Request Failed: " + err);
+            });
+
+
+
+    })
+    function BindGetData(json) {
+        
+        $('#Q28').text('1. ' + json.Table[0].FacilityDetails);
+        $('#Q29').text('2. ' + json.Table[0].ApplicantDetails);
+    }
+
+
+</script>
+
+<script>
+    $('#btnSave').click(function () {
+
+        preparejson();
+        function preparejson() {
+
+            var Inspection = [];
+
+            Inspection.push({
+                QuestionId: 28,
+                Answer: $('input[name="28"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 29,
+                Answer: $('input[name="29"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 30,
+                Answer: $('input[name="30"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 31,
+                Answer: $('input[name="31"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 32,
+                Answer: $('input[name="32"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 33,
+                Answer: $('input[name="33"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 34,
+                Answer: $('input[name="34"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 35,
+                Answer: $('input[name="35"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 36,
+                Answer: $('input[name="36"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 37,
+                Answer: $('input[name="37"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 38,
+                Answer: $('input[name="38"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 39,
+                Answer: $('input[name="39"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 40,
+                Answer: $('input[name="40"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 41,
+                Answer: $('input[name="41"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 42,
+                Answer: $('input[name="42"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 43,
+                Answer: $('input[name="43"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 44,
+                Answer: $('input[name="44"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 45,
+                Answer: $('input[name="45"]:checked').val()
+            })
+            Inspection.push({
+                QuestionId: 46,
+                Answer: $('#46').val()
+            })
+
+
+            var data = {
+                TransactionId: $('#hfTransactionId').val(),
+                Inspection: Inspection
+            }
+            console.log(Inspection);
+            //console.log(data);
+            var url = '@Url.Action("InspectionList", "Inspection", new { Area = "Department" })';
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    console.log(json);
+                    //BindCounts(json);
+                    onSuccess(json)
+
+                })
+                .fail(function (jqxhr, status, error) {
+                    var err = status + ", " + error;
+                    console.log("Get Applications, Request Failed: " + err);
+                });
+        }
+        function onSuccess(json) {
+
+            ShowModal(json);
+
+        }
+    });
+    
+</script>

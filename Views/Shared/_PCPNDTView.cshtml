@@ -1,0 +1,600 @@
+﻿@model Medical.Models.PCPNDTViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Custom Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabApplicant" data-toggle="tab">Applicant</a></li>
+                @*<li><a href="#tabEstablishment" data-toggle="tab">Establishment</a></li>*@
+                <li><a href="#tabFacility" data-toggle="tab">Facility for Registration</a></li>
+                <li><a href="#tabTests" data-toggle="tab">Tests</a></li>
+                <li><a href="#tabEquipment" data-toggle="tab">Equipment</a></li>
+                <li><a href="#tabFacilities" data-toggle="tab">Facilities for Test</a></li>
+                <li><a href="#tabEmployee" data-toggle="tab">Employees</a></li>
+                <li><a href="#tabOwnership" data-toggle="tab">Ownership & Institution</a></li>
+                <li><a href="#tabDeclaration" data-toggle="tab">Declaration</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabApplicant">
+                    <form id="formApplicant">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.ApplicantModel.Name)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.ApplicantRole, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.ApplicantModel.ApplicantRole)
+                            </div>
+                            <div class="col-md-1 applicantroleother" hidden>
+                                @Html.LabelFor(model => model.ApplicantModel.ApplicantRoleOther, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3 applicantroleother" hidden>
+                                @Html.DisplayFor(model => model.ApplicantModel.ApplicantRoleOther)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.ApplicantModel.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.ApplicantModel.MandalName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.ApplicantModel.VillageName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.Aadhar, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.ApplicantModel.Aadhar)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.PAN, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.ApplicantModel.PAN)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.ApplicantModel.HouseNumber)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.ApplicantModel.StreetName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.ApplicantModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.ApplicantModel.PINCode)
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                
+                <div class="tab-pane" id="tabFacility">
+                    <form id="formFacility">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Facilities</legend>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("facilitytype", new { @value = "1" }) Generic Counselling Center
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("facilitytype", new { @value = "2" }) Ultra Sound Clinic
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.CheckBox("facilitytype", new { @value = "3" }) Imaging Center
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-3">
+                                    @Html.CheckBox("facilitytype", new { @value = "4" }) Genetic Clinic
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.CheckBox("facilitytype", new { @value = "5" }) Generic Laboratory
+                                </div>
+                                <div class="col-md-4">
+                                    @Html.CheckBox("facilitytype", new { @value = "6" }) Assisted Reproductive Technology (ART)
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.Name)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.DistrictName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.MandalName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.VillageName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.HouseNumber)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.StreetName)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Phone, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.Phone)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Email, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.Email)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Fax, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.Fax)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Telegraph, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.Telegraph)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.Telex, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.Telex)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.FacilityModel.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.FacilityModel.PINCode)
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div id="tabTests" class="tab-pane">
+                    <form id="formTests">
+                        @{
+                            if (Model.FacilityModel.Faclities != null)
+                            {
+                                if (Model.FacilityModel.Faclities.Contains("4") || Model.FacilityModel.Faclities.Contains("5"))
+                                {
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Invasive</legend>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            @Html.HiddenFor(model => model.TestsModel.Id)
+                                            @Html.CheckBox("testinvasive", new { @value = "1" }) Amniocentesis
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.CheckBox("testinvasive", new { @value = "2" }) Biochemical
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.CheckBox("testinvasive", new { @value = "3" }) Chorionic Villi Aspiration
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            @Html.CheckBox("testinvasive", new { @value = "4" }) Molecular Studies
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.CheckBox("testinvasive", new { @value = "5" }) Chromosomal
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                }
+                                if (Model.FacilityModel.Faclities.Contains("2") || Model.FacilityModel.Faclities.Contains("3")
+                                    || Model.FacilityModel.Faclities.Contains("4") || Model.FacilityModel.Faclities.Contains("5"))
+                                {
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Non-Invasive</legend>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            @Html.CheckBox("testnoninvasive", new { @value = "1" }) Ultra Sonography
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                }
+                                if (Model.FacilityModel.Faclities.Contains("1") || Model.FacilityModel.Faclities.Contains("6"))
+                                {
+                                <fieldset class="scheduler-border" id="fsTestsRemarks">
+                                    <legend class="scheduler-border">Remarks</legend>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-1">
+                                            @Html.LabelFor(model => model.TestsModel.Remarks, new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.DisplayFor(model => model.TestsModel.Remarks)
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                }
+                            }
+                        }
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tabEquipment">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Equipment List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblEquiments" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Serial No.</th>
+                                                <th>Model</th>
+                                                <th>Make</th>
+                                                <th>Type</th>
+                                                <th>Uploaded File</th>
+                                            </tr>
+                                            @if (Model.EquipmentList != null)
+                                            {
+                                                for (int i = 0; i < Model.EquipmentList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Convert.ToInt32(i + 1)</td>
+                                                        <td>@Model.EquipmentList[i].Name</td>
+                                                        <td>@Model.EquipmentList[i].SerialNumber</td>
+                                                        <td>@Model.EquipmentList[i].MachineModel</td>
+                                                        <td>@Model.EquipmentList[i].Make</td>
+                                                        <td>@Model.EquipmentList[i].Type</td>
+                                                        <td>
+                                                            @if (Model.EquipmentList[i].UploadedFilePath != null)
+                                                            {
+                                                                var layoutindex = Model.EquipmentList[i].UploadedFilePath.LastIndexOf("/");
+                                                                var layoutfileName = Model.EquipmentList[i].UploadedFilePath.Substring(layoutindex + 1);
+                                                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentList[i].UploadedFilePath, downloadName = layoutfileName }, null);
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="tabFacilities" class="tab-pane">
+                    <form id="formFacilities">
+                        @{
+                            if (Model.FacilityModel.Faclities != null)
+                            {
+if (Model.FacilityModel.Faclities.Contains("4") || Model.FacilityModel.Faclities.Contains("5"))
+                            {
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Tests</legend>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            @Html.CheckBox("facilitytest", new { @value = "1" }) Amniocentesis
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.CheckBox("facilitytest", new { @value = "2" }) Ultra Sound
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.CheckBox("facilitytest", new { @value = "3" }) Chorionic Villi Aspiration
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            @Html.CheckBox("facilitytest", new { @value = "4" }) Foetal Biopsy
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.CheckBox("facilitytest", new { @value = "5" }) Foetoscopy
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.CheckBox("facilitytest", new { @value = "6" }) Cordocentesis
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Studies</legend>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            @Html.CheckBox("facilitystudies", new { @value = "1" }) Chromosomal Studies
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.CheckBox("facilitystudies", new { @value = "2" }) Biochemical Studies
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.CheckBox("facilitystudies", new { @value = "3" }) Molecular Studies
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            @Html.CheckBox("facilitystudies", new { @value = "4" }) Preemplantatioin Genetic
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            }
+                            if (Model.FacilityModel.Faclities.Contains("1") || Model.FacilityModel.Faclities.Contains("2")
+                                || Model.FacilityModel.Faclities.Contains("3") || Model.FacilityModel.Faclities.Contains("6"))
+                            {
+                                <fieldset class="scheduler-border" id="fsFacilityRemarks">
+                                    <legend class="scheduler-border">Remarks</legend>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-1">
+                                            @Html.LabelFor(model => model.FacilitiesModel.Remarks, new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.DisplayFor(model => model.FacilitiesModel.Remarks)
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                }
+                            }
+                        }
+                    </form>
+                </div>
+
+                <div id="tabEmployee" class="tab-pane">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Employee List</legend>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table id="tblEmployees" class="table table-hover">
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>Designation</th>
+                                                <th>Experience</th>
+                                                <th>Registration Number</th>
+                                                <th>Uploaded File</th>
+                                                <th></th>
+                                            </tr>
+                                            @if (Model.EmployeeList != null)
+                                            {
+                                                for (int i = 0; i < Model.EmployeeList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td> @Convert.ToInt32(@i + 1)</td>
+                                                        <td>@Model.EmployeeList[i].Name</td>
+                                                        <td>@Model.EmployeeList[i].DesignationName</td>
+                                                        <td>@Model.EmployeeList[i].Experience</td>
+                                                        <td>@Model.EmployeeList[i].RegistrationNumber</td>
+                                                        <td>
+                                                            @if (Model.EmployeeList[i].UploadedFilePath != null)
+                                                            {
+                                                                var addressindex = Model.EmployeeList[i].UploadedFilePath.LastIndexOf("/");
+                                                                var addressfileName = Model.EmployeeList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                                @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                         new { Area = "", path = Model.EmployeeList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="tabOwnership" class="tab-pane">
+                    <form id="formOwnership">
+                        <div class="row">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.InstitutionModel.OwnershipTypeId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.InstitutionModel.OwnershipTypeName)
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.InstitutionModel.InstitutionTypeId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DisplayFor(model => model.InstitutionModel.InstitutionTypeName)
+                            </div>
+                            <div class="col-md-2 text-right">
+                                @Html.LabelFor(model => model.InstitutionModel.TotalWorkArea, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DisplayFor(model => model.InstitutionModel.TotalWorkArea)
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tabDeclaration" class="tab-pane">
+                    <form id="formDeclaration">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                <p style="text-indent: 50px; text-align:justify;line-height: 30px;">
+                                    I, Sh./Smt./Kum./Dr. <b>@Model.DeclarationModel.Name</b> Son/Daughter/Wife of
+                                    <b>@Model.DeclarationModel.SonOf</b> aged <b>@Model.DeclarationModel.Age years</b>
+                                    resident of <b>@Model.DeclarationModel.ResidentOf</b> working as (indicate designation)
+                                    <b>@Model.DeclarationModel.Designation</b> in (indicate name of the organization to be registered)
+                                    <b>@Model.DeclarationModel.Organization</b> hereby declare that I have read and understood the
+                                    prenatal Diagnostic techniques (Regulation and Prevention of Miuse) Act, 1994 (57 of 1994) and
+                                    Pre Natal Diagnostic Techniques (Regulation and Prevention of Miuse) Rules, 1996.
+                                </p>
+                                <p style="text-indent: 50px; text-align:justify;line-height: 30px;"> I also undertake to explain the said Act and Rules to all employees of the Genetic Counselling Center / Genetic
+                                Laboratory / Generic Clinic / Ultrasound Clinic / Imaging Center in respect of which registration
+                                is sought and to ensure that act and Rules are fully compiled with.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                Date
+                            </div>
+                            <div class="col-md-2">
+                                <b>@Model.DeclarationModel.Date.ToString("dd-MM-yyyy")</b>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                Place
+                            </div>
+                            <div class="col-md-2">
+                                <b>@Model.DeclarationModel.Place</b>
+                            </div>
+                            <div class="col-md-offset-5 col-md-4" style="text-align:center">
+                                <b>@Model.DeclarationModel.Signature</b>
+                                <br />
+                                Name, Designation and Signature of the<br />
+                                person who conduct the scanning
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+
+</div>
+
+<script>
+    $(function () {
+        //Following 3 methods are defined in ApplicationForm View
+        BindFacility();
+        BindTests();
+        BindFacilities();
+    });
+
+    function BindFacility() {
+        // Bind Facilities in Facility tab
+        $.each($("input[name='facilitytype']"), function () {
+            $(this).parent('[class*="icheckbox"]').iCheck('disable');
+        });
+
+        var facilities = '@Model.FacilityModel.Faclities';
+        if (facilities.length > 0) {
+            var arrFacilities = facilities.split(',');
+            for (var i = 0; i < arrFacilities.length; i++) {
+                $('input:checkbox[name="facilitytype"][value="' + arrFacilities[i] + '"]').iCheck('check');
+            }
+        }
+    }
+   
+
+    function BindTests() {
+        // Bind Invasive in Tests tab
+        $.each($("input[name='testinvasive']"), function () {
+            $(this).parent('[class*="icheckbox"]').iCheck('disable');
+        });
+
+        var invasives = '@Model.TestsModel.InvasiveTests';
+        if (invasives.length > 0) {
+            var arrInvasives = invasives.split(',');
+            for (var i = 0; i < arrInvasives.length; i++) {
+                $('input:checkbox[name="testinvasive"][value="' + arrInvasives[i] + '"]').iCheck('check');
+            }
+        }
+
+        // Bind Non-Invasive in Tests tab
+        $.each($("input[name='testnoninvasive']"), function () {
+            $(this).parent('[class*="icheckbox"]').iCheck('disable');
+        });
+
+        var noninvasives = '@Model.TestsModel.NonInvasiveTests';
+        if (noninvasives.length > 0) {
+            var arrNonInvasives = noninvasives.split(',');
+            for (var i = 0; i < arrNonInvasives.length; i++) {
+                $('input:checkbox[name="testnoninvasive"][value="' + arrNonInvasives[i] + '"]').iCheck('check');
+            }
+        }
+    }
+
+    function BindFacilities() {
+        // Bind Tests in Facilities tab
+        $.each($("input[name='facilitytest']"), function () {
+            $(this).parent('[class*="icheckbox"]').iCheck('disable');
+        });
+
+        var tests = '@Model.FacilitiesModel.Tests';
+        if (tests.length > 0) {
+            var arrTests = tests.split(',');
+            for (var i = 0; i < arrTests.length; i++) {
+                $('input:checkbox[name="facilitytest"][value="' + arrTests[i] + '"]').iCheck('check');
+            }
+        }
+
+        // Bind Studies in Facilities tab
+        $.each($("input[name='facilitystudies']"), function () {
+            $(this).parent('[class*="icheckbox"]').iCheck('disable');
+        });
+
+        var studies = '@Model.FacilitiesModel.Studies';
+        if (studies.length > 0) {
+            var arrStudies = studies.split(',');
+            for (var i = 0; i < arrStudies.length; i++) {
+                $('input:checkbox[name="facilitystudies"][value="' + arrStudies[i] + '"]').iCheck('check');
+            }
+        }
+    }
+
+</script>

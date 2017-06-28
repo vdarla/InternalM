@@ -1,0 +1,716 @@
+﻿@using Medical.Models
+@using Medical.Framework
+@model Medical.Models.ApprovalComplexViewModel
+@{
+    ViewBag.Title = "AmendmentApproval";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+@using (Ajax.BeginForm("AmendmentApproval", "DepartmentUser", new { Area = "Department" },
+                new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "GoToListView",
+                    OnFailure = "ShowFailure"
+                }))
+{
+
+    <section class="content-header">
+        <h1>
+            Approval Authority
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="@Url.Action("ListofApplications", "DepartmentUser", "Department")">List of Applications</a></li>
+            <li class="active">Approval</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        @*Workflow & Modal popups *@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Workflow</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+
+
+                                @Html.HiddenFor(model => Model.Approval.AmendmentId, new { @id = "hfTransactionId" })
+                                
+                                <ul class="timeline timeline-horizontal">
+                                    @for (int i = 0; i < Model.DesginationList.Count; i++)
+                                    {
+                                        if (Model.DesginationList[i].Id <= Session.GetDataFromSession<UserModel>("User").DesignationId)
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge primary" id="div_user1"><i class="glyphicon glyphicon-check"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.DesginationList[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge default" id="div_user1"><i class="glyphicon glyphicon-unchecked"></i></div>
+                                                <div class="timeline-heading" style="margin-left:80px;">
+
+                                                    <label class="control-label">@Model.DesginationList[i].Name</label>
+                                                </div>
+
+                                            </li>
+                                        }
+
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Modal Popup -->
+                        <div class="modal fade" id="divRaiseQueryPopup">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title">Raise Query</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                Query
+                                            </div>
+                                            <div class="col-md-10">
+                                                <input type="text" id="txtQuery" class="form-control" multiple />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                Upload File
+                                            </div>
+                                            <div class="col-md-10">
+                                                <input type="file" id="txtUploadFile" name="uploadedFile" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-right">
+                                                <input type="button" value="Close" data-dismiss="modal" class="btn btn-default" />
+                                                <input type="button" value="Submit" id="btnRaiseQuerySubmit" class="btn btn-success" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+
+                        <div class="modal fade" id="divViewQueries">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title">Query Log</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="box">
+                                                    <div class="box-header">
+                                                        <h3 class="box-title">Query Log History</h3>
+                                                    </div>
+                                                    <!-- /.box-header -->
+                                                    <div class="box-body">
+                                                        <table id="tblQueryLog" class="table table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No.</th>
+                                                                    <th>Type</th>
+                                                                    <th>Description</th>
+                                                                    <th>Uploaded File</th>
+                                                                    <th>Date</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+
+                                                        </table>
+                                                    </div>
+                                                    <!-- /.box-body -->
+                                                </div>
+                                                <!-- /.box -->
+                                                <!-- /.box -->
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <div class="row">
+
+                        </div>
+
+                        
+
+
+                        <!-- /.Modal Popup -->
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </div>
+        </div>
+        @*Appliction Preview*@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Application Preview</h3>
+                    </div>                                        
+                    <div class="box-body">
+                        @if (Model.TranServiceId == 2) // render pcpndt
+                        {
+                            <div >
+                                @{Html.RenderPartial("_PCPNDTView", Model.PCPNDTModel);}
+                            </div>
+
+                                    }
+
+                    </div>
+                </div>
+
+            </div>
+        </div>    
+        @*Amendment*@   
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Amendment</h3>
+                    </div>
+                    <div class="box-body">
+                        @switch (Model.ServiceId)
+                        {
+                            case 18: //Add/delete Facility
+                                { Html.RenderPartial("_PCPNDTFacilities", Model.PCPNDTModel); }
+                                break;
+                            case 21: //PCPNDT Lists of Tests/Procedures
+                                { Html.RenderPartial("_PCPNDTTests", Model.PCPNDTModel); }
+                                break;
+                            case 23: //PCPNDT Facilities available
+                                { Html.RenderPartial("_PCPNDTFacilitiesforTests", Model.PCPNDTModel); }
+                                break;
+                            case 22://PCPNDT Equipment details
+                                { Html.RenderPartial("_PCPNDTEquipmentDetails", Model.PCPNDTModel); }
+                                break;
+                            case 24:// PCPNDT Employee Details
+                                { Html.RenderPartial("_PCPNDTEmployeeDetails", Model.PCPNDTModel); }
+                                break;
+                            case 19://PCPNDT Type of Ownership
+                                { Html.RenderPartial("_PCPNDTOwnership", Model.PCPNDTModel); }
+                                break;
+                            case 20://  PCPNDT Type of Institution
+                                { Html.RenderPartial("_PCPNDTInstitution", Model.PCPNDTModel); }
+                                break;
+                            case 28: //PCPNDT Cancellation of License
+                                { Html.RenderPartial("_CancelLicense", Model.PCPNDTModel); }
+                                break;
+
+                        }
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*Remarks*@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Remarks</h3>
+                    </div>
+                    <div class="box-body">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Remarks</legend>
+                            @if (Model.ApprovalList.Count > 0)
+                                {
+                                <div class="row">
+                                    <table id="tblRemarks" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Sl.No</th>
+                                                <th>DesignationName</th>
+                                                <th>Status</th>
+                                                <th>Remarks</th>
+                                            </tr>
+                                            @for (int i = 0; i < Model.ApprovalList.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td>@Convert.ToInt32(i + 1)</td>
+                                                    <td>@Model.ApprovalList[i].DesignationName</td>
+                                                    <td>@Model.ApprovalList[i].status</td>
+                                                    <td>@Model.ApprovalList[i].Remarks</td>
+                                                </tr>
+                                            }
+                                        </thead>
+                                        <tbody></tbody>
+
+                                    </table>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-md-2">
+                                    Remarks :
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.Approval.Remarks, new { style = "width:100%" })
+                                    @Html.ValidationMessageFor(model => model.Approval.Remarks, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                   
+
+                </div>
+            </div>
+        </div>
+        @*Inspection Report*@
+        <div class="row" id="divInspectionReport" hidden>
+            <div class="col-md-12">
+                <div  class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        @if (Model.FacilityList != null)
+                        {
+                            foreach (FacilityMasterModel facility in Model.FacilityList)
+                            {
+                                if (facility.Id == Model.FacilityList.Min(item => item.Id))
+                                {
+                                    <li class="active"><a href='#@facility.Id' data-toggle="tab" aria-expanded="true">@facility.Name</a></li>
+                                }
+
+                                else
+                                {
+                                    <li><a href='#@facility.Id' data-toggle="tab">@facility.Name</a></li>
+                                }
+
+                            }
+                        }
+
+
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    @if (Model.FacilityList != null)
+                    {
+                        foreach (FacilityMasterModel facility in Model.FacilityList)
+                        {
+                            if (facility.Id == Model.FacilityList.Min(item => item.Id))
+                            {
+                                <div class="tab-pane active" id='@facility.Id'>
+                                    @{ Html.RenderPartial(facility.InspectionPartialViewName);}
+                                </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="tab-pane" id='@facility.Id'>
+                                                @{ Html.RenderPartial(facility.InspectionPartialViewName);}
+                                            </div>
+                                                            }
+
+                                                        }
+                                                    }
+
+
+                </div>
+
+            </div>
+        </div>
+        @*Submit*@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    @if (Model.Workflow.HasApprovalPrevilege && Model.QueryCount == 0)
+                    {
+                        <input type="submit" id="btnForward" name="Submit" class="btn btn-default" value="Approve" />
+                    }
+                    else if (Model.QueryCount == 0)
+                    {
+                        <input type="submit" id="btnForward" name="Submit" class="btn btn-default" value="Forward" />
+                    }
+
+                    @if (Model.Workflow.HasReturnPrevilege && Model.QueryCount == 0)
+                    {
+                        <input type="submit" id="btnReturn" name="Submit" class="btn btn-default" value="Return" />
+                    }
+                    else if (Model.Workflow.HasApprovalPrevilege)
+                    {
+                        <input type="submit" id="btnReturn" name="Submit"  class="btn btn-default" value="Reject" />
+                    }
+                    @if ((Model.Workflow.HasRaisedQueryPrevilege || Model.Workflow.HasApprovalPrevilege) && Model.QueryCount == 0)
+                    {
+                        <input type="button" id="btnRaiseQuery" class="btn btn-default" value="RaiseQuery" onclick="ShowRaiseQuery()" />
+                    }
+                    @if (Model.QueryResponseCount > 0)
+                    {
+                        <input type="button" class="btn btn-default" id="btnViewQueries" value="View Query Log" />
+                    }
+                    @if (Model.Workflow.HasInspectionPrevilege || Model.Workflow.HasApprovalPrevilege)
+                    {
+                        <input type="submit" id="btnInspection" name="Submit" class="btn btn-default" value="Add Inspection Report" />
+                    }
+
+                </div>
+
+            </div>
+        </div>
+        
+        <div >
+           
+        </div>
+    </section>
+                                                        }
+<style type="text/css">
+    /* Timeline */
+    .timeline,
+    .timeline-horizontal {
+        list-style: none;
+        padding: 20px;
+        position: relative;
+    }
+
+        .timeline:before {
+            top: 40px;
+            bottom: 0;
+            position: absolute;
+            content: " ";
+            width: 3px;
+            background-color: #eeeeee;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+
+        .timeline .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+            .timeline .timeline-item:before,
+            .timeline .timeline-item:after {
+                content: "";
+                display: table;
+            }
+
+            .timeline .timeline-item:after {
+                clear: both;
+            }
+
+            .timeline .timeline-item .timeline-badge {
+                color: #fff;
+                width: 54px;
+                height: 54px;
+                line-height: 52px;
+                font-size: 22px;
+                text-align: center;
+                position: absolute;
+                top: 18px;
+                left: 50%;
+                margin-left: -25px;
+                background-color: #7c7c7c;
+                border: 3px solid #ffffff;
+                z-index: 100;
+                border-top-right-radius: 50%;
+                border-top-left-radius: 50%;
+                border-bottom-right-radius: 50%;
+                border-bottom-left-radius: 50%;
+            }
+
+                .timeline .timeline-item .timeline-badge i,
+                .timeline .timeline-item .timeline-badge .fa,
+                .timeline .timeline-item .timeline-badge .glyphicon {
+                    top: 2px;
+                    left: 0px;
+                }
+
+                .timeline .timeline-item .timeline-badge.primary {
+                    background-color: #1f9eba;
+                }
+
+                .timeline .timeline-item .timeline-badge.info {
+                    background-color: #5bc0de;
+                }
+
+                .timeline .timeline-item .timeline-badge.success {
+                    background-color: #59ba1f;
+                }
+
+                .timeline .timeline-item .timeline-badge.warning {
+                    background-color: #d1bd10;
+                }
+
+                .timeline .timeline-item .timeline-badge.danger {
+                    background-color: #ba1f1f;
+                }
+
+            .timeline .timeline-item .timeline-panel {
+                position: relative;
+                width: 46%;
+                float: left;
+                right: 16px;
+                border: 1px solid #c0c0c0;
+                background: #ffffff;
+                border-radius: 2px;
+                padding: 20px;
+                -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+                box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+            }
+
+                .timeline .timeline-item .timeline-panel:before {
+                    position: absolute;
+                    top: 26px;
+                    right: -16px;
+                    display: inline-block;
+                    border-top: 16px solid transparent;
+                    border-left: 16px solid #c0c0c0;
+                    border-right: 0 solid #c0c0c0;
+                    border-bottom: 16px solid transparent;
+                    content: " ";
+                }
+
+                .timeline .timeline-item .timeline-panel .timeline-title {
+                    margin-top: 0;
+                    color: inherit;
+                }
+
+                .timeline .timeline-item .timeline-panel .timeline-body > p,
+                .timeline .timeline-item .timeline-panel .timeline-body > ul {
+                    margin-bottom: 0;
+                }
+
+                    .timeline .timeline-item .timeline-panel .timeline-body > p + p {
+                        margin-top: 5px;
+                    }
+
+            .timeline .timeline-item:last-child:nth-child(even) {
+                float: right;
+            }
+
+            .timeline .timeline-item:nth-child(even) .timeline-panel {
+                float: right;
+                left: 16px;
+            }
+
+                .timeline .timeline-item:nth-child(even) .timeline-panel:before {
+                    border-left-width: 0;
+                    border-right-width: 14px;
+                    left: -14px;
+                    right: auto;
+                }
+
+    .timeline-horizontal {
+        list-style: none;
+        position: relative;
+        padding: 20px 0px 20px 0px;
+        display: inline-block;
+    }
+
+        .timeline-horizontal:before {
+            height: 3px;
+            top: auto;
+            bottom: 26px;
+            left: 56px;
+            right: 0;
+            width: 60%;
+            margin-bottom: 20px;
+        }
+
+        .timeline-horizontal .timeline-item {
+            display: table-cell;
+            height: 35px;
+            width: 20%;
+            min-width: 320px;
+            float: none !important;
+            padding-left: 0px;
+            padding-right: 52px;
+            margin: 0 auto;
+            vertical-align: bottom;
+        }
+
+            .timeline-horizontal .timeline-item .timeline-panel {
+                top: auto;
+                bottom: 64px;
+                display: inline-block;
+                float: none !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 60%;
+                margin-bottom: 20px;
+            }
+
+                .timeline-horizontal .timeline-item .timeline-panel:before {
+                    top: auto;
+                    bottom: -16px;
+                    left: 28px !important;
+                    right: auto;
+                    border-right: 16px solid transparent !important;
+                    border-top: 16px solid #c0c0c0 !important;
+                    border-bottom: 0 solid #c0c0c0 !important;
+                    border-left: 16px solid transparent !important;
+                }
+
+            .timeline-horizontal .timeline-item:before,
+            .timeline-horizontal .timeline-item:after {
+                display: none;
+            }
+
+            .timeline-horizontal .timeline-item .timeline-badge {
+                top: auto;
+                bottom: 0px;
+                left: 43px;
+            }
+</style>
+<script>
+    $(function(){
+        DisplayInspectionReports();
+    });
+    function ShowRaiseQuery() {
+        $('#divRaiseQueryPopup').modal('show');      
+    }
+    $('#btnRaiseQuerySubmit').click(function (e) {
+        e.preventDefault();
+        if ($('#txtQuery').val() != '') {
+            var url = '@Url.Action("SubmitQuery", "DepartmentUser", new { Area = "Department" })';
+
+            debugger;
+            var fileData = new FormData();
+            fileData.append('Query', $('#txtQuery').val());
+            fileData.append('TransactionId', $('#hfTransactionId').val());
+            fileData.append('ApplicationType', 'Amendment');
+            if (window.FormData !== undefined) {
+                var uploadedfile = $("#txtUploadFile").get(0).files[0];
+                fileData.append('uploadedFile', uploadedfile);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                cache: false,
+                data: fileData,
+                contentType: false,
+                processData: false,
+                async: true,
+                success: function (response) {
+                    console.log(response);
+                    $('#divRaiseQueryPopup').modal('hide');
+                    ShowModal(response);
+                    if (response.NotificationType == 1) {
+                        $('#btnRaiseQuery').hide();
+                        $('#btnForward').hide();
+                        $('#btnReturn').hide();
+                    }
+
+                    //BindData();
+                },
+                failure: function (response) {
+                    alert('failure: ' + response.d);
+                },
+                error: function (response) {
+                    alert('error: ' + response.d);
+                }
+            });
+
+        }
+        else {
+            alert('Please enter Query');
+        }
+
+    });
+    $('#btnViewQueries').click(function () {
+        var url = '@Url.Action("GetQureyResponsebyTransactionId", "DepartmentUser", new { Area = "Department" })';
+        var data = { TransactionId: $('#hfTransactionId').val() }
+        var jqxhr = $.getJSON(url,data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                $('#divViewQueries').modal('show');
+                // Clear all existing rows
+                $('#tblQueryLog').find("tr:gt(0)").remove();
+
+                if (json != undefined) {
+                    debugger;
+                    for (var i = 0; i < json.length; i++) {
+                        var path = json[i].UploadedFilePath;
+                        var index = path.indexOf("/");
+                        var displayFileName = path.substring(index + 1, path.length);
+                        var fileLink = '@Html.Raw(Html.ActionLink("displaytext", "DownloadFile", "Generic", new { Area = "", path = "filepath", downloadName = "downloadfilename" }, null))';
+                        fileLink = fileLink.replace("displaytext", displayFileName);
+                        fileLink = fileLink.replace("filepath", json[i].UploadedFilePath);
+                        fileLink = fileLink.replace("downloadfilename", displayFileName);
+
+                        var tr;
+                        tr = $('<tr/>');
+                        tr.append("<td>" + (i + 1) + "</td>")
+                        tr.append("<td>" + json[i].Type + "</td>")
+                        tr.append("<td>" + json[i].Description + "</td>")
+                        tr.append("<td>" + fileLink + "</td>")
+                        tr.append("<td>" + ToJavaScriptDate(json[i].CreatedOn) + "</td>")
+                        $("[id$=tblQueryLog]").append(tr)
+                    }
+
+                }
+
+
+            })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("GetQueryData Request Failed: " + err);
+        });
+    });
+
+    function GoToListView(response) {
+        if (response.NotificationType == 1) {
+            $('.btn').hide()
+        }
+        ShowModal(response);
+
+      //  window.location.href='@Url.Action("ListofApplications","DepartmentUser",new { Area ="Department"})'
+    }  
+    function DisplayInspectionReports() {
+        debugger;
+        var x = @Html.Raw(Json.Encode(Model.Workflow.HasInspectionPrevilege));
+        if(x){
+            $('#divInspectionReports').show();
+            $('.Input').show();
+
+        }
+        else {
+            $('#divInspectionReports').show();
+            $('.displayInput').show();
+            var json =@Html.Raw(Json.Encode(Model.QuestionModelList));            
+            $(json).each(function (i, item) {
+                $('#D' + json[i].Id).html(json[i].Answer);
+            });
+        }
+    }
+</script>
+

@@ -1,0 +1,61 @@
+﻿@model Medical.Models.PCPNDTViewModel
+
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Facilities</legend>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-3">
+                    @Html.CheckBox("facilitytypeLog", new { @value = "1" }) Generic Counselling Center
+                </div>
+                <div class="col-md-3">
+                    @Html.CheckBox("facilitytypeLog", new { @value = "2" }) Ultra Sound Clinic
+                </div>
+                <div class="col-md-4">
+                    @Html.CheckBox("facilitytypeLog", new { @value = "3" }) Imaging Center
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-offset-1 col-md-3">
+                    @Html.CheckBox("facilitytypeLog", new { @value = "4" }) Genetic Clinic
+                </div>
+                <div class="col-md-3">
+                    @Html.CheckBox("facilitytypeLog", new { @value = "5" }) Generic Laboratory
+                </div>
+                <div class="col-md-4">
+                    @Html.CheckBox("facilitytypeLog", new { @value = "6" }) Assisted Reproductive Technology (ART)
+                </div>               
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    @{Html.RenderPartial("_PCPNDTTests",Model);}
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @{ Html.RenderPartial("_PCPNDTFacilitiesforTests", Model); }
+                </div>
+                
+            </div>
+        </fieldset>
+
+<script>
+    $(function () {
+        BindFacilityLog();
+    });
+    function BindFacilityLog() {
+        debugger;
+        $.each($("input[name='facilitytypeLog'"), function () {
+            $(this).parent('[class*="icheckbox"]').iCheck('disable');
+        });
+        var facilities = '@Model.FacilityLogModel.Faclities';
+        if (facilities.length > 0) {
+            var arrfacilties = facilities.split(',');
+            for (var i = 0; i < arrfacilties.length; i++) {
+                $('input:checkbox[name="facilitytypeLog"][value="' + arrfacilties[i] + '"]').iCheck('check');
+            }
+        }
+    }
+</script>
+

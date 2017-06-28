@@ -1,0 +1,390 @@
+﻿@using Medical.Models
+@model Medical.Models.UserModel
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+    //Layout = null;
+}
+
+@using (Html.BeginForm("AddUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Add User
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="@Url.Action("Index","Dashboard",new { Area = "Admin" })">Back to Dashboard</a></li>
+            <li class="active">General Elements</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    @*<div class="box-header with-border">
+                        <h3 class="box-title">Add User</h3>
+                    </div>*@
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">User Details</legend>
+                            <div class="row">
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.JurisdictionId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.JurisdictionId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Jurisdiction", Selected = true, Value="0" } ,
+                  new SelectListItem() {Text="District Level", Value="1" },
+                  new SelectListItem() {Text="Mandal Level", Value="2" },
+                  new SelectListItem() {Text="Village Level", Value="3" }},
+     new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.JurisdictionId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="divdistrict" hidden>
+                                    <div class="col-md-1 text-right">
+                                        @Html.LabelFor(model => model.DistrictId, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @*@Html.DropDownListFor(model => model.DistrictId,
+                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                 new { @class = "form-control select2" })*@
+                                        @Html.DropDownListFor(model => model.DistrictId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select District", Selected = true } },
+     new { @class = "form-control select2" })
+                                        @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div id="divmandal" hidden>
+                                    <div class="col-md-1 text-right">
+                                        @Html.LabelFor(model => model.MandalId, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.DropDownListFor(model => model.MandalId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Selected = true } },
+     new { @class = "form-control select2" })
+                                        @Html.ValidationMessageFor(model => model.MandalId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div id="divvillage" hidden>
+                                    <div class="col-md-1 text-right">
+                                        @Html.LabelFor(model => model.VillageId, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.DropDownListFor(model => model.VillageId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Selected = true } },
+     new { @class = "form-control select2" })
+                                        @Html.ValidationMessageFor(model => model.VillageId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.Role.Id, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.Role.Id,
+                                   new SelectList(ViewData["RoleList"] as List<RoleModel>, "Id", "Name"), "Select Role",
+     //new List<SelectListItem>() { new SelectListItem() { Text = "Select Role", Selected = true } },
+     new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.FirstName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.LastName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.EmailId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.MobileNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="box-footer pull-right">                               
+                            <button type="button" id="btnSave" class="btn btn-info">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">All Users</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="tblUserDetails" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>Jurisdiction</th>
+                                    <th>User Name</th>
+                                    <th>Role</th>
+                                    <th>Location</th>
+                                    <th>Email</th>
+                                    <th>Mobile No</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+<script>
+    $('#JurisdictionId').change(function () {
+        var theVal = $(this).val();
+        switch (theVal) {
+
+            case '1':
+                $('#divdistrict').show();
+                $('#divmandal').hide();
+                $('#divvillage').hide();
+                break;
+            case '2':
+                $('#divdistrict').show();
+                $('#divmandal').show();
+                $('#divvillage').hide();
+                break;
+            case '3':
+                $('#divdistrict').show();
+                $('#divmandal').show();
+                $('#divvillage').show();
+                break;
+            default:
+            case '0':
+                $('#divdistrict').hide();
+                $('#divmandal').hide();
+                $('#divvillage').hide();
+        }
+    });
+</script> 
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        
+        $('#DistrictId').html('');
+        $('#DistrictId').append($('<option></option>').val('').html('Select District'));
+        var url = '@Url.Action("GetDistrictsList", "Account")';
+        var jqxhr = $.post(url, function () { }, 'json')
+        .done(function (response) {
+            if (response instanceof Object)
+                var json = response;
+            else
+                var json = $.parseJSON(response);
+            $.each(json, function () {
+                $('#DistrictId').append($('<option></option>').val(this.Id).html(this.Name));
+            });
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            // console.log("Getting Districts List Request Failed: " + err);
+        });
+
+
+    function GetMandalList(Id) {
+        debugger;
+        $('#MandalId').html('');
+        $('#MandalId').append($('<option></option>').val('').html('Select Mandal'));
+        var data = { DistrictId: Id };
+        var url = '@Url.Action("GetMandals", "Department","Admin")';
+        var jqxhr = $.post(url, data, function () { }, 'json')
+        .done(function (response) {
+            if (response instanceof Object)
+                var json = response;
+            else
+                var json = $.parseJSON(response);
+            $.each(json, function () {
+                $('#MandalId').append($('<option></option>').val(this.Id).html(this.Name));
+            });
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            // console.log("Getting Mandals list Request Failed: " + err);
+        });
+
+    }
+
+        function GetVillageList(Id) {
+        $('#VillageId').html('');
+        $('#VillageId').append($('<option></option>').val('').html('Select Village'));
+        var data = { MandalId: Id };
+        var url = '@Url.Action("GetVillages", "Department","Admin")';
+        var jqxhr = $.post(url, data, function () { }, 'json')
+        .done(function (response) {
+            if (response instanceof Object)
+                var json = response;
+            else
+                var json = $.parseJSON(response);
+            $.each(json, function () {
+                $('#VillageId').append($('<option></option>').val(this.Id).html(this.Name));
+            });
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("Getting Villages list Request Failed: " + err);
+        });
+    }
+    });
+
+    $('#DistrictId').change(function () {
+        debugger;
+        // Clear existing items in the dropdown
+        $('#MandalId').html('');
+        $('#MandalId').append($('<option></option>').val('').html('Select Mandal'));
+        var data = { districtId: parseInt($('#DistrictId').val()) };
+        var url='@Url.Action("GetMandals", "Department",new { Area = "Admin" })'
+        var jqxhr = $.post(url, data, function () { }, 'json')
+        .done(function (response) {
+            if (response instanceof Object)
+                var json = response;
+            else
+                var json = $.parseJSON(response);
+            $.each(json, function () {
+                $('#MandalId').append($('<option></option>').val(this.Id).html(this.Name));
+            });
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            // console.log("Getting Mandals list Request Failed: " + err);
+        });
+    });
+
+    $('#MandalId').change(function () {
+        
+        // Clear existing items in the dropdown
+        $('#VillageId').html('');
+        $('#VillageId').append($('<option></option>').val('').html('Select Village'));
+        var data = { mandalId: parseInt($('#MandalId').val()) };
+        var url = '@Url.Action("GetVillages", "Department",new { Area = "Admin" })';
+        var jqxhr = $.post(url, data, function () { }, 'json')
+        .done(function (response) {
+            if (response instanceof Object)
+                var json = response;
+            else
+                var json = $.parseJSON(response);
+            $.each(json, function () {
+                $('#VillageId').append($('<option></option>').val(this.Id).html(this.Name));
+            });
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("Getting Villages list Request Failed: " + err);
+        });
+    });
+</script>
+<script>
+ $('#btnSave').click(function (e) {
+        
+        e.preventDefault();
+        //var value = $('#frmMainContent').validate()
+        //var isFirstNameValid = value.element('#txtFirstName');
+        //var isLastNameValid = value.element('#LastName');
+        //var isUsernameValid = value.element('#UserModel_UserName');
+        //var isRolevalid = value.element('#Role');
+        //if (isFirstNameValid && isLastNameValid && isRolevalid) {
+            var data = {
+                user:
+                      {
+                          //Id:$('#hfUserId').val(),
+                          JurisdictionId: $('#JurisdictionId').val(),
+                          DistrictId: $('#DistrictId').val(),
+                          MandalId: $('#MandalId').val(),
+                          VillageId: $('#VillageId').val(),                          
+                          DesignationId:$('#Role_Id').val(), 
+                          FirstName: $('#FirstName').val(),
+                          LastName: $('#LastName').val(),
+                          EmailId: $('#EmailId').val(),
+                          MobileNumber: $('#MobileNumber').val()
+                      }
+            }  
+            var url = '@Url.Action("AddDepartmentUser", "Account")';
+            console.log(data);
+            var jqxhr = $.post(url, data, function () { }, '')
+             .done(function (response) {
+                 
+                 console.log(response);
+               //window.location.href = '@Url.Action("AddUser")';
+            })
+            .fail(function (jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            console.log("Saving Request Failed: " + err);
+            });
+      //}
+ });
+</script>
+<script type="text/javascript">  
+
+           
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetDepartmentUsersList","Account",new { Area = "" })',
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: BindTableDetails,
+                failure: function (response) {
+                    alert('Failure: ' + response.d);
+                },
+                error: function (response) {
+                    alert('Error: ' + response.d);
+                }
+            });
+        
+            function BindTableDetails(data) {
+
+            $("#tblUserDetails").find("tr:gt(0)").remove();
+            for (var i = 0; i < data.length; i++) {
+
+                tr = $('<tr/>');
+                tr.append("<td>" + (i + 1) + "</td>")
+                tr.append("<td>" + data[i].usermodel.JurisdictionId + " </td>");
+                tr.append("<td>" + data[i].usermodel.UserName + " </td>");     
+                tr.append("<td>" + data[i].usermodel.Designation + " </td>");
+                tr.append("<td>" + data[i].usermodel.Address + " </td>");
+                tr.append("<td>" + data[i].usermodel.EmailId + " </td>");
+                tr.append("<td>" + data[i].usermodel.MobileNumber + " </td>");
+                tr.append("<td><a class='glyphicon glyphicon-pencil actionlink-button' href=javascript:EditDesignation('" + data[i].Id + "','" + data[i].UserName + "','" + data[i].DistrictId + "') ></a></td>")
+                //tr.append("<td>" + '<button type="button" id="btnEdit" value="Edit" title="Edit" onclick="EditTransaction(' + data[i].Id + ',' + data[i].DistrictId + ',' + data[i].MandalId + ')" class="btn btn-default btn-primary  btn-sm"> <i class="fa fa-edit"></i></button>&nbsp;'
+                //   + '<button type="button" id="btnDelete" title="Delete" onclick=DeleteRecord(' + data[i].Id + ') class="btn btn-default btn-danger  btn-sm"><i class="glyphicon glyphicon-remove"></i></button>'
+                //   + "</td>");  
+                $('#tblUserDetails').append(tr);
+            }
+        }
+
+</script>

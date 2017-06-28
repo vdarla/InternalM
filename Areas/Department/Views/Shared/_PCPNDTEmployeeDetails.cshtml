@@ -1,0 +1,58 @@
+﻿@model Medical.Models.PCPNDTViewModel
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Employee List</legend>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-body table-responsive no-padding">
+                    <table id="tblEmployees" class="table table-hover">
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Name</th>
+                            <th>Designation</th>
+                            <th>Experience</th>
+                            <th>Registration Number</th>
+                            <th>Uploaded File</th>
+                            <th></th>
+                        </tr>
+                        @if (Model.EmployeeListLog != null)
+                        {
+                            for (int i = 0; i < Model.EmployeeListLog.Count; i++)
+                            {
+                                <tr>
+                                    <td> @Convert.ToInt32(@i + 1)</td>
+                                    <td>@Model.EmployeeListLog[i].Name</td>
+                                    <td>@Model.EmployeeListLog[i].DesignationName</td>
+                                    <td>@Model.EmployeeListLog[i].Experience</td>
+                                    <td>@Model.EmployeeListLog[i].RegistrationNumber</td>
+                                    <td>
+                                        @if (Model.EmployeeListLog[i].UploadedFilePath != null)
+                                        {
+                                            var addressindex = Model.EmployeeListLog[i].UploadedFilePath.LastIndexOf("/");
+                                            var addressfileName = Model.EmployeeListLog[i].UploadedFilePath.Substring(addressindex + 1);
+                                            @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                         new { Area = "", path = Model.EmployeeListLog[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (Model.EmployeeListLog[i].IsDeleted)
+                                        {
+                                            @Html.Label("Deleted")
+                                        }
+                                        else
+                                        {
+                                            @Html.Label("New")
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</fieldset>
+

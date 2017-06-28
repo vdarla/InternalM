@@ -1,0 +1,227 @@
+﻿@model Medical.Models.PCPNDTLicenseInfoModel
+<style>
+    .reportheadertext {
+        text-align: center;
+        font-size: larger;
+    }
+
+    .textunderline {
+        text-decoration: underline;
+    }
+
+    .parabody {
+        text-indent: 50px;
+        text-align: justify;
+    }
+
+    p {
+        text-align: justify;
+    }
+</style>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">PCPNDT License</legend>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            <span style="font-size:x-large;">FORM B</span>
+            <br />
+            <i>[See rules 6(2), 6(5) and 8(2)]</i>
+            <br />
+            <span style="font-size:x-large;">CERTIFICATE OF REGISTRATION</span>
+            <br />
+            <i>(To be issued in duplicate)</i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <ol>
+                <li>
+                    <p>
+                        In exercise of the powers conferred under Section 19(1) of the Pre-Natal Daignostic Techniques
+                        (Registration and Prevention of Miuse) Act, 1994 (157 of 1994), the Appropriate Authority.
+                        <b>@Model.Authority </b> here by grants registration to the <b>@Model.Facilities</b> named below
+                        for purposes of carrying out Genetic Counselling*/Pre-natal Diagnostic Procedures*/Pre-natal
+                        Diagnostic Tessts*/Ultrasonography under the aforesaid Act for a period of Five Years ending
+                        <b>@Model.LicenseExpiryDate.ToString("dd-MM-yyyy")</b>.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        This registration is granted subject to the aforesaid Act and Rules there under, and any
+                        contravention thereof shall result in suspenstion or cancellation of this Certificate of
+                        Registration before the expiry of the said period of five years apart from prosecution.
+                    </p>
+                    <ol type="A">
+                        <li>
+                            <p>
+                                Name and address of the <b>@Model.Facilities</b>, <b>@Model.ApplicantNameAddress</b>.
+                            </p>
+                        </li>
+                        <li>
+                            Pre-natal Diagnostic procedures approved
+                            <br />
+                            @if (Model.NonInvasiveTests != null)
+                            {
+                                <b>Non-Invasive</b>
+                                <ol type="i">
+                                    @for (int i = 0; i < Model.NonInvasiveTests.Count; i++)
+                                    {
+                                        <li>@Model.NonInvasiveTests[i]</li>
+                                    }
+                                </ol>
+                            }
+                            @if (Model.InvasiveTests != null)
+                            {
+                                <b>Invasive</b>
+                                <ol type="i">
+                                    @for (int i = 0; i < Model.InvasiveTests.Count; i++)
+                                    {
+                                        <li>@Model.InvasiveTests[i]</li>
+                                    }
+                                </ol>
+                            }
+                            @if (Model.TestRemarks != null)
+                            {
+                                <b>Remarks</b><br />
+                                @Model.TestRemarks
+                            }
+                        </li>
+                        <li>
+                            Pre-natal Diagnostic Tests approved
+                            <br />
+                            @if (Model.Tests != null)
+                            {
+                                <b>Tests</b>
+                                <ol type="i">
+                                    @for (int i = 0; i < Model.Tests.Count; i++)
+                                    {
+                                        <li>@Model.Tests[i]</li>
+                                    }
+                                </ol>
+                            }
+                            @if (Model.Studies != null)
+                            {
+                                <b>Studies</b>
+                                <ol type="i">
+                                    @for (int i = 0; i < Model.Studies.Count; i++)
+                                    {
+                                        <li>@Model.Studies[i]</li>
+                                    }
+                                </ol>
+                            }
+                            @if (Model.FacilitiesRemarks != null)
+                            {
+                                <b>Remarks</b><br />
+                                @Model.FacilitiesRemarks
+                            }
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    Model and Make of equipments being used<br />
+                    (Any change is to be inimated to the Appropriate Authority under Rule 13)
+                    <div class="box-body table-responsive no-padding">
+                        <table id="tblEquiments" class="table table-condensed">
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Name</th>
+                                <th>Serial No.</th>
+                                <th>Model</th>
+                                <th>Make</th>
+                                <th>Type</th>
+                                @*<th>Uploaded File</th>*@
+                            </tr>
+                            @if (Model.EquipmentList != null)
+                            {
+                                for (int i = 0; i < Model.EquipmentList.Count; i++)
+                                {
+                                    <tr>
+                                        <td>@Convert.ToInt32(i + 1)</td>
+                                        <td>@Model.EquipmentList[i].Name</td>
+                                        <td>@Model.EquipmentList[i].SerialNumber</td>
+                                        <td>@Model.EquipmentList[i].MachineModel</td>
+                                        <td>@Model.EquipmentList[i].Make</td>
+                                        <td>@Model.EquipmentList[i].Type</td>
+                                        @*<td>
+                                                                                        @if (Model.EquipmentList[i].UploadedFilePath != null)
+                                                                                        {
+                                                                                            var layoutindex = Model.EquipmentList[i].UploadedFilePath.LastIndexOf("/");
+                                                                                            var layoutfileName = Model.EquipmentList[i].UploadedFilePath.Substring(layoutindex + 1);
+                                                                                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+                                            new { Area = "", path = Model.EquipmentList[i].UploadedFilePath, downloadName = layoutfileName }, null);
+                                                                                        }
+                                                                                    </td>*@
+                                    </tr>
+                                }
+                            }
+
+                        </table>
+                    </div>
+                    <div class="box-body table-responsive no-padding">
+                        <table id="tblEmployees" class="table table-condensed">
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Name</th>
+                                <th>Designation</th>
+                                <th>Experience</th>
+                                <th>Registration Number</th>
+                                @*<th>Uploaded File</th>*@
+                            </tr>
+                            @if (Model.EmployeeList != null)
+                            {
+                                for (int i = 0; i < Model.EmployeeList.Count; i++)
+                                {
+                                    <tr>
+                                        <td> @Convert.ToInt32(@i + 1)</td>
+                                        <td>@Model.EmployeeList[i].Name</td>
+                                        <td>@Model.EmployeeList[i].DesignationName</td>
+                                        <td>@Model.EmployeeList[i].Experience</td>
+                                        <td>@Model.EmployeeList[i].RegistrationNumber</td>
+                                        @*<td>
+                                                @if (Model.EmployeeList[i].UploadedFilePath != null)
+                                                {
+                                                    var addressindex = Model.EmployeeList[i].UploadedFilePath.LastIndexOf("/");
+                                                    var addressfileName = Model.EmployeeList[i].UploadedFilePath.Substring(addressindex + 1);
+                                                    @Html.ActionLink(addressfileName, "DownloadFile", "Generic",
+                                             new { Area = "", path = Model.EmployeeList[i].UploadedFilePath, downloadName = addressfileName }, null);
+                                                }
+                                            </td>*@
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+
+                </li>
+                <li>
+                    Registration No. Allotted <b>@Model.LicenseNumber</b> dated <b>@Model.LicenseIssuedDate.ToString("dd-MM-yyyy")</b>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-3 col-md-12">
+            <div style="text-align:center;">
+                Dr. K. Padmaja, MBBS, DLO
+                <br />
+                District Appropriate Authority for PC &nbsp; PNDT Act 1994 Rules 1996 &nbsp;
+                <br />
+                District Medical &nbsp; Health Officer,
+                <br />
+                Hyderabad District
+            </div>
+        </div>
+    </div>
+</fieldset>
+<div class="row">
+    <div class="col-md-12" style="text-align:center;">
+        <input type="button" value="Close" data-dismiss="modal" class="btn btn-default" />
+        <input type="button" id="btnPrintLicense" value="Print" class="btn btn-primary" />
+    </div>
+</div>
+
+<script>
+    $('#btnPrintLicense').on('click', function (e) {
+        alert('this will come soon');
+    });
+</script>

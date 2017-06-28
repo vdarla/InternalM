@@ -1,0 +1,103 @@
+﻿@model Medical.Models.AcknowledgeModel
+
+<style>
+    .reportheadertext {
+        text-align: center;
+        font-size: larger;
+    }
+
+    .textunderline {
+        text-decoration: underline;
+    }
+
+    .parabody {
+        text-indent: 50px;
+        text-align: justify;
+    }
+</style>
+
+@if (Model.HasAppliedforAPMCE)
+{
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">APMCE Acknowledgement</legend>
+    </fieldset>
+}
+
+@if (Model.HasAppliedforPCPNDT)
+{
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">PCPNDT Acknowledgement</legend>
+        @if (Model.PCPNDTAckModel != null)
+        {
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10 reportheadertext">
+                    [ SEAL OF THE ORGANISATION SOUGHT TO BE REGISTERED ]
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10 reportheadertext textunderline">
+                    ACKNOWLEDGEMENT
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10 reportheadertext">
+                    [ See Rule 4(2) and 8(1) ]
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    <p class="parabody">
+                        The application in Form A in duplicate for <b>@Model.PCPNDTAckModel.ApplicationType</b> of registration of <b>@Model.PCPNDTAckModel.Facilities</b>
+                        by <b>@Model.PCPNDTAckModel.ApplicantNameAddress</b> has been received by the Appropriate Authority <b>@Model.PCPNDTAckModel.Authority</b>
+                        on <b>@Model.PCPNDTAckModel.ReceivedDate.ToString("dd-MMM-yyyy")</b>
+                    </p>
+                    <p class="parabody">
+                        The list of enclouse attached to the application in Form A has been verified with the enclosures submitted and
+                        found to be correct.
+                    </p>
+                    <p class="parabody">
+                        This acknowledgement does not cofer any right on the applicant for grant or renewal of registration.
+                    </p>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10" style="text-align:center">
+                    <input type="button" id="btnPCPNDTAckPrint" value="Print" class="btn btn-primary" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    Need to get approval from respective department.
+                </div>
+            </div>
+        }
+    </fieldset>
+}
+    
+
+    <script>
+        $('#btnPCPNDTAckPrint').on('click', function (e) {
+            //alert('This function is under working');
+            printDiv();
+        });
+        function printDiv() {
+
+            var divToPrint = document.getElementById('divModalBody');
+
+            var newWin = window.open('', 'Print-Window');
+
+            newWin.document.open();
+
+            newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+            newWin.document.close();
+
+            setTimeout(function () { newWin.close(); }, 10);
+
+        }
+    </script>
+

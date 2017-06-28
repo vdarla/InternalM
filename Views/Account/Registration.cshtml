@@ -1,0 +1,239 @@
+﻿@{ 
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml"; ;
+}
+@{
+    ViewBag.Title = "Registration";
+}
+<head>
+    <title>@ViewBag.Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- coustom stylesheet -->
+    @*<link href="~/css/style.css" rel='stylesheet' type='text/css' />*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    @*<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+    <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+    <link href="~/indexengine/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="~/indexengine/jquery.js"></script>*@
+    <!-- End WOWSlider.com HEAD section -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- coustom stylesheet -->
+
+    <link href="~/Content/plugins/custom/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <script src="~/Content/plugins/custom/js/jquery-3.2.0.min.js"></script>
+    <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+    <link href="~/Content/plugins/custom/css/styles.css" rel="stylesheet" />
+    <script src="~/Content/plugins/custom/js/jquery.js"></script>
+    <script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+    </script>
+
+    <!-- loader -->
+    <script>
+$(window).load(function() {
+	$(".loader").fadeOut("slow");
+});
+    </script>
+    <style>
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('../../Content/HomeScreen/images/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+        }
+    </style>
+
+</head>
+
+<body style="overflow-x: hidden;">
+
+
+
+    <!-- Navigation Bar Starts Here -->
+
+   
+
+  
+    <!-- Login Modal -->
+    <!-- BODY STATRS HERE -->
+    @*<a href='@Url.Action("NewHomePage", "UserInfo")' button type="submit" class="btn btn-success" style="margin-left:90%; margin-top:0.5%;">Back</a>*@
+    @*<h5 class="modal-title">New User Registration Details</h5>*@
+    <div class="modal-header">
+        <h4 class="modal-title" id="lineModalLabel">New User Registration Details</h4>
+    </div>
+
+    @model Medical.Models.UserModel
+    @using (Html.BeginForm("Registration", "Home", FormMethod.Post))
+            {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="modal-body">
+            <!-- content goes here -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <span class="form-error">
+                                    @Html.LabelFor(a => a.FirstName, "Name")<span style="color:red;">*</span>
+                                    @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control", @placeholder = "Name" })
+                                    @Html.ValidationMessageFor(a => a.FirstName, "", new { @class = "text-danger" })
+                                </span>
+                            </div>
+
+                            <div class="col-sm-4">
+                                    <span class="form-error">
+                                       @Html.LabelFor(a => a.DistrictId, "District")<span style="color:red;">*</span>
+                                        @Html.DropDownListFor(model => model.DistrictId,
+                                new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                new { @class = "form-control select2", @style = "width:100%;" })
+                                        @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+                                  </span>
+                                 </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <span class="form-error">
+                                    @Html.LabelFor(a => a.AadharNumber, "Aadhar No#")<span style="color:red;">*</span>
+                                    @Html.TextBoxFor(a => a.AadharNumber, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(a => a.AadharNumber, "", new { @class = "text-danger", @maxlength = "10" })
+
+                                </span>
+                            </div>
+                            <div class="col-sm-4">
+                                <span class="form-error">
+                                    @Html.LabelFor(a => a.MandalId, "Mandal")<span style="color:red;">*</span>
+
+                                    @*@Html.DropDownListFor(a => a.MandalID, new List<SelectListItem>()
+                                            {
+                                            new SelectListItem() { Text= "Adilabad", Value = "1" ,Selected = true},
+                                            new SelectListItem() { Text= "Nizamabad", Value = "2" }
+                                        }, new { @style = "width:100%", @class = "form-control select2" })*@
+
+                                    @Html.DropDownListFor(a => a.MandalId, new List<SelectListItem>() {
+                            new SelectListItem() {Text="Select Mandal", Value="0" } }, new {  @style = "width:100%", @class = "form-control select2" })
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <span class="form-error">
+                                    @Html.LabelFor(a => a.PANNumber, "PAN #")<span style="color:red;">*</span>
+                                    @Html.TextBoxFor(a => a.PANNumber, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(a => a.PANNumber, "", new { @class = "text-danger", @maxlength = "10" })
+                                </span>
+                            </div>
+                            <div class="col-sm-4">
+                                <span class="form-error">
+                                    @Html.LabelFor(a => a.VillageId, "Village")<span style="color:red;">*</span>
+
+                                    @*@Html.DropDownListFor(a => a.VillageID, new List<SelectListItem>()
+                                            {
+                                            new SelectListItem() { Text= "Adilabad", Value = "1" ,Selected = true},
+                                            new SelectListItem() { Text= "Nizamabad", Value = "2" }
+                                        }, new { @style = "width:100%", @class = "form-control select2" })*@
+                                    @Html.DropDownListFor(a => a.VillageId, new List<SelectListItem>() {
+                            new SelectListItem() {Text="Select Village", Value="0" } }, new {  @style = "width:100%", @class = "form-control select2" })
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <span class="form-error">
+                                    @Html.LabelFor(a => a.EmailId, "EmailID/UserName")<span style="color:red;">*</span>
+                                    @Html.TextBoxFor(a => a.EmailId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(a => a.EmailId, "", new { @class = "text-danger" })
+                                </span>
+                            </div>
+                            <div class="col-sm-4">
+                                <span class="form-error">
+                                    @Html.LabelFor(a => a.StreetName, "Stree Name")<span style="color:red;">*</span>
+                                    @Html.TextBoxFor(a => a.StreetName, new { @class = "form-control" })
+                                    @*@Html.ValidationMessageFor(a => a.StreetName, "", new { @class = "text-danger" })*@
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <span class="form-error">
+                                    @Html.LabelFor(a => a.MobileNumber, "Mobile Number")<span style="color:red;">*</span>
+                                    @Html.TextBoxFor(a => a.MobileNumber, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(a => a.MobileNumber, "", new { @class = "text-danger" })
+                                </span>
+                            </div>
+                            <div class="col-sm-4 ">
+                                <span class="form-error">
+                                    @Html.LabelFor(a => a.HouseNo, "H.No #")<span style="color:red;">*</span>
+                                    @Html.TextBoxFor(a => a.HouseNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(a => a.HouseNo, "", new { @class = "text-danger" })
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="pull-right">
+                                    <!-- <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button">Close</button> -->
+                                    <button type="submit" class="btn btn-success" style="margin-top:4%;margin-right: 611px;">Register</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <!-- Footer starts here -->
+
+    <div class="navbar-default navbar-fixed-bottom" style="margin-top: 2%">
+        <a class="acs" href="#"><p style="font-weight: light; text-align: center;">Powered By |  Aegis Consulting Services<h4></a>
+    </div>
+
+  
+
+</body>
+
+  <script type="text/javascript">
+
+      $('#DistrictId').on('change', function () {
+          debugger;
+          BindMandals('', this.value);
+      });
+
+      $('#MandalId').on('change', function () {
+          BindVillages('', this.value);
+      });
+    </script>
+

@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+<script src="~/Content/plugins/Print/jspdf.min.js"></script>
+<link href="~/Content/plugins/Print/print.css" rel="stylesheet" media="print" />
+<h2>Index</h2>
+
+@*@{
+    Html.RenderPartial("_PCPNDTAck", new Medical.Models.PCPNDTAckModel());
+}
+<br />
+@Html.ActionLink("Admin Index", "Index", "Test", new { Area = "Admin" }, null)
+@Html.ActionLink("Get Admin Details", "GetAdminDetails", "Test", new { Area = "Admin" }, null)*@
+
+<div class="box box-success" id="divPrint">
+    <div class="box-body">
+        <div class="row">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">PCPNDT Acknowledgement</legend>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10 reportheadertext">
+                        [ SEAL OF THE ORGANISATION SOUGHT TO BE REGISTERED ]
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10 reportheadertext textunderline">
+                        ACKNOWLEDGEMENT
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10 reportheadertext">
+                        [ See Rule 4(2) and 8(1) ]
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <p class="parabody">
+                            The application in Form A in duplicate for <b>SOME TEXT</b> of registration of <b>SOME TEXT</b>
+                            by <b>SOME TEXT</b> has been received by the Appropriate Authority <b>SOME TEXT</b>
+                            on <b>SOME TEXT("dd-MMM-yyyy")</b>
+                        </p>
+                        <p class="parabody">
+                            The list of enclouse attached to the application in Form A has been verified with the enclosures submitted and
+                            found to be correct.
+                        </p>
+                        <p class="parabody">
+                            This acknowledgement does not cofer any right on the applicant for grant or renewal of registration.
+                        </p>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10" style="text-align:center">
+                        <input type="button" id="btnPCPNDTAckPrint" value="Print" class="btn btn-primary"  onclick="printDiv()"  />
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="col-xs-2"><b>Name :</b></div>
+                <div class="col-xs-2"> Mounika</div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-2"><b>Name :</b></div>
+                <div class="col-xs-2"> Raju</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2"><b>Name :</b></div>
+                <div class="col-xs-2"> siva</div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-2"><b>Name :</b></div>
+                <div class="col-xs-2"> chandu</div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-2"><b>Name :</b></div>
+                <div class="col-xs-2"> kishore</div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-2"><b>Name :</b></div>
+                <div class="col-xs-2"> prakash</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function printDiv() {
+
+        var divToPrint = document.getElementById('divPrint');
+
+        var newWin = window.open('', 'Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function () { newWin.close(); }, 10);
+
+    }
+
+    function GeneratePDF() {
+        var url = '@Url.Action("GeneratePDF", "Test", new { Area = "User" })';
+        var jqxhr = $.post(url, function () { }, "html")
+        .done(function (response) {
+        })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("Preview Application Request Failed: " + err);
+        });
+    }
+
+    //$(function () {
+
+    //    var specialElementHandlers = {
+    //        '#editor': function (element, renderer) {
+    //            return true;
+    //        }
+    //    };
+    //    $('#btnPCPNDTAckPrint').click(function () {
+    //        var doc = new jsPDF();
+    //        doc.fromHTML($('#divPrint').html(), 15, 15, {
+    //            'width': 170, 'elementHandlers': specialElementHandlers
+    //        });
+    //        doc.save('sample-file.pdf');
+    //    });
+    //});
+</script>

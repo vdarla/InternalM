@@ -1,0 +1,90 @@
+﻿
+
+@model Medical.Models.TrustViewModel
+@using (Html.BeginForm("_ApmceTustDetails", "Amendment", FormMethod.Post))
+{
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Trust Details</h3>
+                    </div>
+
+                    <form id="formCorrespondingAddress">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-1">
+                                @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.DistrictId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @*@Html.EditorFor(model => model.DistrictName, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DropDownListFor(model => model.DistrictId,
+                                    new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+                                     new { @class = "form-control select2", @style = "width:100%;" })
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.MandalId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @*@Html.EditorFor(model => model.MandalName, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DropDownListFor(model => model.MandalId,
+                                    new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Value = "", Selected = true } },
+                                     new { @class = "form-control select2", @style = "width:100%;" })
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-1">
+                                @Html.LabelFor(model => model.VillageId, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @*@Html.EditorFor(model => model.VillageName, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DropDownListFor(model => model.VillageId,
+                                    new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Value = "", Selected = true } },
+                                     new { @class = "form-control select2", @style = "width:100%;" })
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.HouseNumber, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.StreetName, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-1">
+                                @Html.LabelFor(model => model.PINCode, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.PINCode, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <input type="button" value="Clear" id="btnCorrespondingClear" class="btn btn-default" />
+                                <input type="button" value="Save" id="btnCorrespondingSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+}

@@ -1,0 +1,27 @@
+﻿
+@model Medical.Models.AmendmentModel
+@{
+    ViewBag.Title = "Amendment";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+<h2>Amendment</h2>
+<div class="row">
+   
+</div>
+<section class="content">
+
+    @if (Model.APMCEAmendments != null)
+    {
+        Html.RenderPartial("_APMCEAmendment", Model.APMCEAmendments);
+    }
+    else if(Model.PCPNDTAmendments != null)
+    {
+        Html.RenderPartial("_PCPNDTAmendment", Model.PCPNDTAmendments);
+    }
+</section>
+
+
+
+   <script>
+       $('#selectID option:not(:selected)').attr('disabled', true);
+   </script>

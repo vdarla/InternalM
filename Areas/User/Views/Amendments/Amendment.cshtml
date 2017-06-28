@@ -1,0 +1,57 @@
+﻿
+@model Medical.Models.PCPNDTViewModel
+@{
+    ViewBag.Title = "Amendment";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+<h2>Amendment</h2>
+<div class="row">
+   
+</div>
+<section class="content">
+   
+        @*@{
+            Html.RenderPartial("_APMCEView", new Medical.Models.APMCEViewModel());
+        }*@
+        @{
+            //Html.RenderPartial("_PCPNDT", Model);
+            Html.RenderPartial("_PCPNDTAmendment", Model);
+        }
+  
+        @*@if (Model.HasAppliedforCorrespondent)
+        {
+            Html.RenderPartial("_ApmceCorrespondentAmendment", Model.CorrespondingAddressViewModel);
+        }
+        @if (Model.HasAppliedforAccomodation)
+        {
+            Html.RenderPartial("_ApmceTrustDetails", Model.TrustViewModel);
+        }
+         @if (Model.HasAppliedforEquipmentFurniture)
+         {
+             Html.RenderPartial("_ApmceEquipment", Model.InfraStructureModel);
+         }*@
+        @if (Model.HasAppliedforFacilityAddress)
+        {
+           // Html.RenderPartial("_pcpndtFacility", Model.FacilityModel);
+        }
+        @if (Model.HasAppliedforFacilityAddress)
+        {
+           // Html.RenderPartial("_PCPNDTInstitution", Model.InstitutionModel);
+        }
+        @if (Model.HasAppliedforEquipment)
+        {
+           // Html.RenderPartial("_PCPNDTEquipment", Model);
+        }
+        @if (Model.HasAppliedforFacilitiesavailable)
+        {
+           // Html.RenderPartial("_PCPNDTFacilities", Model.FacilitiesModel);
+        }
+        @if (Model.HasAppliedforEmployeeDetails)
+        {
+           // Html.RenderPartial("_PCPNDTEmployee", Model);
+        }
+</section>
+
+   <script>
+       $('#selectID option:not(:selected)').attr('disabled', true);
+   </script>

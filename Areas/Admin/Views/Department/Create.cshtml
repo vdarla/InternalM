@@ -1,0 +1,766 @@
+﻿    @model Medical.Models.DepartmentAdminViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLTELayout.cshtml";
+}
+
+@using (Ajax.BeginForm("Create", "Department", new { Area = "Admin" },
+                new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "BindDetails",
+                    OnFailure = "ShowFailure"
+                },
+                new { enctype = "multipart/form-data" }
+                ))
+
+{
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Department
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="@Url.Action("Index","Dashboard",new { Area = "Admin" }) ">Back to Dashboard</a></li>
+            <li class="active">General Elements</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Create Department</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Department Details</legend>
+                            <div class="row">
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.Department.Name, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.Department.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Department.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.Department.DistrictId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.Department.DistrictId,
+    new SelectList(ViewBag.DistrictList, "Id", "Name"), "Select District",
+     new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.Department.DistrictId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.Department.MandalId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.Department.MandalId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Mandal", Selected = true } },
+     new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.Department.MandalId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.Department.VillageId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.Department.VillageId,
+    new List<SelectListItem>() { new SelectListItem() { Text = "Select Village", Selected = true } },
+     new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.Department.VillageId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.Department.StreetName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.Department.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Department.StreetName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.Department.HouseNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.Department.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Department.HouseNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.Department.PinCode, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.Department.PinCode, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Department.PinCode, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.Department.Logo, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.Department.Logo, new { htmlAttributes = new { @class = "", @type = "file" } })
+                                    @Html.ValidationMessageFor(model => model.Department.Logo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Department Admin Details</legend>
+                            <div class="row">
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.DepartmentAdmin.FirstName, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.DepartmentAdmin.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DepartmentAdmin.FirstName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.DepartmentAdmin.AadharNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.DepartmentAdmin.AadharNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DepartmentAdmin.AadharNumber, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.DepartmentAdmin.MobileNumber, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.DepartmentAdmin.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DepartmentAdmin.MobileNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.DepartmentAdmin.EmailId, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.DepartmentAdmin.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DepartmentAdmin.EmailId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.DepartmentAdmin.SecurityQuestion, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.DepartmentAdmin.SecurityQuestion, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DepartmentAdmin.SecurityQuestion, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    @Html.LabelFor(model => model.DepartmentAdmin.SecurityAnswer, new { @class = "control-label" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.DepartmentAdmin.SecurityAnswer, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DepartmentAdmin.SecurityAnswer, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="box-footer pull-right">
+                            <input type="button" id="btnClear" class="btn btn-default" value="Clear" />
+                            <button type="submit" id="btnSubmit" class="btn btn-success">Create</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">All Departments</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Sl.No</th>
+                                    <th>Department Name</th>
+                                    <th>District</th>
+                                    <th>Mandal</th>
+                                    <th>Village</th>
+                                    <th>Admin</th>
+                                    <th>Designation</th>
+                                    <th>User Name</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tbody hidden>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>
+                                        Internet
+                                        Explorer 4.0
+                                    </td>
+                                    <td>Win 95+</td>
+                                    <td> 4</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>
+                                        Internet
+                                        Explorer 5.0
+                                    </td>
+                                    <td>Win 95+</td>
+                                    <td>5</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>
+                                        Internet
+                                        Explorer 5.5
+                                    </td>
+                                    <td>Win 95+</td>
+                                    <td>5.5</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>
+                                        Internet
+                                        Explorer 6
+                                    </td>
+                                    <td>Win 98+</td>
+                                    <td>6</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>Internet Explorer 7</td>
+                                    <td>Win XP SP2+</td>
+                                    <td>7</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>AOL browser (AOL desktop)</td>
+                                    <td>Win XP</td>
+                                    <td>6</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Firefox 1.0</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>1.7</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Firefox 1.5</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>1.8</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Firefox 2.0</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>1.8</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Firefox 3.0</td>
+                                    <td>Win 2k+ / OSX.3+</td>
+                                    <td>1.9</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Camino 1.0</td>
+                                    <td>OSX.2+</td>
+                                    <td>1.8</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Camino 1.5</td>
+                                    <td>OSX.3+</td>
+                                    <td>1.8</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Netscape 7.2</td>
+                                    <td>Win 95+ / Mac OS 8.6-9.2</td>
+                                    <td>1.7</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Netscape Browser 8</td>
+                                    <td>Win 98SE+</td>
+                                    <td>1.7</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Netscape Navigator 9</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>1.8</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Mozilla 1.0</td>
+                                    <td>Win 95+ / OSX.1+</td>
+                                    <td>1</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Mozilla 1.1</td>
+                                    <td>Win 95+ / OSX.1+</td>
+                                    <td>1.1</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Mozilla 1.2</td>
+                                    <td>Win 95+ / OSX.1+</td>
+                                    <td>1.2</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Mozilla 1.3</td>
+                                    <td>Win 95+ / OSX.1+</td>
+                                    <td>1.3</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Mozilla 1.4</td>
+                                    <td>Win 95+ / OSX.1+</td>
+                                    <td>1.4</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Mozilla 1.5</td>
+                                    <td>Win 95+ / OSX.1+</td>
+                                    <td>1.5</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Mozilla 1.6</td>
+                                    <td>Win 95+ / OSX.1+</td>
+                                    <td>1.6</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Mozilla 1.7</td>
+                                    <td>Win 98+ / OSX.1+</td>
+                                    <td>1.7</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Mozilla 1.8</td>
+                                    <td>Win 98+ / OSX.1+</td>
+                                    <td>1.8</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Seamonkey 1.1</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>1.8</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Epiphany 2.20</td>
+                                    <td>Gnome</td>
+                                    <td>1.8</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Webkit</td>
+                                    <td>Safari 1.2</td>
+                                    <td>OSX.3</td>
+                                    <td>125.5</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Webkit</td>
+                                    <td>Safari 1.3</td>
+                                    <td>OSX.3</td>
+                                    <td>312.8</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Webkit</td>
+                                    <td>Safari 2.0</td>
+                                    <td>OSX.4+</td>
+                                    <td>419.3</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Webkit</td>
+                                    <td>Safari 3.0</td>
+                                    <td>OSX.4+</td>
+                                    <td>522.1</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Webkit</td>
+                                    <td>OmniWeb 5.5</td>
+                                    <td>OSX.4+</td>
+                                    <td>420</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Webkit</td>
+                                    <td>iPod Touch / iPhone</td>
+                                    <td>iPod</td>
+                                    <td>420.1</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Webkit</td>
+                                    <td>S60</td>
+                                    <td>S60</td>
+                                    <td>413</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Opera 7.0</td>
+                                    <td>Win 95+ / OSX.1+</td>
+                                    <td>-</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Opera 7.5</td>
+                                    <td>Win 95+ / OSX.2+</td>
+                                    <td>-</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Opera 8.0</td>
+                                    <td>Win 95+ / OSX.2+</td>
+                                    <td>-</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Opera 8.5</td>
+                                    <td>Win 95+ / OSX.2+</td>
+                                    <td>-</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Opera 9.0</td>
+                                    <td>Win 95+ / OSX.3+</td>
+                                    <td>-</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Opera 9.2</td>
+                                    <td>Win 88+ / OSX.3+</td>
+                                    <td>-</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Opera 9.5</td>
+                                    <td>Win 88+ / OSX.3+</td>
+                                    <td>-</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Opera for Wii</td>
+                                    <td>Wii</td>
+                                    <td>-</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Nokia N800</td>
+                                    <td>N800</td>
+                                    <td>-</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Presto</td>
+                                    <td>Nintendo DS browser</td>
+                                    <td>Nintendo DS</td>
+                                    <td>8.5</td>
+                                    <td>C/A<sup>1</sup></td>
+                                </tr>
+                                <tr>
+                                    <td>KHTML</td>
+                                    <td>Konqureror 3.1</td>
+                                    <td>KDE 3.1</td>
+                                    <td>3.1</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td>KHTML</td>
+                                    <td>Konqureror 3.3</td>
+                                    <td>KDE 3.3</td>
+                                    <td>3.3</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>KHTML</td>
+                                    <td>Konqureror 3.5</td>
+                                    <td>KDE 3.5</td>
+                                    <td>3.5</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Tasman</td>
+                                    <td>Internet Explorer 4.5</td>
+                                    <td>Mac OS 8-9</td>
+                                    <td>-</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>Tasman</td>
+                                    <td>Internet Explorer 5.1</td>
+                                    <td>Mac OS 7.6-9</td>
+                                    <td>1</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td>Tasman</td>
+                                    <td>Internet Explorer 5.2</td>
+                                    <td>Mac OS 8-X</td>
+                                    <td>1</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td>Misc</td>
+                                    <td>NetFront 3.1</td>
+                                    <td>Embedded devices</td>
+                                    <td>-</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td>Misc</td>
+                                    <td>NetFront 3.4</td>
+                                    <td>Embedded devices</td>
+                                    <td>-</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Misc</td>
+                                    <td>Dillo 0.8</td>
+                                    <td>Embedded devices</td>
+                                    <td>-</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>Misc</td>
+                                    <td>Links</td>
+                                    <td>Text only</td>
+                                    <td>-</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>Misc</td>
+                                    <td>Lynx</td>
+                                    <td>Text only</td>
+                                    <td>-</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>Misc</td>
+                                    <td>IE Mobile</td>
+                                    <td>Windows Mobile 6</td>
+                                    <td>-</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td>Misc</td>
+                                    <td>PSP browser</td>
+                                    <td>PSP</td>
+                                    <td>-</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td>Other browsers</td>
+                                    <td>All others</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>U</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script>
+    $(function () {
+        $("#example1").DataTable();
+
+        GetDepartments();
+    });
+
+    function GetDepartments() {
+        var url = '@Url.Action("GetDepartments", "Department", new { Area = "Admin" })';
+        var jqxhr = $.post(url, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindDetails(json);
+
+            })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetDepartments in Admin, Request Failed: " + err);
+            });
+    }
+
+    function EditDepartment(id) {
+        var url = '@Url.Action("Edit", "Department", new { Area = "Admin" })';
+        var data = {
+            id: id
+        };
+        var jqxhr = $.post(url, data, function () { })
+            .done(function (response) {
+                var json;
+                if (response instanceof Object)
+                    json = response;
+                else
+                    json = $.parseJSON(response);
+                BindValuesforEdit(json);
+            })
+        .fail(function (jqxhr, status, error) {
+            var err = status + ", " + error;
+            console.log("EditDepartment in Admin, Request Failed: " + err);
+        });
+    }
+
+    function BindValuesforEdit(json) {
+        console.log(json);
+        // Department details
+        $('#Department_Name').val(json.Department.Name);
+        $('#Department_StreetName').val(json.Department.StreetName);
+        $('#Department_HouseNumber').val(json.Department.HouseNumber);
+        $('#Department_PinCode').val(json.Department.PinCode);
+
+        // Admin details
+        $('#DepartmentAdmin_FirstName').val(json.DepartmentAdmin.FirstName);
+        $('#DepartmentAdmin_AadharNumber').val(json.DepartmentAdmin.AadharNumber);
+        $('#DepartmentAdmin_MobileNumber').val(json.DepartmentAdmin.MobileNumber);
+        $('#DepartmentAdmin_EmailId').val(json.DepartmentAdmin.EmailId);
+        $('#DepartmentAdmin_SecurityQuestion').val(json.DepartmentAdmin.SecurityQuestion);
+        $('#DepartmentAdmin_SecurityAnswer').val(json.DepartmentAdmin.SecurityAnswer);
+
+        $('#btnSubmit').val('Update');
+    }
+
+    $('#Department_DistrictId').on('change', function () {
+        // Clear existing Mandal values
+        $('#Department_MandalId').empty();
+        $('#Department_MandalId').append('<option value="">Select Mandal</option>');
+        // Clear existing Village values
+        $('#Department_VillageId').empty();
+        $('#Department_VillageId').append('<option value="">Select Village</option>');
+
+        if (this.value != '') {
+            var url = '@Url.Action("GetMandals", "Department", new { Area = "Admin" })';
+            var data = {
+                districtId: this.value
+            };
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#Department_MandalId').append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetMandals in Admin, Request Failed: " + err);
+            });
+        }
+    });
+
+    $('#Department_MandalId').on('change', function () {
+        // Clear existing Village values
+        $('#Department_VillageId').empty();
+        $('#Department_VillageId').append('<option value="">Select Village</option>');
+
+        if (this.value != '') {
+            var url = '@Url.Action("GetVillages", "Department", new { Area = "Admin" })';
+            var data = {
+                mandalId: this.value
+            };
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#Department_VillageId').append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetVillages in Admin, Request Failed: " + err);
+            });
+        }
+    });
+
+    function BindDetails(json) {
+        var table = $('#example1').DataTable();
+
+        // Clear all existing rows
+        table.clear().draw();
+
+        // Bind new rows
+        for (var i = 0; i < json.length; i++) {
+
+            table.row.add([
+        (i + 1),
+        json[i].Department.Name,
+        json[i].Department.DistrictName,
+        json[i].Department.MandalName,
+        json[i].Department.VillageName,
+        json[i].DepartmentAdmin.FirstName,
+        json[i].DepartmentAdmin.DesginationName,
+        json[i].DepartmentAdmin.UserName,
+        '<a class="glyphicon glyphicon-pencil actionlink-button" href=javascript:EditDepartment(' + json[i].Department.Id + ') ></a>'
+            ]);
+        }
+
+        table.draw();
+    }
+
+
+</script>

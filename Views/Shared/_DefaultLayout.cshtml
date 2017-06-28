@@ -1,0 +1,391 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>*@
+    <script src="~/Content/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    
+    <script src="~/Content/plugins/jQuery/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.validate.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.validate.1.16.0.js"></script>
+    <script src="~/Content/plugins/jQuery/jquery.validate.unobtrusive.js"></script>
+  
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- coustom stylesheet -->
+    <link href="~/Content/plugins/custom/css/style.css" rel="stylesheet" />
+    @*<script src="~/Content/plugins/custom/js/jquery-3.2.0.min.js"></script>*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+
+
+    <link href="~/Content/plugins/custom/css/styles.css" rel="stylesheet" />
+    @*<script src="~/Content/plugins/custom/js/jquery.js"></script>*@
+
+    <!-- End WOWSlider.com HEAD section -->
+    <script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+    </script>
+
+    <!-- loader -->
+    <script>
+$(window).load(function() {
+    $(".loader").fadeOut("slow");
+});
+    </script>
+    <style>
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('../../Content/HomeScreen/images/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+        }
+    </style>
+
+</head>
+<header>
+    <div class="container-fluid" style="background-color: white;">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 text-left">
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+            <div class="col-xs-10 col-sm-10 col-md-12 col-lg-12">
+                <img src="~/Content/images/govlogo1.png" style="margin-top:; ">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2"></div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <img src="~/Content/images/hg1.png" style="">
+            </div>
+
+            <div class="col-xs-1 col-sm-1 col-md-0 col-lg-0"></div>
+        </div>
+    </div>
+</header>
+<body style="overflow-x: hidden;">
+    <div class="loader"></div>
+    <div class="topnav" id="myTopnav">
+        <button type="button" class="btn btn-success btn-md" id="btnShowLoginPopup" style="margin-top: 10px" data-toggle="modal" data-target="#mymodal">
+            <span class="glyphicon glyphicon-log-in"></span> Login
+        </button>
+        <a href='@Url.Action("Contact","Home")'>Contact Us</a>
+        <a href='@Url.Action("EODB", "Home")'>EODB</a>
+        <a href='@Url.Action("About", "Home")'>About Us</a>
+        <a href='@Url.Action("Index", "Home")'>Home</a>
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    @model  Medical.Models.LoginModel
+    @using (Ajax.BeginForm("Login", "Account", null, new AjaxOptions { OnComplete = "OnSuccess" },  null))
+
+    {
+        <div class="modal fade" id="mymodal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center">welcome to licence management system</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+
+                                <div class="col-sm-12">
+                                    @*<input type="text" class="form-control" id="email" placeholder="Enter UserName">*@
+                                    @Html.TextBoxFor(a => a.Username, new { @class = "form-control", @placeholder = "UserName" })
+                                    @Html.ValidationMessageFor(a => a.Username, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    @*<input type="password" class="form-control" id="pwd" placeholder="Enter Password">*@
+                                    @Html.PasswordFor(a => a.Password, new { @class = "form-control", @placeholder = "Password" })
+                                    @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox"> remember me</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+
+                                    <a href="#">forgot password?<a>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div style="text-align:center;color:red">
+                                    <span id="spnErrorMessage">
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-md-3"></div>
+                                <div class="col-sm-6 col-md-6">
+                                    <button type="submit" class="btn btn-success col-sm-12 col-md-12" id="btnLogin">Login</button>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6 col-md-6">
+                                    @*<button type="button" class="btn btn-success col-sm-12 col-md-12">new user registration</button>*@
+                                    <a href='@Url.Action("Register", "Account")' class="btn btn-success col-sm-12 col-md-12">New User Registration</a>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    @*<button type="button" class="btn btn-success col-sm-12 col-md-12">exsisting user registration</button>*@
+                                    <a href='@Url.Action("ExistingUserRegistration", "DashBoard")' class="btn btn-success col-sm-12 col-md-12">Existing User Registration</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    
+    }
+    <div>
+        @RenderBody()
+    </div>
+    <!-- Footer starts here -->
+
+    <div class="navbar-default navbar-fixed-bottom" style="margin-top: 2%">
+        <a class="acs" href="#"><p style="font-weight: light; text-align: center;">Powered By |  Aegis Consulting Services<h4></a>
+    </div>
+    <!-- Popup Modals -->
+    <div class="modal fade" id="divModal">
+        <div class="modal-dialog" id="divModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalTitle">Default Modal</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="divModalBody"></div>
+                    <div id="divNotificationMessage"></div>
+                    <div id="divListItems"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnAction" type="button" class="btn btn-default" hidden>Primary</button>
+                    <button id="btnNonAction" type="button" class="btn btn-warning" data-dismiss="modal" hidden>Cancel</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- /.Popup Modals -->
+</body>
+</html>
+<script>
+    function BindMandals(controlPrefix, controlValue) {
+        var mandalControlId = controlPrefix + 'MandalId';
+        var villageControlId = controlPrefix + 'VillageId';
+
+        // Clear existing Mandal values
+        $('#' + mandalControlId).empty();
+        $('#' + mandalControlId).append('<option value="">Select Mandal</option>');
+        // Clear existing Village values
+        $('#' + villageControlId).empty();
+        $('#' + villageControlId).append('<option value="">Select Village</option>');
+
+        if (controlValue != '') {
+            var url = '@Url.Action("GetMandals", "License", new { Area = "User" })';
+
+            var data = {
+                id: controlValue
+            };
+
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#' + mandalControlId).append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetMandals api Request Failed: " + err);
+            });
+        }
+    }
+
+    function BindVillages(controlPrefix, controlValue) {
+        var villageControlId = controlPrefix + 'VillageId';
+
+        // Clear existing Village values
+        $('#' + villageControlId).empty();
+        $('#' + villageControlId).append('<option value="">Select Village</option>');
+
+        if (controlValue != '') {
+            var url = '@Url.Action("GetVillages", "License", new { Area = "User" })';
+
+            var data = {
+                id: controlValue
+            };
+            var jqxhr = $.post(url, data, function () { })
+                .done(function (response) {
+                    var json;
+                    if (response instanceof Object)
+                        json = response;
+                    else
+                        json = $.parseJSON(response);
+                    $.each(json, function (i, val) {
+                        $('#' + villageControlId).append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                    });
+                })
+            .fail(function (jqxhr, status, error) {
+                var err = status + ", " + error;
+                console.log("GetVillages api Request Failed: " + err);
+            });
+        }
+    }
+</script> 
+
+<script>
+    function OnSuccess(data) {
+        console.log(data);
+        var json;
+        if (data.responseText instanceof Object)
+            json = data.responseText;
+        else
+            json = $.parseJSON(data.responseText);
+
+        if (json.redirecturl)
+            window.location.href = json.redirecturl;
+        else
+            $('#spnErrorMessage').text(json.errormessage);
+
+    }
+    function ShowModal(jsonObject) {
+        // Clear existing values
+        $('#modalTitle').empty();
+        $('#divNotificationMessage').empty();
+        $('#divValidationErrors').empty();
+        $('#btnAction').removeClass();
+        $('#btnNonAction').removeClass();
+
+        $('#modalTitle').html('<b style="color:' + GetTitleTextColor(jsonObject.NotificationTypeClass) + ';">' + jsonObject.Title + '</b>');
+        $('#divNotificationMessage').append(jsonObject.NotificationMessage);
+
+        if (jsonObject.ShowListItems) {
+            var orderedList = $('<ol/>');
+            for (var i = 0; i < jsonObject.ListItems.length; i++) {
+                orderedList.append('<li>' + jsonObject.ListItems[i] + '</li>');
+            }
+            $('#divListItems').append(orderedList);
+        }
+        $('#divModalBody').html(jsonObject.BodyContent);
+
+        if (jsonObject.IsLargeModal)
+            $('#divModalDialog').addClass('modal-lg');
+        else
+            $('#divModalDialog').removeClass('modal-lg');
+
+        if (jsonObject.ShowActionButton) {
+            $('#btnAction').show();
+            $('#btnAction').addClass(GetButtonColorClass(jsonObject.ActionButtonClass));
+            $('#btnAction').text(jsonObject.ActionButtonText);
+            if (jsonObject.ActionName != undefined && jsonObject.ActionName != '' &&
+                jsonObject.ControllerName != undefined && jsonObject.ControllerName != '') {
+                $('#btnAction').on('click', function () {
+                    var link = '@Url.Action("ActionName","ControllerName")';
+                    link = link.replace('ActionName', jsonObject.ActionName);
+                    link = link.replace('ControllerName', jsonObject.ControllerName);
+                    location.href = link;
+                });
+            }
+        }
+        else {
+            $('#btnAction').hide();
+        }
+
+        if (jsonObject.ShowNonActionButton) {
+            $('#btnNonAction').show();
+            $('#btnNonAction').addClass(GetButtonColorClass(jsonObject.NonActionButtonClass));
+            $('#btnNonAction').text(jsonObject.NonActionButtonText);
+        }
+        else {
+            $('#btnNonAction').hide();
+        }
+
+        $('#divModal').modal('show');
+    }
+
+    function HideModal() {
+        $('#divModal').modal('hide');
+    }
+    function GetButtonColorClass(NotificationType) {
+        switch (NotificationType) {
+            case 'Information':
+                return 'btn btn-info';
+            case 'Success':
+                return 'btn btn-success';
+                break;
+            case 'Warning':
+                return 'btn btn-warning';
+                break;
+            case 'Danger':
+                return 'btn btn-danger';
+                break;
+            case 'Primary':
+                return 'btn btn-primary';
+                break;
+            default:
+                return 'btn btn-default';
+                break;
+        }
+    }
+
+    function GetTitleTextColor(notificationType) {
+        switch (notificationType) {
+            case 'Information':
+                return '#46b8da';
+                break;
+            case 'Success':
+                return '#398439';
+                break;
+            case 'Warning':
+                return '#eea236';
+                break;
+            case 'Danger':
+                return '#ac2925';
+                break;
+            default:
+                return '#73879C';
+                break;
+        }
+    }
+</script>

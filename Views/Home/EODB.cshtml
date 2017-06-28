@@ -1,0 +1,213 @@
+﻿
+@{
+    ViewBag.Title = "EODB";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+
+<div class="tab-content">
+
+    <!-- Departments Start-->
+    <div id="dep" class="tab-pane fade in active" style="color: #24b95c">
+
+        <div class="col-sm-0 col-md-2"></div>
+
+        <div class="col-sm-12 col-md-8 text-center depart">
+            <h2><a href="http://health.telangana.gov.in/" style="color: #24b95c">Department of Health, Medical and Family Welfare </a></h2>
+            <ul style="text-align: left; margin-top: 1%;">
+                <li><a href="http://chfw.telangana.gov.in/"><h4> Commissionerate of Health and Family Welfare</h4></a></li>
+                <li><a href="http://ayush.telangana.gov.in/"><h4> Department of AYUSH</h4></a></li>
+                <li><a href="http://dphfw.telangana.gov.in/"><h4> Directorate of Public Health and Family Welfare</h4></a></li>
+                <li><a href="http://dca.telangana.gov.in/"><h4> Drugs Control Administration</h4></a></li>
+                <li><a href="http://vvp.telangana.gov.in/"><h4> Telangana Vaidya Vidhana Parishad</h4></a></li>
+                <li><a href="http://dme.telangana.gov.in/"><h4> Directorate of Medical Education</h4></a></li>
+                <li><a href="http://ipm.tg.nic.in/"><h4> Institute of Preventive Medicine</h4></a></li>
+                <li><a href="http://tsmsidc.telangana.gov.in/"><h4> Telangana State Medical Services &amp; Infrastructure Development Corporation (TSMSIDC)</h4></a></li>
+                <li><a href=""><h4> TSSACS</h4></a></li>
+            </ul>
+        </div>
+        <div class="col-sm-0 col-md-2 "></div>
+    </div>
+
+    <!-- Departments End -->
+    <!-- Procedures and checklists start -->
+    <div id="pc" class="tab-pane fade in active" style="display: none;">
+        <div class="container">
+            <h2 style="text-align:Center">Procedure & Checklist</h2>
+        </div>
+        <div class="Container" style="background-color:white;">
+            <div class="col-sm-12 col-md-6">
+                <h3 style="text-align:left">List Of Approvals</h3>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <h3 style="text-align:right">Total Approvals:</h3>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <div class="form-group">
+                    <div class="col-sm-12 col-md-4">
+                        <label for="sel1">Select Department *</label>
+                        <select class="form-control" id="sel1">
+                            <option>Department of Health, Medical and Family Welfare</option>
+
+                        </select>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <label for="Department">Select Sub Department*</label>
+                        <select class="form-control" id="SubDepartment">
+                            <option>Commissionerate of Health and Family Welfare</option>
+                            <option>Department of AYUSH</option>
+                            <option>Directorate of Public Health and Family Welfare</option>
+                            <option>Drugs Control Administration</option>
+                            <option>Telangana Vaidya Vidhana Parishad</option>
+                            <option>Directorate of Medical Education</option>
+                            <option>Institute of Preventive Medicine</option>
+                            <option>TSMSIDC</option>
+                            <option>TSSACS</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <label for="Category">Select Category of Application *</label>
+                        <select class="form-control" id="Category">
+                            <option>Establishments</option>
+                            <option>Operations</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div id="EdobList" style="overflow-x:auto; overflow-y:scroll; margin-top:2%;margin-bottom:4%;" class=" text-center col-sm-12 col-md-12">
+                <table>
+                    <tr>
+                        <th>Service Name</th>
+                        <th>Checklist</th>
+                        <th>Service Type</th>
+                        <th>Apply Online</th>
+
+                    </tr>
+               
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <!-- Procedures and checklists end -->
+    <!-- Application Tracking Starts -->
+    <div id="apptrack" class="tab-pane fade in active" style="display:none; background-color: white;">
+        <div class="container">
+            <h2 style="text-align:Center">Application Tracking</h2>
+        </div>
+        <div class="container">
+            <div class="col-sm-12 col-md-12">
+                <div class="form-group">
+                    <div class="col-sm-12 col-md-4"></div>
+                    <div class="col-sm-12 col-md-4" style="">
+                        <input type="text" class="form-control" id="usr" placeholder="Enter Application Number" />
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <button type="button" class="btn btn-info col-sm-12 col-md-12"><span class="glyphicon glyphicon-search"></span>Search</button>
+                    </div>
+                </div>
+
+            </div>
+            <div style="overflow-x:auto; margin-top:2%;" class=" text-center col-sm-12 col-md-12">
+                <table>
+                    <tr>
+                        <th>Application No</th>
+                        <th>User Name</th>
+                        <th>Status</th>
+                        <th>Login For Complete Details</th>
+
+                    </tr>
+                    <tr>
+                        <td>111122223333</td>
+                        <td>Mounika</td>
+                        <td>Approved</td>
+                        <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-duplicate"></span>Login</button></td>
+
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Tracking Ends -->
+    <!-- Third Party Verification -->
+    <div id="tpv" class="tab-pane fade in active" style="display: none;">
+        <div class="container">
+            <h2 style="text-align:Center">Third Party Verification</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <label for="sel1">Select Service *</label>
+                    <select class="form-control" id="sel1">
+                        <option>PCPNDT</option>
+                        <option>APMCE</option>
+
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="sel1">Type *</label>
+                    <select class="form-control" id="sel1">
+                        <option>Establishments</option>
+                        <option>Operations</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 2%">
+                <div class="col-sm-12 col-md-4" style="">
+                    <input type="text" class="form-control" id="usr" placeholder="Enter License Number" />
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <button type="button" class="btn btn-info col-sm-12 col-md-12"><span class="glyphicon glyphicon-search"></span>Search</button>
+                </div>
+                <div class="col-sm-0 col-md-4"></div>
+            </div>
+
+            <div style="overflow-x:auto; margin-top:2%;" class=" text-center col-sm-12 col-md-12">
+                <table>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Establishment Name</th>
+                        <th>Old License Number</th>
+                        <th>License Number</th>
+                        <th>Issue Date</th>
+                        <th>Expiry Date</th>
+                        <th>District</th>
+                        <th>Sub Division</th>
+                        <th>Mandal</th>
+                        <th>Village</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Mounika Daignostic Center</td>
+                        <td>1235123</td>
+                        <td>23650912</td>
+                        <td>11/11/16</td>
+                        <td>11/11/17</td>
+                        <td>Karimnagar</td>
+                        <td>Velmapadu</td>
+                        <td>Velmapadu</td>
+                        <td>Velmapadu</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- End of Third Party Verkication -->
+    <!-- Offline Entry -->
+    <div id="offe" class="tab-pane fade in active" style="display: none;">
+        <div class="col-sm-0 col-md-3"></div>
+
+        <div class="col-sm-12 col-md-6 text-center">
+            <h2>This Offline Entry feature is available for the applicants and Department users so as to digitize the existing application forms and final license certificates.</h2>
+            <h3><a data-toggle="modal" href="#myModal">Please click here to login and enter data.</a></h3>
+
+        </div>
+        <div class="col-sm-0 col-md-3 "></div>
+    </div>
+</div>

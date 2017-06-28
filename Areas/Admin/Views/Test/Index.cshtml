@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+Admin Index
+<br />
+@Html.ActionLink("User Index", "Index", "Test", new { Area = "User" }, new { })
+@Html.ActionLink("Get Users", "GetUsers", "Test", new { Area = "User" }, null)

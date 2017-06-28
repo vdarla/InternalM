@@ -1,0 +1,12 @@
+﻿@model Medical.Models.PCPNDTViewModel
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Institution Type</legend>
+    <div class="ro">
+        <div class="col-md-offset-4 col-md-1">
+            @Html.LabelFor(model => model.InstitutionModelLog.InstitutionTypeId, new { @class = "control-label" })
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayFor(model => model.InstitutionModelLog.InstitutionTypeName)
+        </div>
+    </div>
+</fieldset>

@@ -1,0 +1,54 @@
+﻿
+@model Medical.Models.PCPNDTViewModel
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Equipment List</legend>
+
+
+    <table id="tblEquiments" class="table table-hover">
+        <tr>
+            <th>S.No.</th>
+            <th>Name</th>
+            <th>Serial No.</th>
+            <th>Model</th>
+            <th>Make</th>
+            <th>Type</th>
+            <th>Uploaded File</th>
+            <th>Action</th>
+        </tr>
+        @if (Model.EquipmentList != null)
+                                            {
+                                                for (int i = 0; i < Model.EquipmentListLog.Count; i++)
+                                                {
+                <tr>
+                    <td>@Convert.ToInt32(i + 1)</td>
+                    <td>@Model.EquipmentListLog[i].Name</td>
+                    <td>@Model.EquipmentListLog[i].SerialNumber</td>
+                    <td>@Model.EquipmentListLog[i].MachineModel</td>
+                    <td>@Model.EquipmentListLog[i].Make</td>
+                    <td>@Model.EquipmentListLog[i].Type</td>
+                    <td>
+                        @if (Model.EquipmentListLog[i].UploadedFilePath != null)
+                                                            {
+                                                                var layoutindex = Model.EquipmentListLog[i].UploadedFilePath.LastIndexOf("/");
+                                                                var layoutfileName = Model.EquipmentListLog[i].UploadedFilePath.Substring(layoutindex + 1);
+                            @Html.ActionLink(layoutfileName, "DownloadFile", "Generic",
+new { Area = "", path = Model.EquipmentListLog[i].UploadedFilePath, downloadName = layoutfileName }, null);
+                                                            }
+                    </td>
+                    <td>
+                        @if(Model.EquipmentListLog[i].IsDeleted)
+                                                           {
+                            @Html.Label("Deleted")
+                                                           }
+                                                           else
+                                                           {
+                            @Html.Label("New")
+                                                           }
+                    </td>
+                </tr>
+                                                }
+                                            }
+
+    </table>
+</fieldset>
+                                  

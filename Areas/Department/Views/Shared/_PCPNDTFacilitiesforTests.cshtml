@@ -1,0 +1,97 @@
+﻿@model Medical.Models.PCPNDTViewModel
+@{
+    if (Model.FacilityModel.Faclities != null)
+    {
+        if (Model.FacilityModel.Faclities.Contains("4") || Model.FacilityModel.Faclities.Contains("5"))
+        {
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Tests</legend>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-3">
+                        @Html.CheckBox("facilitytestlog", new { @value = "1" }) Amniocentesis
+                    </div>
+                    <div class="col-md-3">
+                        @Html.CheckBox("facilitytestlog", new { @value = "2" }) Ultra Sound
+                    </div>
+                    <div class="col-md-4">
+                        @Html.CheckBox("facilitytestlog", new { @value = "3" }) Chorionic Villi Aspiration
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-3">
+                        @Html.CheckBox("facilitytestlog", new { @value = "4" }) Foetal Biopsy
+                    </div>
+                    <div class="col-md-3">
+                        @Html.CheckBox("facilitytestlog", new { @value = "5" }) Foetoscopy
+                    </div>
+                    <div class="col-md-4">
+                        @Html.CheckBox("facilitytestlog", new { @value = "6" }) Cordocentesis
+                    </div>
+                </div>
+            </fieldset>
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border">Studies</legend>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            @Html.CheckBox("facilitystudieslog", new { @value = "1" }) Chromosomal Studies
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.CheckBox("facilitystudieslog", new { @value = "2" }) Biochemical Studies
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.CheckBox("facilitystudieslog", new { @value = "3" }) Molecular Studies
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-offset-1 col-md-3">
+                                            @Html.CheckBox("facilitystudieslog", new { @value = "4" }) Preemplantatioin Genetic
+                                        </div>
+                                    </div>
+                                </fieldset>
+        }
+        if (Model.FacilityModel.Faclities.Contains("1") || Model.FacilityModel.Faclities.Contains("2")
+            || Model.FacilityModel.Faclities.Contains("3") || Model.FacilityModel.Faclities.Contains("6"))
+        {
+            <fieldset class="scheduler-border" id="fsFacilityRemarks">
+                <legend class="scheduler-border">Remarks</legend>
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-1">
+                        @Html.LabelFor(model => model.FacilitiesModel.Remarks, new { @class = "control-label" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayFor(model => model.FacilitiesModel.Remarks)
+                    </div>
+                </div>
+            </fieldset>
+        }
+    }
+}
+<script>
+    function BindFacilities() {
+        // Bind Tests in Facilities tab
+        $.each($("input[name='facilitytestlog']"), function () {
+            $(this).parent('[class*="icheckbox"]').iCheck('disable');
+        });
+
+        var tests = '@Model.FacilitiesModel.Tests';
+        if (tests.length > 0) {
+            var arrTests = tests.split(',');
+            for (var i = 0; i < arrTests.length; i++) {
+                $('input:checkbox[name="facilitytestlog"][value="' + arrTests[i] + '"]').iCheck('check');
+            }
+        }
+
+        // Bind Studies in Facilities tab
+        $.each($("input[name='facilitystudieslog']"), function () {
+            $(this).parent('[class*="icheckbox"]').iCheck('disable');
+        });
+
+        var studies = '@Model.FacilitiesModel.Studies';
+        if (studies.length > 0) {
+            var arrStudies = studies.split(',');
+            for (var i = 0; i < arrStudies.length; i++) {
+                $('input:checkbox[name="facilitystudieslog"][value="' + arrStudies[i] + '"]').iCheck('check');
+            }
+        }
+    }
+</script>
